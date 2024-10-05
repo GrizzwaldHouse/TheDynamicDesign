@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
         }
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
-
-
+        sprint();
+        
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             jumpCount++;
@@ -55,8 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            speed += sprintMod;
-
+            speed *= sprintMod;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
