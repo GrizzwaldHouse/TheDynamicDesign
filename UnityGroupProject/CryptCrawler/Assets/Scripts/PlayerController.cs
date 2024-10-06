@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] CharacterController controller;
 
+    [SerializeField] int hp;
+
     [SerializeField] int speed;
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
@@ -78,5 +80,15 @@ public class PlayerController : MonoBehaviour
         }
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    public void takeDamage(int amount)
+    {
+        hp -= amount;
+
+        if (hp <= 0)
+        {
+            gamemanager.instance.youLose();
+        }
     }
 }
