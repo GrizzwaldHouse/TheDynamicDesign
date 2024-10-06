@@ -2,24 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
-    [SerializeField] LayerMask ignoreMask;
     [SerializeField] CharacterController controller;
-
-    [SerializeField] int hp;
-
+    [SerializeField] LayerMask ignoreMask;
+    [SerializeField] int playerheight;
+    [SerializeField] int crouchHeight;
+    [SerializeField] int crouchSpeed;
     [SerializeField] int speed;
-    [SerializeField] int jumpSpeed;
-    [SerializeField] int jumpMax;
+   
+    [SerializeField] int HP;
+    [SerializeField] int sprintmod;
+    [SerializeField] int jumpspeed;
     [SerializeField] int gravity;
-    [SerializeField] int shootDamage;
+    [SerializeField] int jumpmax;
     [SerializeField] float shootRate;
+    [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
-    [SerializeField] int sprintMod;
+
     Vector3 moveDir;
     Vector3 playerVel;
-    int jumpCount;
+    int jumpcount;
     bool isSprinting;
     bool isShooting;
     // Start is called before the first frame update
@@ -31,47 +34,71 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        if (controller.isGrounded)
-        {
-            jumpCount = 0;
-            playerVel = Vector3.zero;
-        }
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
+        movement();
+        sprint();
+        crouch();
+        
+
+    }
+    void movement()
+    {
+
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
-        sprint();
-        
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+
+        if (controller.isGrounded)
         {
-            jumpCount++;
-            playerVel.y = jumpSpeed;
+            jumpcount = 0;
+            playerVel = Vector3.zero;
+        }
+        if (Input.GetButtonDown("Jump") && jumpcount < jumpmax)
+        {
+            jumpcount++;
+            playerVel.y = jumpspeed;
+
         }
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
+        if (Input.GetButton("Fire1") && !gamemanager.instance.isPaused && !isShooting)
+        {
+            StartCoroutine(shoot());
+        }
+        
 
-        //shoot command
-        if (Input.GetButton("Shoot") && !isShooting)
-            StartCoroutine(Shoot());
     }
     void sprint()
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            speed *= sprintMod;
+            speed *= sprintmod;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            speed /= sprintMod;
+            speed /= sprintmod;
         }
     }
-    IEnumerator Shoot()
+    void crouch()
+    {
+        if (Input.GetButtonDown("Crouch"))
+        {
+            controller.height = crouchHeight;
+            speed -= crouchSpeed;
+        }
+        else if (Input.GetButtonUp("Crouch"))
+        {
+            controller.height = playerheight;
+            speed += crouchSpeed;
+
+        }
+    }
+    
+    IEnumerator shoot()
     {
         isShooting = true;
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
         {
-
-
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             if (dmg != null)
             {
@@ -82,13 +109,14 @@ public class PlayerController : MonoBehaviour
         isShooting = false;
     }
 
+   
+
     public void takeDamage(int amount)
     {
-        hp -= amount;
-
-        if (hp <= 0)
+        HP -= amount;
+        if (HP <= 0)
         {
-            gamemanager.instance.youLose();
+           gamemanager.instance.youLose();
         }
     }
 }

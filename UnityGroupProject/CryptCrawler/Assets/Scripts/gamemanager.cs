@@ -12,6 +12,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
 
     [SerializeField] TMP_Text enemyCountText;
+    public GameObject player;
     public static gamemanager instance;
 
     public bool isPaused;
