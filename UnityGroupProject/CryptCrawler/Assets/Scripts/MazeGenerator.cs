@@ -10,7 +10,7 @@ public class MazeGenerator : MonoBehaviour
     // These will be set in the Unity editor to specify the dimensions of the maze
     [Range(50, 500)]
     public int mazeWidth,
-     mazeHeight;
+    mazeHeight;
 
     // Declare two public integer variables: startX and startY
     // These will be set in the Unity editor to specify the starting position of the maze generation algorithm
