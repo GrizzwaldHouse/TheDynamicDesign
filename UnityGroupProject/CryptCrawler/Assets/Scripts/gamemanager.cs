@@ -1,7 +1,9 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+
 
 // This script is responsible for managing the game's state and UI.
 public class gamemanager : MonoBehaviour
@@ -11,10 +13,14 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause; // The pause menu game object
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
-
+    [SerializeField] TMP_Text healthText;
+    [SerializeField] TMP_Text manaText;
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
     [SerializeField] TMP_Text enemyCountText;
-
+    public int playerHealth;
+    public int playerMana;
+    [SerializeField] GameObject healthPotionPrefab;
+    [SerializeField] GameObject manaPotionPrefab;
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
     public GameObject player;
 
@@ -60,7 +66,12 @@ public class gamemanager : MonoBehaviour
             }
         }
     }
+    public void updatePlayerUI()
+    {
+        healthText.text = "Health: " + playerHealth;
+        manaText.text = "Mana: " + playerMana;
 
+    }
     // This method pauses the game and shows the pause menu.
     public void statePause()
     {
@@ -118,4 +129,31 @@ public class gamemanager : MonoBehaviour
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
-}
+        public void spawnHealthPotion()
+        {
+            GameObject healthPotion = Instantiate(healthPotionPrefab, transform.position, Quaternion.identity);
+            healthPotion.GetComponent<Potions>().setPotionType(PotionType.HealthPotion);
+            // This method spawns a health potion at the current position and sets its type to HealthPotion.
+        }
+
+        public void spawnManaPotion()
+        {
+            GameObject manaPotion = Instantiate(manaPotionPrefab, transform.position, Quaternion.identity);
+            manaPotion.GetComponent<Potions>().setPotionType(PotionType.ManaPotion);
+            // This method spawns a mana potion at the current position and sets its type to Mana.
+        }
+
+        public void useHealthPotion()
+        {
+            playerHealth += 10;
+            updatePlayerUI();
+            // This method increases the player's health by 10 and updates the UI to reflect the change.
+        }
+
+        public void useManaPotion()
+        {
+            playerMana += 10;
+            updatePlayerUI();
+            // This method increases the player's mana by 10 and updates the UI to reflect the change.
+        }
+    }

@@ -187,7 +187,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         // Subtract the damage amount from the player's health points.
         HP -= amount;
-
+        gamemanager.instance.playerHealth = HP;
+        gamemanager.instance.updatePlayerUI();
         // If the player's health points are less than or equal to 0, call the youLose method on the gamemanager instance.
         if (HP <= 0)
         {
