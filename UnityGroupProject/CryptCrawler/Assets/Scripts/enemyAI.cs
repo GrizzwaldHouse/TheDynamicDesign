@@ -13,7 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     // This variable stores the original color of the enemy model.
     Color colorOrig;
-   public bool isDead,
+    public bool isDead;
     // This method is called once at the start of the game.
     void Start()
     {
