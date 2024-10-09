@@ -1,19 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 // This script is responsible for controlling the enemy AI and handling damage.
 public class enemyAI : MonoBehaviour, IDamage
 {
+    [SerializeField] NavMeshAgent agent;
     // This variable is exposed to the Unity Inspector, allowing designers to assign the renderer component of the enemy model.
     [SerializeField] Renderer model;
 
     // This variable is exposed to the Unity Inspector, allowing designers to set the initial health points (HP) of the enemy.
     [SerializeField] int HP;
-
+    [SerializeField] int rotateSpeed;
+    [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
+    [SerializeField] int viewAngle;
+    [SerializeField] GameObject bullet;  // bullet is a GameObject that represents the enemy's projectile
+    [SerializeField] float shootRate;  // shootRate is a float that determines how often the enemy shoots
     // This variable stores the original color of the enemy model.
     Color colorOrig;
+    bool isShooting;
+
     public bool isDead;
+    float angleToPlayer;
+    bool playerInRange; // playerInRange is a boolean that indicates whether the player is within range of the enemy
+    Vector3 playerDir;   // playerDir is a Vector3 that stores the direction from the enemy to the player
     // This method is called once at the start of the game.
     void Start()
     {
@@ -27,6 +39,12 @@ public class enemyAI : MonoBehaviour, IDamage
     // This method is called every frame, but is currently empty.
     void Update()
     {
+        if (playerInRange && canSeePlayer())
+        {
+            {
+
+            }
+        }
         // TO DO: Add AI logic here, such as movement, attack, or patrol behaviors.
     }
 
@@ -46,6 +64,63 @@ public class enemyAI : MonoBehaviour, IDamage
             Destroy(gameObject);
         }
     }
+    bool canSeePlayer()
+    {
+
+        playerDir = gamemanager.instance.player.transform.position - headPos.position;
+        agent.SetDestination(gamemanager.instance.transform.position);
+        angleToPlayer = Vector3.Angle(transform.forward, playerDir);
+        Debug.DrawRay(headPos.position, playerDir);
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                agent.SetDestination(gamemanager.instance.player.transform.position);
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    faceTarget();
+                }
+                if (!isShooting)
+                {
+                    StartCoroutine(shoot());
+                   
+                }
+            }
+            return true;
+
+        }
+        return false;
+    }
+        void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("Player"))
+            {
+                playerInRange = true;
+            }
+        }
+        void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                playerInRange = false;
+            }
+        }
+        void faceTarget()
+        {
+            Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotateSpeed * Time.deltaTime);
+
+        }
+        IEnumerator shoot()
+        {
+            isShooting = true;
+            yield return new WaitForSeconds(shootRate);
+            GameObject bulletInstance = Instantiate(bullet, shootPos.position, shootPos.rotation);
+            bulletInstance.GetComponent<Rigidbody>().velocity = shootPos.forward * 10;
+            isShooting = false;
+        }
+    
 
     // This coroutine flashes the enemy's color to indicate damage.
     IEnumerator flashColor()
