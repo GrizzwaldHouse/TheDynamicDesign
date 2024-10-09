@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void Update()
     {
         // Draw a raycast from the camera to visualize the shooting distance.
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
+        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
 
         // Call the movement function to handle player movement.
         movement();
