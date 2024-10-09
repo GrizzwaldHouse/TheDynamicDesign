@@ -115,9 +115,8 @@ public class enemyAI : MonoBehaviour, IDamage
         IEnumerator shoot()
         {
             isShooting = true;
-            yield return new WaitForSeconds(shootRate);
-            GameObject bulletInstance = Instantiate(bullet, shootPos.position, shootPos.rotation);
-            bulletInstance.GetComponent<Rigidbody>().velocity = shootPos.forward * 10;
+        Instantiate(bullet, shootPos.position, shootPos.rotation);
+        yield return new WaitForSeconds(shootRate);
             isShooting = false;
         }
     

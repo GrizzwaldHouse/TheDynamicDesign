@@ -50,19 +50,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5576da3c44fe049bc28a1ea327b4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 3867266928601921772}
   ignoreMask:
     serializedVersion: 2
     m_Bits: 64
-  controller: {fileID: 3867266928601921772}
-  hp: 3
+  playerheight: 0
+  crouchHeight: 0
+  crouchSpeed: 0
   speed: 3
-  jumpSpeed: 12
-  jumpMax: 3
+  HP: 0
+  sprintmod: 0
+  jumpspeed: 0
   gravity: 34
-  shootDamage: 1
+  jumpmax: 0
   shootRate: 0.25
+  shootDamage: 1
   shootDist: 150
-  sprintMod: 5
 --- !u!33 &8887056793998851317
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -91,7 +94,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7fc3f7ba50db44d479daa4538c5560f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2882795654731209471}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.63, y: 4.13, z: 13.8}
+  m_LocalPosition: {x: -9.36, y: -0.44, z: 13.8}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51,11 +51,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   rb: {fileID: -2047340804817336368}
-  damageamount: 1
+  damageamount: 3
   speed: 500
-  destroytime: 10
+  destroytime: 16
   damageInterval: 1
-  damageRange: 100
+  damageRange: 250
 --- !u!54 &-2047340804817336368
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ccf4748f8fcb76842b8aed4ebcaffbfd, type: 2}
+  - {fileID: 2100000, guid: b4be24b7cab885c4a88fd49b922267ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
