@@ -16,5 +16,10 @@ public class MagicSpell : ScriptableObject
 
     // The cooldown time between magic spell shots
     [SerializeField] public float magicSpellCooldown;
+
+    [SerializeField] public int lifetime;
+
+    [SerializeField] public float radius;
+    [SerializeField] public float manacost;
 }
 

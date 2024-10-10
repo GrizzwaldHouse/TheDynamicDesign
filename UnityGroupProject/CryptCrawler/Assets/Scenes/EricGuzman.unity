@@ -515,8 +515,15 @@ MonoBehaviour:
   menuPause: {fileID: 0}
   menuWin: {fileID: 0}
   menuLose: {fileID: 0}
+  healthText: {fileID: 0}
+  manaText: {fileID: 0}
   enemyCountText: {fileID: 0}
+  playerHealth: 0
+  playerMana: 0
+  healthPotionPrefab: {fileID: 0}
+  manaPotionPrefab: {fileID: 0}
   player: {fileID: 0}
+  playerHPBar: {fileID: 0}
   isPaused: 0
 --- !u!114 &1253970185
 MonoBehaviour:
@@ -597,8 +604,15 @@ MonoBehaviour:
   menuPause: {fileID: 0}
   menuWin: {fileID: 0}
   menuLose: {fileID: 0}
+  healthText: {fileID: 0}
+  manaText: {fileID: 0}
   enemyCountText: {fileID: 311149051}
+  playerHealth: 0
+  playerMana: 0
+  healthPotionPrefab: {fileID: 0}
+  manaPotionPrefab: {fileID: 0}
   player: {fileID: 0}
+  playerHPBar: {fileID: 0}
   isPaused: 0
 --- !u!224 &1253970189
 RectTransform:
@@ -804,15 +818,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3064128592204389108, guid: d8e2804b4543d2341ba3141eeb249ae3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6227856
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 3064128592204389108, guid: d8e2804b4543d2341ba3141eeb249ae3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.17
+      value: 1.308
       objectReference: {fileID: 0}
     - target: {fileID: 3064128592204389108, guid: d8e2804b4543d2341ba3141eeb249ae3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.75
+      value: -0.516
       objectReference: {fileID: 0}
     - target: {fileID: 3064128592204389108, guid: d8e2804b4543d2341ba3141eeb249ae3, type: 3}
       propertyPath: m_LocalRotation.w
