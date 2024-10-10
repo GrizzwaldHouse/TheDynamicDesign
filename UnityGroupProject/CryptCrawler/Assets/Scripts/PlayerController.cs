@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.Move(playerVel * Time.deltaTime);
 
         // If the player presses the fire button and is not currently shooting, start the shooting coroutine.
-        if (Input.GetButton("Fire1") && !gamemanager.instance.isPaused && !isShooting)
+        if (Input.GetButton("Shoot") && !gamemanager.instance.isPaused && !isShooting)
         {
             StartCoroutine(shoot());
         }
