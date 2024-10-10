@@ -60,7 +60,7 @@ public class MagicSpellProjectile : MonoBehaviour
 {
     // The damage dealt by the magic spell
     public int damage = 10;
-    private SphereCollider collider;
+    private new SphereCollider collider;
     public MagicSpell magicSpell;
     void Start()
     {
