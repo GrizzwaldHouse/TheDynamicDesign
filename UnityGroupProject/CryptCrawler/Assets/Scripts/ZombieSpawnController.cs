@@ -59,7 +59,7 @@ public class ZombieSpawnController : MonoBehaviour
 
         // Increment the wave number.
         currentWave++;
-
+    
         // Start the next wave.
         StartCoroutine(SpawnWave());
     }
