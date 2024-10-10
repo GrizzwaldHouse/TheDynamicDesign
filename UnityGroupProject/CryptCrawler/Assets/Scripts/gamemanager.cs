@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 // This script is responsible for managing the game's state and UI.
@@ -23,6 +24,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject manaPotionPrefab;
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
     public GameObject player;
+    // Player's hp bar.
+    public Image playerHPBar;
 
     // This is a singleton instance of the GameManager, allowing other scripts to access it easily.
     public static gamemanager instance;

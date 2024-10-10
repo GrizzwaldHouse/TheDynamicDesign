@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public TMP_Text highScoreUI;
     string newGameScene = "CryptCrawler";
-    void Start()
+    public void Start()
     {
         int highScore= SaveLaodManager.Instance.LoadHighScore();
         highScoreUI.text = $"Top Score Survived: " + highScore;

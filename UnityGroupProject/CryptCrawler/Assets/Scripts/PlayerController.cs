@@ -62,6 +62,9 @@ public class PlayerController : MonoBehaviour, IDamage
     // Whether the player is currently shooting.
     bool isShooting;
 
+    //player's original/starting hp
+    int HPoriginal;
+
     // Start is called before the first frame update.
     void Start()
     {
@@ -187,6 +190,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         // Subtract the damage amount from the player's health points.
         HP -= amount;
+        //updates the player's UI when taking damage.
+        updatePlayerUI();
         gamemanager.instance.playerHealth = HP;
         gamemanager.instance.updatePlayerUI();
         // If the player's health points are less than or equal to 0, call the youLose method on the gamemanager instance.
@@ -194,5 +199,11 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             gamemanager.instance.youLose();
         }
+    }
+
+    //Updates the players UI.  
+    public void updatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPoriginal;
     }
 }
