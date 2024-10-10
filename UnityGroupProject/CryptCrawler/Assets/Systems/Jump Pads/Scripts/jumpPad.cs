@@ -10,14 +10,14 @@ public class jumpPad : MonoBehaviour
         public float contactTime;
         public Vector3 contactVelocity;
     }
-
-    [SerializeField] float launchDelay = 0.1f;
-    [SerializeField] float launchForce = 10f;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] float launchDelay ;
+    [SerializeField] float launchForce ;
     [SerializeField] ForceMode launchMode = ForceMode.Impulse;
-    [SerializeField] float impactVelocityScale = 0.05f;
-    [SerializeField] float maxImpactVelocityScale = 2f;
-    [SerializeField] float playerLaunchForceMultiplier = 5f;
-    [SerializeField] float maxDistortionWeight = 0.25f;
+    [SerializeField] float impactVelocityScale ;
+    [SerializeField] float maxImpactVelocityScale ;
+    [SerializeField] float playerLaunchForceMultiplier ;
+    [SerializeField] float maxDistortionWeight ;
 
     Dictionary<Rigidbody, JumpPadTarget> Targets = new Dictionary<Rigidbody, JumpPadTarget>();
 
@@ -51,14 +51,22 @@ public class jumpPad : MonoBehaviour
         Rigidbody rb;
         if (collision.gameObject.TryGetComponent<Rigidbody>(out rb))
         {
-            Targets[rb] = new JumpPadTarget() { contactTime = Time.timeSinceLevelLoad,
-                                                contactVelocity = collision.relativeVelocity};
+            Targets[rb] = new JumpPadTarget()
+            {
+                contactTime = Time.timeSinceLevelLoad,
+                contactVelocity = collision.relativeVelocity
+            };
+
+            // Prevent the player from passing through the wall
+            Physics.IgnoreCollision(collision.collider, rb.GetComponent<Collider>(), true);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        
+
+        // Re-enable collision detection when the player exits the wall
+        Physics.IgnoreCollision(collision.collider, collision.gameObject.GetComponent<Rigidbody>().GetComponent<Collider>(), false);
     }
 
     void Launch(Rigidbody targetRB, Vector3 contactVelocity)
@@ -82,7 +90,7 @@ public class jumpPad : MonoBehaviour
 
         if (targetRB.CompareTag("Player"))
             launchVector *= playerLaunchForceMultiplier;
-        
+
         targetRB.AddForce(transform.up * launchForce, launchMode);
     }
 }
