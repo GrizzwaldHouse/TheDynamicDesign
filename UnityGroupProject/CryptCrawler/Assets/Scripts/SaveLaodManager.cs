@@ -27,7 +27,7 @@ public class SaveLaodManager : MonoBehaviour
     }
     public int LoadHighScore()
     {
-        if (PlayerPrefs.HasKey(highScoreKey){ 
+        if (PlayerPrefs.HasKey(highScoreKey)){ 
             return PlayerPrefs.GetInt(highScoreKey);
         }
         else
