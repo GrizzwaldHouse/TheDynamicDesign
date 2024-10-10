@@ -27,11 +27,11 @@ public class MagicSpellShooter : MonoBehaviour
                 // Shoot a magic spell
                 ShootMagicSpell();
             }
-        }
+            }
 
-        // Update the cooldown timer
-        magicSpellCooldownTimer -= Time.deltaTime;
-    }
+            // Update the cooldown timer
+            magicSpellCooldownTimer -= Time.deltaTime;
+        }
   
     void ShootMagicSpell()
     {
