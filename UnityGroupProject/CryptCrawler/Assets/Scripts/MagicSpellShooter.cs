@@ -7,12 +7,14 @@ public class MagicSpellShooter : MonoBehaviour
     // The magic spell scriptable object
     public MagicSpell magicSpell;
     public Transform castPoint;
+    
 
     // The player's current magic spell cooldown timer
     float magicSpellCooldownTimer = 0f;
 
     // Flag to check if the player is currently shooting
     bool isShooting = false;
+   
 
     void Update()
     {
@@ -30,14 +32,14 @@ public class MagicSpellShooter : MonoBehaviour
         // Update the cooldown timer
         magicSpellCooldownTimer -= Time.deltaTime;
     }
-
+  
     void ShootMagicSpell()
     {
         // Instantiate a new magic spell projectile
         GameObject magicSpellObject = Instantiate(magicSpell.magicSpellPrefab, castPoint.position, castPoint.rotation);
 
         // Set the magic spell's velocity
-        magicSpellObject.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * magicSpell.magicSpellSpeed;
+        magicSpellObject.GetComponent<Rigidbody>().velocity = castPoint.transform.forward * magicSpell.magicSpellSpeed;
 
         // Add a script to handle the magic spell's damage
         MagicSpellProjectile projectile = magicSpellObject.AddComponent<MagicSpellProjectile>();
@@ -45,9 +47,12 @@ public class MagicSpellShooter : MonoBehaviour
 
         // Set the cooldown timer
         magicSpellCooldownTimer = magicSpell.magicSpellCooldown;
-
+       
         // Set the isShooting flag to true
         isShooting = true;
+        
+      
+       
     }
 }
 
@@ -55,7 +60,24 @@ public class MagicSpellProjectile : MonoBehaviour
 {
     // The damage dealt by the magic spell
     public int damage = 10;
+    private SphereCollider collider;
+    public MagicSpell magicSpell;
+    void Start()
+    {
+        // Get the SphereCollider component
+        collider = GetComponent<SphereCollider>();
 
+        // Set the radius of the collider
+        collider.radius = magicSpell.radius;
+
+        // Start the lifetime coroutine
+        StartCoroutine(DestroyAfterLifeTime());
+    }
+ IEnumerator DestroyAfterLifeTime()
+    {
+        yield return new WaitForSeconds(magicSpell.lifetime);
+            Destroy(gameObject);
+    }
     void OnCollisionEnter(Collision collision)
     {
         // Get the IDamage component from the collided object
@@ -70,5 +92,7 @@ public class MagicSpellProjectile : MonoBehaviour
         // Destroy the magic spell projectile
         Destroy(gameObject);
     }
+
+   
 }
 
