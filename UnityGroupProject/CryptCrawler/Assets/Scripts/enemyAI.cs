@@ -53,7 +53,8 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         // Subtract the damage amount from the enemy's HP.
         HP -= amount;
-
+        // Set the destination of the NavMeshAgent to the player's position
+        agent.SetDestination(gamemanager.instance.player.transform.position);
         // Start a coroutine to flash the enemy's color to indicate damage.
         StartCoroutine(flashColor());
 

@@ -88,7 +88,7 @@ public class MovingPlatform : MonoBehaviour
         {
             // Move the platform left and right using a ping-pong motion
             float newX = Mathf.Lerp(_startPosition.x, _startPosition.x + _moveDistance * _movementDirection, Mathf.PingPong(Time.time * _speed, 1.0f));
-            Vector3 targetPosition = new Vector3(newX, _startPosition.y, _startPosition.z); // Calculate the target position
+            Vector3 targetPosition = new Vector3(newX, _startPosition.y, _startPosition.x); // Calculate the target position
 
             // Move the platform to the target position using the Rigidbody
             _rb.MovePosition(targetPosition); // Move the platform to the target position
