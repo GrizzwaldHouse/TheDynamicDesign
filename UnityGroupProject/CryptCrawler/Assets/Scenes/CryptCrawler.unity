@@ -10345,10 +10345,6 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5180814541828325052, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
-      propertyPath: HP
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180814541828325052, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
       propertyPath: model
       value: 
       objectReference: {fileID: 1902781343}
@@ -10357,24 +10353,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5180814541828325052, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
-      propertyPath: headPos
-      value: 
-      objectReference: {fileID: 6346261063556097103}
-    - target: {fileID: 5180814541828325052, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
-      propertyPath: shootPos
-      value: 
-      objectReference: {fileID: 6346261063556097104}
-    - target: {fileID: 5180814541828325052, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
       propertyPath: shootRate
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180814541828325052, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180814541828325052, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
-      propertyPath: rotateSpeed
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5858423400305049173, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
       propertyPath: m_Name
@@ -10425,16 +10405,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
---- !u!4 &6346261063556097103 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7832868759033496354, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
-  m_PrefabInstance: {fileID: 6346261063556097101}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6346261063556097104 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3053246981618481855, guid: f85f817e9856c4249b3f92130950dcad, type: 3}
-  m_PrefabInstance: {fileID: 6346261063556097101}
-  m_PrefabAsset: {fileID: 0}
 --- !u!135 &6706939360701247377
 SphereCollider:
   m_ObjectHideFlags: 0

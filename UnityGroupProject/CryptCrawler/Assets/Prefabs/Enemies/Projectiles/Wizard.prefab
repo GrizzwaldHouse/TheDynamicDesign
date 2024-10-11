@@ -1859,15 +1859,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2220835391015683499}
-  model: {fileID: 1970760140538682771}
+  model: {fileID: 5631173391164149}
   HP: 5
   rotateSpeed: 100
   shootPos: {fileID: 3053246981618481855}
   headPos: {fileID: 7832868759033496354}
   viewAngle: 90
   bullet: {fileID: 2882795654731209471, guid: a031935e994ec184ab2c3cc37906cbb8, type: 3}
-  shootRate: 0.5
-  isDead: 1
+  shootRate: 5
+  isDead: 0
 --- !u!195 &2220835391015683499
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1882,9 +1882,9 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
