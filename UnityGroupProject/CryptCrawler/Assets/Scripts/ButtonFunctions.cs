@@ -16,16 +16,16 @@ public class ButtonFunctions : MonoBehaviour
         gamemanager.instance.stateUnpause();
 
     }
-    public void useHealthPotion()
-    {
-        gamemanager.instance.playerHealth += 10;
-        gamemanager.instance.updatePlayerUI();
-    }
-    public void useManaPotion()
-    {
-        gamemanager.instance.playerMana += 10;
-        gamemanager.instance.updatePlayerUI();
-    }
+    //public void useHealthPotion()
+    //{
+    //    gamemanager.instance.playerHealth += 10;
+    //    gamemanager.instance.updatePlayerUI();
+    //}
+    //public void useManaPotion()
+    //{
+    //    gamemanager.instance.playerMana += 10;
+    //    gamemanager.instance.updatePlayerUI();
+    //}
     public void quit()
     {
 #if UNITY_EDITOR
