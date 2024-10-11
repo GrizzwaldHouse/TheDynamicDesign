@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         // Initialize any necessary variables or components here.
+        HPoriginal = HP;
+        updatePlayerUI();
     }
 
     // Update is called once per frame.
@@ -193,8 +195,8 @@ public class PlayerController : MonoBehaviour, IDamage
         //updates the player's UI when taking damage.
         updatePlayerUI();
         StartCoroutine(damageFlash());    
-        gamemanager.instance.playerHPBar.fillAmount = (float)HPoriginal/HP;
-        gamemanager.instance.updatePlayerUI();
+     
+
         // If the player's health points are less than or equal to 0, call the youLose method on the gamemanager instance.
         if (HP <= 0)
         {
@@ -203,14 +205,16 @@ public class PlayerController : MonoBehaviour, IDamage
     }
 
     //Updates the players UI.  
-    public void updatePlayerUI()
-    {
-        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPoriginal;
-    }
+   
     IEnumerator damageFlash()
     {
         gamemanager.instance.PlayerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gamemanager.instance.PlayerDamageScreen.SetActive(false);
+    }
+
+    public void updatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPoriginal;
     }
 }
