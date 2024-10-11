@@ -14,6 +14,7 @@ public class Zombie : MonoBehaviour
     // Called before the first frame update.
     private void Start()
     {
+
         // Get the animator component from the game object.
         animator = GetComponent<Animator>();
     }
