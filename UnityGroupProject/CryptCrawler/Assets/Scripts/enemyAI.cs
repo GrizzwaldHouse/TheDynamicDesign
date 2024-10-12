@@ -57,7 +57,6 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.SetDestination(gamemanager.instance.player.transform.position);
         // Start a coroutine to flash the enemy's color to indicate damage.
         StartCoroutine(flashColor());
-
         // If the enemy's HP reaches 0 or less, destroy the enemy game object and notify the game manager.
         if (HP <= 0)
         {
@@ -69,13 +68,13 @@ public class enemyAI : MonoBehaviour, IDamage
     {
 
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
-        agent.SetDestination(gamemanager.instance.transform.position);
+      
         angleToPlayer = Vector3.Angle(transform.forward, playerDir);
         Debug.DrawRay(headPos.position, playerDir);
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
                 agent.SetDestination(gamemanager.instance.player.transform.position);
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -108,18 +107,27 @@ public class enemyAI : MonoBehaviour, IDamage
             }
         }
         void faceTarget()
-        {
-            Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotateSpeed * Time.deltaTime);
+    {  // Calculate a quaternion that represents the rotation needed to face the player
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
 
-        }
-        IEnumerator shoot()
+        // Smoothly rotate the enemy to face the player using Lerp
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * rotateSpeed);
+
+    }
+    IEnumerator shoot()
         {
-            isShooting = true;
-            Instantiate(bullet, shootPos.position, shootPos.rotation);
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
+        // Set isShooting to true
+        isShooting = true;
+
+        // Instantiate a bullet at the shootPos position with the enemy's rotation
+        Instantiate(bullet, shootPos.position, transform.rotation);
+
+        // Wait for the shootRate time before allowing the enemy to shoot again
+        yield return new WaitForSeconds(shootRate);
+
+        // Set isShooting to false
+        isShooting = false;
+    }
     
 
     // This coroutine flashes the enemy's color to indicate damage.

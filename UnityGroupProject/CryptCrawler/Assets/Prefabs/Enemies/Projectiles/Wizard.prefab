@@ -138,9 +138,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8728417167363148927}
   - component: {fileID: 5631173391164149}
-  - component: {fileID: 5511091079207370791}
-  - component: {fileID: 1496029694145580787}
-  - component: {fileID: 736139542103218586}
   m_Layer: 3
   m_Name: WizardBody
   m_TagString: Untagged
@@ -283,73 +280,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000038146973, y: 9.283916, z: 89.01546}
     m_Extent: {x: 116.46152, y: 48.080334, z: 112.55812}
   m_DirtyAABB: 0
---- !u!114 &5511091079207370791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582114816211937482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40933c84a1d2c06438d75af5100659b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 736139542103218586}
-  model: {fileID: 5631173391164149}
-  HP: 2
-  rotateSpeed: 4
-  shootPos: {fileID: 1944184923398477919}
-  headPos: {fileID: 7832868759033496354}
-  viewAngle: 90
-  bullet: {fileID: 2882795654731209471, guid: a031935e994ec184ab2c3cc37906cbb8, type: 3}
-  shootRate: 1.5
-  isDead: 0
---- !u!136 &1496029694145580787
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582114816211937482}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0.000000038146972, y: 1.25, z: -0.09283927}
---- !u!195 &736139542103218586
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582114816211937482}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.95460266
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 4.799371
-  m_BaseOffset: 2.3996854
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &609224702099778668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,7 +1754,7 @@ GameObject:
   - component: {fileID: 760043845665949066}
   m_Layer: 3
   m_Name: Wizard
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

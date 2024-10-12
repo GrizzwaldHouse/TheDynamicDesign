@@ -36,6 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5337469379754401558}
+  - {fileID: 2115074770858559942}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3765801254657215555
@@ -54,18 +55,20 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 64
-  playerheight: 0
-  crouchHeight: 0
-  crouchSpeed: 0
-  speed: 3
-  HP: 0
-  sprintmod: 0
-  jumpspeed: 0
-  gravity: 34
-  jumpmax: 0
+  playerheight: 3
+  crouchHeight: 4
+  crouchSpeed: 14
+  speed: 5
+  HP: 38
+  sprintmod: 3
+  jumpspeed: 9
+  gravity: 26
+  jumpmax: 3
   shootRate: 0.25
   shootDamage: 1
+  bullet: {fileID: 3168699335224534210, guid: 188418452d72cae49a324e860a0bf48f, type: 3}
   shootDist: 150
+  shootPos: {fileID: 2115074770858559942}
 --- !u!33 &8887056793998851317
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -192,6 +195,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!1 &4020699886268078899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2115074770858559942}
+  m_Layer: 6
+  m_Name: shootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2115074770858559942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020699886268078899}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.77, z: 1.794}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3064128592204389108}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5083427662420991779
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +238,7 @@ GameObject:
   - component: {fileID: 3634373218854810630}
   - component: {fileID: 992133324062743297}
   - component: {fileID: 2534888217225954176}
-  - component: {fileID: 7783454720553391675}
+  - component: {fileID: 7674231076384499777}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -237,7 +271,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -302,7 +336,7 @@ MonoBehaviour:
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
---- !u!114 &7783454720553391675
+--- !u!114 &7674231076384499777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

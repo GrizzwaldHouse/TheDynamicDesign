@@ -66,7 +66,7 @@ public class MovingPlatform : MonoBehaviour
         // Check if the character has landed on the platform
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player has landed on the platform!"); // Log a message to the console for debugging purposes
+          
 
             // Set the flag to move the platform
             _isMoving = true; // Indicate that the platform should start moving

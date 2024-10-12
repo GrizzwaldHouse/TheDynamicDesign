@@ -43,10 +43,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
     // The damage dealt by the player's shots.
     [SerializeField] int shootDamage;
-
+    // bullet is a GameObject that represents the enemy's projectile
+    [SerializeField] GameObject bullet;
     // The maximum distance the player's shots can travel.
     [SerializeField] int shootDist;
-
+   
     // The direction of the player's movement.
     Vector3 moveDir;
 
@@ -162,14 +163,16 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         // Set the isShooting flag to true to prevent multiple shots from being fired at once.
         isShooting = true;
-
+       
         // Create a RaycastHit to store the result of the raycast.
         RaycastHit hit;
 
+       
         // Cast a ray from the camera's position in the direction of the camera's forward vector, 
         // with a maximum distance of shootDist, and ignoring any layers specified in the ignoreMask.
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
         {
+
             // Get the IDamage component from the hit object's collider.
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
