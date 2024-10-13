@@ -43,8 +43,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
     // The damage dealt by the player's shots.
     [SerializeField] int shootDamage;
-    // bullet is a GameObject that represents the enemy's projectile
-    [SerializeField] GameObject bullet;
     // The maximum distance the player's shots can travel.
     [SerializeField] int shootDist;
    
@@ -122,7 +120,7 @@ public class PlayerController : MonoBehaviour, IDamage
         // If the player presses the fire button and is not currently shooting, start the shooting coroutine.
         if (Input.GetButton("Shoot") && !gamemanager.instance.isPaused && !isShooting)
         {
-            StartCoroutine(shoot());
+            StartCoroutine(Shoot());
         }
     }
 
@@ -159,34 +157,23 @@ public class PlayerController : MonoBehaviour, IDamage
     }
 
     // This coroutine handles the player's shooting.
-    IEnumerator shoot()
+    IEnumerator Shoot()
     {
-        // Set the isShooting flag to true to prevent multiple shots from being fired at once.
         isShooting = true;
-       
-        // Create a RaycastHit to store the result of the raycast.
-        RaycastHit hit;
 
-       
-        // Cast a ray from the camera's position in the direction of the camera's forward vector, 
-        // with a maximum distance of shootDist, and ignoring any layers specified in the ignoreMask.
+        RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
         {
+            //Debug.Log(hit.collider.name);
 
-            // Get the IDamage component from the hit object's collider.
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            // If the hit object has an IDamage component, call its takeDamage method with the shootDamage amount.
-            if (dmg != null)
+            IDamage damage = hit.collider.GetComponent<IDamage>();
+            if (damage != null)
             {
-                dmg.takeDamage(shootDamage);
+                damage.takeDamage(shootDamage);
             }
         }
 
-        // Wait for the shootRate amount of time before allowing the player to shoot again.
         yield return new WaitForSeconds(shootRate);
-
-        // Set the isShooting flag to false to allow the player to shoot again.
         isShooting = false;
     }
 

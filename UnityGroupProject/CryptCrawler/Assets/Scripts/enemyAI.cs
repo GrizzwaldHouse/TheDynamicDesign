@@ -1,145 +1,123 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-// This script is responsible for controlling the enemy AI and handling damage.
 public class enemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
-    // This variable is exposed to the Unity Inspector, allowing designers to assign the renderer component of the enemy model.
     [SerializeField] Renderer model;
-
-    // This variable is exposed to the Unity Inspector, allowing designers to set the initial health points (HP) of the enemy.
-    [SerializeField] int HP;
-    [SerializeField] int rotateSpeed;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] int viewAngle;
-    [SerializeField] GameObject bullet;  // bullet is a GameObject that represents the enemy's projectile
-    [SerializeField] float shootRate;  // shootRate is a float that determines how often the enemy shoots
-    // This variable stores the original color of the enemy model.
-    Color colorOrig;
-    bool isShooting;
 
+    [SerializeField] int HP;
+    [SerializeField] int rotateSpeed;
+
+    [SerializeField] GameObject bullet;
+    [SerializeField] float shootRate;
+
+    bool isShooting;
+    bool playerInRange;
     public bool isDead;
-    float angleToPlayer;
-    bool playerInRange; // playerInRange is a boolean that indicates whether the player is within range of the enemy
-    Vector3 playerDir;   // playerDir is a Vector3 that stores the direction from the enemy to the player
-    // This method is called once at the start of the game.
+
+    float angleToplayer;
+
+    Vector3 playerDir;
+
+    Color colorOg;
+
+    // Start is called before the first frame update
     void Start()
     {
-        // Store the original color of the enemy model.
-        colorOrig = model.material.color;
-
-        // Notify the game manager that a new enemy has spawned, incrementing the enemy count.
+        colorOg = model.material.color;
         gamemanager.instance.updateGameGoal(1);
     }
 
-    // This method is called every frame, but is currently empty.
+    // Update is called once per frame
     void Update()
     {
+
         if (playerInRange && canSeePlayer())
         {
-            {
-
-            }
-        }
-        // TO DO: Add AI logic here, such as movement, attack, or patrol behaviors.
-    }
-
-    // This method is called when the enemy takes damage.
-    public void takeDamage(int amount)
-    {
-        // Subtract the damage amount from the enemy's HP.
-        HP -= amount;
-        // Set the destination of the NavMeshAgent to the player's position
-        agent.SetDestination(gamemanager.instance.player.transform.position);
-        // Start a coroutine to flash the enemy's color to indicate damage.
-        StartCoroutine(flashColor());
-        // If the enemy's HP reaches 0 or less, destroy the enemy game object and notify the game manager.
-        if (HP <= 0)
-        {
-            gamemanager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
         }
     }
+
     bool canSeePlayer()
     {
-
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
-      
-        angleToPlayer = Vector3.Angle(transform.forward, playerDir);
+        angleToplayer = Vector3.Angle(playerDir, transform.forward);
         Debug.DrawRay(headPos.position, playerDir);
+
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            if (hit.collider.CompareTag("Player") && angleToplayer <= viewAngle)
             {
                 agent.SetDestination(gamemanager.instance.player.transform.position);
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     faceTarget();
                 }
-                if (!isShooting)
-                {
-                    StartCoroutine(shoot());
-                   
-                }
-            }
-            return true;
 
+                if (isShooting == false)
+                {
+                    StartCoroutine(Shoot());
+                }
+                return true;
+            }
         }
         return false;
     }
-        void OnTriggerEnter(Collider other)
-        {
-            if(other.CompareTag("Player"))
-            {
-                playerInRange = true;
-            }
-        }
-        void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                playerInRange = false;
-            }
-        }
-        void faceTarget()
-    {  // Calculate a quaternion that represents the rotation needed to face the player
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-
-        // Smoothly rotate the enemy to face the player using Lerp
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * rotateSpeed);
-
+    void faceTarget()
+    {
+        Quaternion rotate = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * rotateSpeed);
     }
-    IEnumerator shoot()
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-        // Set isShooting to true
+            playerInRange = true;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
+    IEnumerator Shoot()
+    {
         isShooting = true;
 
-        // Instantiate a bullet at the shootPos position with the enemy's rotation
         Instantiate(bullet, shootPos.position, transform.rotation);
-
-        // Wait for the shootRate time before allowing the enemy to shoot again
         yield return new WaitForSeconds(shootRate);
 
-        // Set isShooting to false
         isShooting = false;
     }
-    
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+        agent.SetDestination(gamemanager.instance.player.transform.position);
 
-    // This coroutine flashes the enemy's color to indicate damage.
+        StartCoroutine(flashColor());
+
+        if (HP <= 0)
+        {
+            gamemanager.instance.updateGameGoal(-1);
+            Destroy(gameObject);
+        }
+    }
+
     IEnumerator flashColor()
     {
-        // Set the enemy model's color to red to indicate damage.
         model.material.color = Color.red;
-
-        // Wait for 0.1 seconds to create a brief flash effect.
         yield return new WaitForSeconds(0.1f);
-
-        // Restore the enemy model's original color.
-        model.material.color = colorOrig;
+        model.material.color = colorOg;
     }
 }
