@@ -2,174 +2,99 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// This script is responsible for controlling the player's movement, shooting, and damage handling.
 public class PlayerController : MonoBehaviour, IDamage
 {
-    // The CharacterController component is used to handle the player's movement and collision detection.
     [SerializeField] CharacterController controller;
-
-    // A LayerMask is used to ignore certain layers when shooting or colliding with objects.
     [SerializeField] LayerMask ignoreMask;
 
-    // The player's height when standing.
-    [SerializeField] int playerheight;
-
-    // The player's height when crouching.
-    [SerializeField] int crouchHeight;
-
-    // The speed reduction when crouching.
-    [SerializeField] int crouchSpeed;
-
-    // The player's movement speed.
-    [SerializeField] int speed;
-
-    // The player's health points.
     [SerializeField] int HP;
-
-    // The sprint speed modifier.
-    [SerializeField] int sprintmod;
-
-    // The jump speed.
-    [SerializeField] int jumpspeed;
-
-    // The gravity value.
+    [SerializeField] int speed;
+    [SerializeField] int sprintMod;
+    [SerializeField] int jumpSpeed;
+    [SerializeField] int jumpMax;
     [SerializeField] int gravity;
 
-    // The maximum number of jumps allowed.
-    [SerializeField] int jumpmax;
-
-    // The rate at which the player can shoot.
+    [SerializeField] int shootDam;
     [SerializeField] float shootRate;
+    [SerializeField] int shootDistance;
 
-    // The damage dealt by the player's shots.
-    [SerializeField] int shootDamage;
-    // The maximum distance the player's shots can travel.
-    [SerializeField] int shootDist;
-   
-    // The direction of the player's movement.
     Vector3 moveDir;
-
-    // The player's velocity.
     Vector3 playerVel;
 
-    // The number of jumps the player has made.
-    int jumpcount;
+    int jumpCount;
+    int HPorig;
 
-    // Whether the player is currently sprinting.
     bool isSprinting;
-
-    // Whether the player is currently shooting.
     bool isShooting;
-
-    //player's original/starting hp
-    int HPoriginal;
-
-    // Start is called before the first frame update.
+    // Start is called before the first frame update
     void Start()
     {
-        // Initialize any necessary variables or components here.
-        HPoriginal = HP;
-        updatePlayerUI();
+        HPorig = HP;
+        UpdatePlayerUI();
     }
 
-    // Update is called once per frame.
+    // Update is called once per frame
     void Update()
     {
-        // Draw a raycast from the camera to visualize the shooting distance.
-        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
-
-        // Call the movement function to handle player movement.
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.red);
         movement();
-
-        // Call the sprint function to handle sprinting.
-        sprint();
-
-        // Call the crouch function to handle crouching.
-        crouch();
+        Sprint();
     }
 
-    // This function handles the player's movement.
     void movement()
     {
-        // Get the horizontal and vertical input from the player.
-        moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+        //moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //transform.position += moveDir * speed * Time.deltaTime;
 
-        // Move the player based on the input and speed.
-        controller.Move(moveDir * speed * Time.deltaTime);
-
-        // If the player is grounded, reset the jump count and velocity.
         if (controller.isGrounded)
         {
-            jumpcount = 0;
+            jumpCount = 0;
             playerVel = Vector3.zero;
         }
 
-        // If the player presses the jump button and has not exceeded the maximum jump count, apply a jump force.
-        if (Input.GetButtonDown("Jump") && jumpcount < jumpmax)
+        moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+        controller.Move(moveDir * speed * Time.deltaTime);
+
+        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            jumpcount++;
-            playerVel.y = jumpspeed;
+            jumpCount++;
+            playerVel.y = jumpSpeed;
         }
 
-        // Apply gravity to the player's velocity.
         playerVel.y -= gravity * Time.deltaTime;
-
-        // Move the player based on the velocity.
         controller.Move(playerVel * Time.deltaTime);
 
-        // If the player presses the fire button and is not currently shooting, start the shooting coroutine.
-        if (Input.GetButton("Shoot") && !gamemanager.instance.isPaused && !isShooting)
+        if (Input.GetButton("Fire1") && !gamemanager.instance.isPaused && !isShooting)
         {
             StartCoroutine(Shoot());
         }
     }
 
-    // This function handles the player's sprinting.
-    void sprint()
+    void Sprint()
     {
-        // If the player presses the sprint button, increase the speed.
         if (Input.GetButtonDown("Sprint"))
         {
-            speed *= sprintmod;
+            speed *= sprintMod;
         }
-        // If the player releases the sprint button, decrease the speed.
         else if (Input.GetButtonUp("Sprint"))
         {
-            speed /= sprintmod;
+            speed /= sprintMod;
         }
     }
 
-    // This function handles the player's crouching.
-    void crouch()
-    {
-        // If the player presses the crouch button, decrease the height and speed.
-        if (Input.GetButtonDown("Crouch"))
-        {
-            controller.height = crouchHeight;
-            speed -= crouchSpeed;
-        }
-        // If the player releases the crouch button, increase the height and speed.
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            controller.height = playerheight;
-            speed += crouchSpeed;
-        }
-    }
-
-    // This coroutine handles the player's shooting.
     IEnumerator Shoot()
     {
         isShooting = true;
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
         {
-            //Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.name);
 
             IDamage damage = hit.collider.GetComponent<IDamage>();
             if (damage != null)
             {
-                damage.takeDamage(shootDamage);
+                damage.takeDamage(shootDam);
             }
         }
 
@@ -177,34 +102,26 @@ public class PlayerController : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    // This method is called when the player takes damage.
     public void takeDamage(int amount)
     {
-        // Subtract the damage amount from the player's health points.
         HP -= amount;
-        //updates the player's UI when taking damage.
-        updatePlayerUI();
-        StartCoroutine(damageFlash());    
-     
+        UpdatePlayerUI();
+        StartCoroutine(DamageFlash());
 
-        // If the player's health points are less than or equal to 0, call the youLose method on the gamemanager instance.
         if (HP <= 0)
         {
             gamemanager.instance.youLose();
         }
     }
 
-    //Updates the players UI.  
-   
-    IEnumerator damageFlash()
+    IEnumerator DamageFlash()
     {
         gamemanager.instance.PlayerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gamemanager.instance.PlayerDamageScreen.SetActive(false);
     }
-
-    public void updatePlayerUI()
+    public void UpdatePlayerUI()
     {
-        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPoriginal;
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPorig;
     }
 }
