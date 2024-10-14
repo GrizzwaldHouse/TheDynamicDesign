@@ -12,44 +12,42 @@ public interface IPotion
 }
 
 // Define a class for potions
-public class Potions : MonoBehaviour
+public class Potions : MonoBehaviour, IInteractable
 {
     // Define a variable to store the type of potion
     public PotionType potionType;
+    public PlayerController targetScript;
 
-    // Define a method to set the type of potion
-    //public void setPotionType(PotionType pType)
-    //{
-    //    // Set the potion type to the specified value
-    //    this.potionType = pType;
-    //}
 
-    // Define a method to handle collisions with other objects
-    public void OnTriggerEnter(Collider other)
+    [SerializeField] int healthToGain;
+    [SerializeField] int manaToGain;
+    [SerializeField] int potionRespawnRate;
+
+    GameObject HealthPotion;
+    GameObject ManaPotion;
+
+      public void Interact()
     {
-        // Check if the collided object is the player
-        if (other.gameObject.CompareTag("Player"))
+        
+        //Check the type of potion and apply its effect to the player
+        if (potionType == PotionType.HealthPotion)
         {
+            
 
-            {
-                // Check the type of potion and apply its effect to the player
-                if (potionType == PotionType.HealthPotion)
-                {
-                    //// Increase the player's health by 10
-                    //gamemanager.instance.playerHealth += 10;
-                    // Update the player's UI to reflect the change
-                    gamemanager.instance.updatePlayerUI();
-                }
-                else if (potionType == PotionType.ManaPotion)
-                {
-                    //// Increase the player's mana by 10
-                    //gamemanager.instance.playerMana += 10;
-                    // Update the player's UI to reflect the change
-                    gamemanager.instance.updatePlayerUI();
-                }
-                // Destroy the potion object
-                Destroy(gameObject);
-            }
+            targetScript.gainHealth(healthToGain);
+
+            // Destroy the potion object
+            Destroy(gameObject);
+
         }
+        else if (potionType == PotionType.ManaPotion)
+        {
+            //TO DO add mana addition code
+
+            Destroy(gameObject);
+        }
+
+
+       
     }
 }
