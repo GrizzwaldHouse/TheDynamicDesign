@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreMask;
 
     [SerializeField] int HP;
-    [SerializeField] int speed;
+    [SerializeField] int experience;
+    [SerializeField] int level;
+    [SerializeField] int experienceToNextLevel;
+  [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
@@ -113,12 +116,49 @@ public class PlayerController : MonoBehaviour, IDamage
             gamemanager.instance.youLose();
         }
     }
+    public void gainExperience(int amount)
+    {
+        if(experience>= experienceToNextLevel)
+        {
+            levelUp();
+        }
+    }
+    public int GetLevel() { return level; }
+    public int GetHealth() { return HP; }
+    void levelUp()
+    {
+        level++;
+        experience = calculateExperienceToNextLevel();
+        experienceToNextLevel = calculateExperienceToNextLevel();
+        HP = HPorig; //reset health to max
+        UpdatePlayerUI();
+        Debug.Log("Level Up! You are now level" + level);
 
-    IEnumerator DamageFlash()
+    }
+    private int calculateExperienceToNextLevel()
+    {
+        return(int)Mathf.Pow(level,2)*100;
+    }
+        IEnumerator DamageFlash()
     {
         gamemanager.instance.PlayerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gamemanager.instance.PlayerDamageScreen.SetActive(false);
+    }
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+    public void LoadSystem()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        level = data.level;
+        HP = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
     }
     public void UpdatePlayerUI()
     {

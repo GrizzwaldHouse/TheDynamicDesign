@@ -15,6 +15,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
     public GameObject PlayerDamageScreen;
+    public Button saveButton; //
+    public Button Buttonload;
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
     [SerializeField] TMP_Text enemyCountText;
 
