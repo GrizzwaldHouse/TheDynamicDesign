@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8145212079359054994}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 3.5, y: 4.229755, z: 30}
   m_LocalScale: {x: 2.36, y: 2.36, z: 2.36}
   m_ConstrainProportionsScale: 1
@@ -200,15 +200,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40933c84a1d2c06438d75af5100659b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  model: {fileID: 0}
-  HP: 0
-  rotateSpeed: 0
-  shootPos: {fileID: 0}
-  headPos: {fileID: 0}
-  viewAngle: 0
+  agent: {fileID: 6853702650704191439}
+  model: {fileID: 4406884694549902169}
+  shootPos: {fileID: 2082381543277965455}
+  headPos: {fileID: 2048290295367420897}
+  viewAngle: 90
+  HP: 2
+  rotateSpeed: 90
   bullet: {fileID: 0}
-  shootRate: 0
+  shootRate: 23
   isDead: 0
 --- !u!195 &6853702650704191439
 NavMeshAgent:

@@ -154,13 +154,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6139269634619901}
   model: {fileID: 3153054693077638961}
-  HP: 2
-  rotateSpeed: 90
   shootPos: {fileID: 6084801768672467482}
   headPos: {fileID: 9079434482466603166}
-  viewAngle: 0
+  viewAngle: 90
+  HP: 2
+  rotateSpeed: 90
   bullet: {fileID: 2882795654731209471, guid: a031935e994ec184ab2c3cc37906cbb8, type: 3}
-  shootRate: 0
+  shootRate: 2
   isDead: 0
 --- !u!195 &6139269634619901
 NavMeshAgent:
