@@ -12,7 +12,7 @@ public class ZombieSpawnerController : MonoBehaviour
     [SerializeField] float waveCooldown;
     public bool inCoolDown;
     public float coolDownCounter = 0;
-    public List<enemyAI> currentZombieAlive;
+    public List<EnemyAI> currentZombieAlive;
     public GameObject zombiePrefab;
     // Start is called before the first frame update
     void Start()

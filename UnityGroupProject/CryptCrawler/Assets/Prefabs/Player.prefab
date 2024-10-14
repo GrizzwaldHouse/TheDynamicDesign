@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 2923586819700521704}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
   jumpMax: 3
   gravity: 28
   shootDam: 2
-  shootRate: 1
+  shootRate: 0.5
   shootDistance: 150
 --- !u!143 &6694484098795786653
 CharacterController:

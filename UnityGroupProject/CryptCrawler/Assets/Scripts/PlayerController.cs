@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour, IDamage
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && !gamemanager.instance.isPaused && !isShooting)
+        if (Input.GetButton("Shoot") && !gamemanager.instance.isPaused && !isShooting)
         {
             StartCoroutine(Shoot());
         }
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
 
             IDamage damage = hit.collider.GetComponent<IDamage>();
             if (damage != null)

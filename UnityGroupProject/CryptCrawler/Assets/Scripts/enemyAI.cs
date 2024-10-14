@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
@@ -21,17 +22,22 @@ public class enemyAI : MonoBehaviour, IDamage
     bool isShooting;
     bool playerInRange;
     public bool isDead;
+    public Image enemyHPbar;
 
     float angleToplayer;
 
     Vector3 playerDir;
 
     Color colorOg;
+    int HPorig;
 
     // Start is called before the first frame update
     void Start()
     {
+        HPorig = HP;
         colorOg = model.material.color;
+        enemyHPbar.fillAmount = 1f;
+        UpdateEnemyUI();
         gamemanager.instance.updateGameGoal(1);
     }
 
@@ -106,6 +112,7 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.SetDestination(gamemanager.instance.player.transform.position);
 
         StartCoroutine(flashColor());
+        UpdateEnemyUI();
 
         if (HP <= 0)
         {
@@ -119,5 +126,10 @@ public class enemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOg;
+    }
+
+    public void UpdateEnemyUI()
+    {
+        enemyHPbar.fillAmount = (float)HP / HPorig;
     }
 }

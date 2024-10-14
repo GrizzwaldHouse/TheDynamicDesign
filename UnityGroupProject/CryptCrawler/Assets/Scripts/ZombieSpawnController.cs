@@ -39,7 +39,7 @@ public class ZombieSpawnController : MonoBehaviour
     public float coolDownCounter = 0;
 
     // A list to store the currently alive zombies.
-    public List<enemyAI> currentZombiesAlive;
+    public List<EnemyAI> currentZombiesAlive;
 
     // Called when the script is initialized.
     private void Start()
@@ -80,7 +80,7 @@ public class ZombieSpawnController : MonoBehaviour
             var zombie = Instantiate(zombiePrefab, spawnPosition, Quaternion.identity);
 
             // Get the enemy AI script component from the zombie game object.
-            enemyAI enemyScript = zombie.GetComponent<enemyAI>();
+            EnemyAI enemyScript = zombie.GetComponent<EnemyAI>();
 
             // Add the enemy AI script to the list of currently alive zombies.
             currentZombiesAlive.Add(enemyScript);
@@ -94,10 +94,10 @@ public class ZombieSpawnController : MonoBehaviour
     private void Update()
     {
         // Create a list to store zombies that need to be removed.
-        List<enemyAI> zombiesToRemove = new List<enemyAI>();
+        List<EnemyAI> zombiesToRemove = new List<EnemyAI>();
 
         // Loop through the currently alive zombies.
-        foreach (enemyAI zombie in currentZombiesAlive)
+        foreach (EnemyAI zombie in currentZombiesAlive)
         {
             // Check if the zombie is dead.
             if (zombie.isDead)
@@ -108,7 +108,7 @@ public class ZombieSpawnController : MonoBehaviour
         }
 
         // Loop through the list of zombies to remove and remove them from the currently alive list.
-        foreach (enemyAI zombie in zombiesToRemove)
+        foreach (EnemyAI zombie in zombiesToRemove)
         {
             currentZombiesAlive.Remove(zombie);
         }
