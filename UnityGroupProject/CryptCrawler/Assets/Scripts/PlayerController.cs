@@ -160,6 +160,12 @@ public class PlayerController : MonoBehaviour, IDamage
             gamemanager.instance.youLose();
         }
     }
+
+    public void gainHealth(int amount)
+    {
+        HP = Mathf.Min(HP + amount, HPorig);
+        UpdatePlayerUI();
+    }
     public void gainExperience(int amount)
     {
         if(experience>= experienceToNextLevel)
@@ -181,9 +187,11 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     private int calculateExperienceToNextLevel()
     {
-        return(int)Mathf.Pow(level,2)*100;
+        return (int)Mathf.Pow(level, 2) * 100;
     }
-        IEnumerator DamageFlash()
+   
+
+    IEnumerator DamageFlash()
     {
         gamemanager.instance.PlayerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);

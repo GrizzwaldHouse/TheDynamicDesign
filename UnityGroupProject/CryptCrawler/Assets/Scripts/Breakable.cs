@@ -56,4 +56,9 @@ public class Destroywall : MonoBehaviour, IDamage
         // Set the color of the model's material back to its original color
         model.material.color = colorOrig;
     }
+
+    public void gainHealth(int amount)
+    {
+        
+    }
 }

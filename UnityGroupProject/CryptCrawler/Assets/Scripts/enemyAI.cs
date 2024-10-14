@@ -132,4 +132,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         enemyHPbar.fillAmount = (float)HP / HPorig;
     }
+
+    public void gainHealth(int amount)
+    {
+        
+    }
 }
