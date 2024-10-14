@@ -104,7 +104,12 @@ public class PlayerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
-
+    IEnumerator DamageFlash()
+    {
+        gamemanager.instance.PlayerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.PlayerDamageScreen.SetActive(false);
+    }
     public void takeDamage(int amount)
     {
         HP -= amount;
@@ -133,17 +138,10 @@ public class PlayerController : MonoBehaviour, IDamage
         HP = HPorig; //reset health to max
         UpdatePlayerUI();
         Debug.Log("Level Up! You are now level" + level);
-
     }
-    private int calculateExperienceToNextLevel()
+  private int calculateExperienceToNextLevel()
     {
         return(int)Mathf.Pow(level,2)*100;
-    }
-        IEnumerator DamageFlash()
-    {
-        gamemanager.instance.PlayerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gamemanager.instance.PlayerDamageScreen.SetActive(false);
     }
     public void SavePlayer()
     {

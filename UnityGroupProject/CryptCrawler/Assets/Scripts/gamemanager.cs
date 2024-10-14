@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,9 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose; // The lose menu game object
     public GameObject PlayerDamageScreen;
     public Button saveButton; //
-    public Button Buttonload;
+    public Button loadButton;
+  
+
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
     [SerializeField] TMP_Text enemyCountText;
 
@@ -47,7 +50,13 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
     }
+   void Start()
+    {
+        // Initialize the buttons
+        saveButton.onClick.AddListener(SaveGame);
+        loadButton.onClick.AddListener(LoadGame);
 
+    }
     // This method is called every frame.
     void Update()
     {
@@ -130,5 +139,19 @@ public class gamemanager : MonoBehaviour
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
+    public void SaveGame()
+    {
+        // Call the SavePlayer method from the PlayerController
+        PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+        player.SavePlayer();
+        Debug.Log("Game saved!");
+    }
 
+    public void LoadGame()
+    {
+        // Call the LoadSystem method from the PlayerController
+        PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+        player.LoadSystem();
+        Debug.Log("Game loaded!");
+    }
 }
