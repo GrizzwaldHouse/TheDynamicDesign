@@ -9,5 +9,6 @@ public interface IDamage
 
     // Update is called once per frame
     void takeDamage(int amount);
+    void gainHealth(int amount);
 
 }
