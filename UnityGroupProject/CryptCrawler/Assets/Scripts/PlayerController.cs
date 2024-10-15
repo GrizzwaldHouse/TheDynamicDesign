@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Threading;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -162,7 +161,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.youLose();
+            gamemanager.instance.YouLose();
         }
     }
 

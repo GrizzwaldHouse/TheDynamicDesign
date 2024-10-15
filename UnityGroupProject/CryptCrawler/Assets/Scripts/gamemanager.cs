@@ -28,7 +28,7 @@ public class gamemanager : MonoBehaviour
     public GameObject player;
     // Player's hp bar.
     public Image playerHPBar;
-
+    public Image playerMPBar;
     // This is a singleton instance of the GameManager, allowing other scripts to access it easily.
     public static gamemanager instance;
 
