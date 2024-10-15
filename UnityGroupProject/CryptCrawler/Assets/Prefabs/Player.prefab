@@ -55,17 +55,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   HP: 25
+  mana: 0
   experience: 0
   level: 0
   experienceToNextLevel: 0
   speed: 5
+  crouchspeed: 0
+  maxslidetime: 0
+  slideforce: 0
+  slidetimer: 0
   sprintMod: 2
   jumpSpeed: 5
   jumpMax: 3
   gravity: 28
-  shootDam: 2
+  spell: {fileID: 0}
+  shootPos: {fileID: 0}
   shootRate: 0.5
-  shootDistance: 150
 --- !u!143 &7572256470491037903
 CharacterController:
   m_ObjectHideFlags: 0

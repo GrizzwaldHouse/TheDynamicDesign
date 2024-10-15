@@ -131,6 +131,17 @@ public class PlayerController : MonoBehaviour, IDamage
 
             // Instantiate the spell
             GameObject spellInstance = Instantiate(spell, shootPos.position, transform.rotation);
+            // Raycast to check if the spell hits the enemy
+            RaycastHit hit;
+            if (Physics.Raycast(shootPos.position, transform.forward, out hit, 100f))
+            {
+                // Check if the hit object is an enemy
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    // Call the takeDamage method on the enemy
+                    hit.collider.GetComponent<EnemyAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                }
+            }
 
             // Get the spell's script
             Mana spellScript = spellInstance.GetComponent<Mana>();

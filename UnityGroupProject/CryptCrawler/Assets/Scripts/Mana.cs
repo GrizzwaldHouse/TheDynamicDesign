@@ -11,7 +11,7 @@ public class Mana : MonoBehaviour
     [SerializeField] float firetickrate;
     [SerializeField] int damagePerTick;
     [SerializeField] float tickDuration;
-    [SerializeField] int damageamount;
+    [SerializeField]  public int damageamount;
     [SerializeField] public int Manacost;
     [SerializeField] int speed;
     [SerializeField] int destroytime;

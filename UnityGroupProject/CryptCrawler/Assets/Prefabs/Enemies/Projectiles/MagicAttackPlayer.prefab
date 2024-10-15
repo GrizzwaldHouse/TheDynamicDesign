@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2737258217206239364}
-  - component: {fileID: 8060195753218514264}
+  - component: {fileID: 8672079726356116582}
   - component: {fileID: 8215015041478748819}
   - component: {fileID: 591824802306691206}
   - component: {fileID: 6411965168496351655}
@@ -37,7 +37,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8060195753218514264
+--- !u!114 &8672079726356116582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,16 +46,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3168699335224534210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddaedc77d1400442888f7e5828a3f0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e0b98925c20cf44bb102931db6cc410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: 8215015041478748819}
-  damageamount: 3
-  speed: 2000
-  destroytime: 16
-  damageInterval: 1
-  damageRange: 400
+  firetickrate: 2
+  damagePerTick: 1
+  tickDuration: 2
+  damageamount: 5
+  Manacost: 10
+  speed: 100
+  destroytime: 10
+  damageRange: 2000
 --- !u!54 &8215015041478748819
 Rigidbody:
   m_ObjectHideFlags: 0
