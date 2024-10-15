@@ -149,14 +149,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         return (int)Mathf.Pow(level, 2) * 100;
     }
-   
-
-    IEnumerator DamageFlash()
-    {
-        gamemanager.instance.PlayerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gamemanager.instance.PlayerDamageScreen.SetActive(false);
-    }
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);

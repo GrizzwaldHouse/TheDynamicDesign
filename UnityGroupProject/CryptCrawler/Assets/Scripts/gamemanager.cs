@@ -18,7 +18,8 @@ public class gamemanager : MonoBehaviour
     public GameObject PlayerDamageScreen;
     public Button saveButton; //
     public Button loadButton;
-  
+    public GameObject inventoryUI;
+
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
     [SerializeField] TMP_Text enemyCountText;
@@ -74,6 +75,17 @@ public class gamemanager : MonoBehaviour
             else if (menuActive == menuPause)
             {
                 stateUnpause();
+            }
+        }
+        if (Input.GetButtonUp("Inventory"))
+        {
+            if (inventoryUI.activeSelf)
+            {
+                CloseInventory();
+            }
+            else
+            {
+                OpenInventory();
             }
         }
     }
@@ -146,7 +158,16 @@ public class gamemanager : MonoBehaviour
         player.SavePlayer();
         Debug.Log("Game saved!");
     }
-
+    public void OpenInventory()
+    {
+        //Open Intventory UI
+        inventoryUI.SetActive(true);
+    }
+    public void CloseInventory()
+    {
+        //Close Intventory UI
+        inventoryUI.SetActive(false);
+    }
     public void LoadGame()
     {
         // Call the LoadSystem method from the PlayerController
