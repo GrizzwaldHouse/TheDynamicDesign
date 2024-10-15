@@ -28,8 +28,6 @@ public class gamemanager : MonoBehaviour
     public GameObject player;
     // Player's hp bar.
     public Image playerHPBar;
-    //mana bar
-    public Image playerMPBar;
 
     // This is a singleton instance of the GameManager, allowing other scripts to access it easily.
     public static gamemanager instance;
@@ -48,12 +46,12 @@ public class gamemanager : MonoBehaviour
     {
         // Set the singleton instance of the GameManager to this script.
         instance = this;
-      
+
         // Store the original time scale.
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
     }
-   void Start()
+    void Start()
     {
         // Initialize the buttons
         saveButton.onClick.AddListener(SaveGame);
@@ -129,52 +127,78 @@ public class gamemanager : MonoBehaviour
     }
 
     // This method updates the enemy count and displays it on the UI.
-    public void updateGameGoal(int amount)
+    public void UpdateGameGoal(int amount)
     {
-        // Update the enemy count.
+        // Increment or decrement the enemy count based on the provided amount.
         enemyCount += amount;
 
-        // Update the UI text to display the new enemy count.
+        // Update the UI text to display the new enemy count, formatting it as an integer with no decimal places.
         enemyCountText.text = enemyCount.ToString("F0");
 
-        // If the enemy count reaches 0, pause the game and show the win menu.
+        // If the enemy count reaches 0 or less, pause the game and show the win menu.
         if (enemyCount <= 0)
         {
+            // Call the statePause method to pause the game.
             statePause();
+
+            // Set the active menu to the win menu.
             menuActive = menuWin;
+
+            // Activate the win menu.
             menuActive.SetActive(true);
         }
     }
 
     // This method is called when the player loses, pausing the game and showing the lose menu.
-    public void youLose()
+    public void YouLose()
     {
+        // Call the statePause method to pause the game.
         statePause();
+
+        // Set the active menu to the lose menu.
         menuActive = menuLose;
+
+        // Activate the lose menu.
         menuActive.SetActive(true);
     }
+
+    // This method saves the game by calling the SavePlayer method on the PlayerController.
     public void SaveGame()
     {
-        // Call the SavePlayer method from the PlayerController
+        // Find the PlayerController script in the scene.
         PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+
+        // Call the SavePlayer method on the PlayerController.
         player.SavePlayer();
+
+        // Log a message to the console to indicate that the game has been saved.
         Debug.Log("Game saved!");
     }
+
+    // This method opens the inventory UI.
     public void OpenInventory()
     {
-        //Open Intventory UI
+        // Activate the inventory UI.
         inventoryUI.SetActive(true);
     }
+
+    // This method closes the inventory UI.
     public void CloseInventory()
     {
-        //Close Intventory UI
+        // Deactivate the inventory UI.
         inventoryUI.SetActive(false);
     }
+
+    // This method loads the game by calling the LoadSystem method on the PlayerController.
     public void LoadGame()
     {
-        // Call the LoadSystem method from the PlayerController
+        // Find the PlayerController script in the scene.
         PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+
+        // Call the LoadSystem method on the PlayerController.
         player.LoadSystem();
+
+        // Log a message to the console to indicate that the game has been loaded.
         Debug.Log("Game loaded!");
     }
 }
