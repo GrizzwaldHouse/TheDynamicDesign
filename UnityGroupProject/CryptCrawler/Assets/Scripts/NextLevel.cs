@@ -9,7 +9,11 @@ public class NextLevel : MonoBehaviour
     [SerializeField] private string loadLevel;
    void TriggerNextLevel(Collider other)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        if (other.tag == "NextLevel")
+        {
+           SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        }
+       
 
 
         
