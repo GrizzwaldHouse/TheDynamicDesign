@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         colorOg = model.material.color;
         enemyHPbar.fillAmount = 1f;
         UpdateEnemyUI();
-        gamemanager.instance.updateGameGoal(1);
+        gamemanager.instance.UpdateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -116,7 +116,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+            gamemanager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }
