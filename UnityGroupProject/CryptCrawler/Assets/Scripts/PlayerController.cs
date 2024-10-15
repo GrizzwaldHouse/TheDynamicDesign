@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
+using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -8,40 +11,55 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreMask;
 
     [SerializeField] int HP;
+    [SerializeField] int mana;
     [SerializeField] int experience;
     [SerializeField] int level;
     [SerializeField] int experienceToNextLevel;
-  [SerializeField] int speed;
+    [SerializeField] int speed;
+    [SerializeField] int crouchspeed;
+    [SerializeField] float maxslidetime;
+    [SerializeField] float slideforce;
+    [SerializeField] float slidetimer;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
-
-    [SerializeField] int shootDam;
+    [SerializeField] GameObject spell;
+    [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
-    [SerializeField] int shootDistance;
+    
 
     Vector3 moveDir;
     Vector3 playerVel;
 
     int jumpCount;
+   
     int HPorig;
-
+    int ManaOrig;
+    int origSpeed;
+    
     bool isSprinting;
+    bool isSliding;
     bool isShooting;
     // Start is called before the first frame update
     void Start()
     {
         HPorig = HP;
+        ManaOrig = mana;
+        origSpeed = speed;
         UpdatePlayerUI();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.red);
+       
         movement();
         Sprint();
+        crouch();
+       
+        
     }
 
     void movement()
@@ -84,25 +102,51 @@ public class PlayerController : MonoBehaviour, IDamage
             speed /= sprintMod;
         }
     }
+    void crouch()
+    {
+        
+            if (Input.GetButtonDown("Crouch"))
+            {
+            speed = crouchspeed;
+            controller.height = 1;
+            
+            
+            }
+        if (Input.GetButtonUp("Crouch") && !isSliding)
+        {
+            speed = origSpeed;
+            controller.height = 2;
+           
+            
+        }
+    }
+
+    
+    
 
     IEnumerator Shoot()
     {
-        isShooting = true;
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
+        if (mana >= spell.GetComponent<Mana>().Manacost)
         {
-            //Debug.Log(hit.collider.name);
+            isShooting = true;
 
-            IDamage damage = hit.collider.GetComponent<IDamage>();
-            if (damage != null)
-            {
-                damage.takeDamage(shootDam);
-            }
+            // Instantiate the spell
+            GameObject spellInstance = Instantiate(spell, shootPos.position, transform.rotation);
+
+            // Get the spell's script
+            Mana spellScript = spellInstance.GetComponent<Mana>();
+
+            // Deduct the mana cost from the player's mana
+            mana -= spellScript.Manacost;
+
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
         }
-
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        else
+        {
+            // Handle the case where the player doesn't have enough mana
+            Debug.Log("Not enough mana to cast the spell!");
+        }
     }
     IEnumerator DamageFlash()
     {
@@ -167,5 +211,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPorig;
+        gamemanager.instance.playerMPBar.fillAmount = (float)mana / ManaOrig;
+
     }
 }
