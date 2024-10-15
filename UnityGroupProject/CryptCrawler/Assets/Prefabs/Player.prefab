@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7559576478789734281}
   - component: {fileID: 5858277992891540433}
   - component: {fileID: 7572256470491037903}
+  - component: {fileID: 8643125980622549897}
   - component: {fileID: 6374853436708073689}
   - component: {fileID: 513361052438624508}
   - component: {fileID: 6684701342947612749}
@@ -36,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8531489017910997316}
+  - {fileID: 5782783803222445988}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5858277992891540433
@@ -55,21 +57,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   HP: 25
-  mana: 0
-  experience: 0
-  level: 0
-  experienceToNextLevel: 0
+  mana: 1000
+  experience: 1
+  level: 1
+  experienceToNextLevel: 100
   speed: 5
-  crouchspeed: 0
-  maxslidetime: 0
-  slideforce: 0
-  slidetimer: 0
+  crouchspeed: 5
+  maxslidetime: 10
+  slideforce: 10
+  slidetimer: 10
   sprintMod: 2
   jumpSpeed: 5
   jumpMax: 3
   gravity: 28
-  spell: {fileID: 0}
-  shootPos: {fileID: 0}
+  spell: {fileID: 8458811321649852431, guid: 9671b2d9c3b1c724cb91728dcd3191c0, type: 3}
+  shootPos: {fileID: 5782783803222445988}
   shootRate: 0.5
 --- !u!143 &7572256470491037903
 CharacterController:
@@ -97,6 +99,33 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8643125980622549897
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763590300725236895}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!33 &6374853436708073689
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -184,6 +213,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7442428434556726798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5782783803222445988}
+  m_Layer: 7
+  m_Name: ShootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5782783803222445988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442428434556726798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.08, z: -0.003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7559576478789734281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8645152624163456067
 GameObject:
   m_ObjectHideFlags: 0

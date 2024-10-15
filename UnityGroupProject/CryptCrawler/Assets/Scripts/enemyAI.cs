@@ -18,11 +18,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+    [SerializeField] int ExpWorth;
 
     bool isShooting;
     bool playerInRange;
     public bool isDead;
     public Image enemyHPbar;
+    PlayerController playerXp;
 
     float angleToplayer;
 
@@ -118,6 +120,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             gamemanager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
+            playerXp.gainExperience(ExpWorth);
         }
     }
 
