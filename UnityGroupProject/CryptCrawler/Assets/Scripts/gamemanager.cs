@@ -16,9 +16,10 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
     public GameObject PlayerDamageScreen;
-    public Button saveButton; //
+    public Button saveButton;
     public Button loadButton;
     public GameObject inventoryUI;
+
 
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
@@ -31,6 +32,7 @@ public class gamemanager : MonoBehaviour
     public Image playerMPBar;
     // This is a singleton instance of the GameManager, allowing other scripts to access it easily.
     public static gamemanager instance;
+    public PlayerController accessPlayer;
 
     // This flag indicates whether the game is currently paused.
     public bool isPaused;
@@ -40,7 +42,6 @@ public class gamemanager : MonoBehaviour
 
     // This variable keeps track of the current enemy count.
     int enemyCount;
-
     // This method is called once at the start of the game.
     void Awake()
     {
