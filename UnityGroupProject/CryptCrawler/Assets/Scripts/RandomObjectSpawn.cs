@@ -6,8 +6,8 @@ public class RandomObjectSpawn : MonoBehaviour
 
 
 {
-    public Transform SpawnPoint;
-    public GameObject SpawnObject;
+    [SerializeField] private Transform SpawnPoint;
+    [SerializeField] private GameObject SpawnObject;
     private void OnTriggerEnter()
     {
         Instantiate(SpawnObject, SpawnPoint.position, SpawnPoint.rotation);
