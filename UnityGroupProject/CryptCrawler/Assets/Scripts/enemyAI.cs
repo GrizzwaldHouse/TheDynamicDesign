@@ -24,7 +24,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
     public bool isDead;
     public Image enemyHPbar;
-    PlayerController playerXp;
 
     float angleToplayer;
 
@@ -120,7 +119,15 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             gamemanager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
-            playerXp.gainExperience(ExpWorth);
+            if (gamemanager.instance.accessPlayer != null)
+            {
+                gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
+                Debug.Log("Enemy died, gaining " + ExpWorth + " XP!");
+            }
+            else
+            {
+                Debug.LogError("accessPlayer is null!");
+            }
         }
     }
 

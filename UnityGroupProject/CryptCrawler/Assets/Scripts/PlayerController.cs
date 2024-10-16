@@ -183,7 +183,8 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     public void gainExperience(int amount)
     {
-        if(experience>= experienceToNextLevel)
+        experience += amount;
+        if(experience >= experienceToNextLevel)
         {
             levelUp();
         }
@@ -193,15 +194,15 @@ public class PlayerController : MonoBehaviour, IDamage
     void levelUp()
     {
         level++;
-        experience = calculateExperienceToNextLevel();
+        experience = 0;
         experienceToNextLevel = calculateExperienceToNextLevel();
         HP = HPorig; //reset health to max
         UpdatePlayerUI();
-        Debug.Log("Level Up! You are now level" + level);
+        Debug.Log("Level Up! You are now level " + level);
     }
   private int calculateExperienceToNextLevel()
     {
-        return (int)Mathf.Pow(level, 2) * 100;
+        return experienceToNextLevel * 2;
     }
     public void SavePlayer()
     {

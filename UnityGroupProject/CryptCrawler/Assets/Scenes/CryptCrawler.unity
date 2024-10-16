@@ -130,10 +130,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2410726521561905684, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: ExpWorth
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2879752113924877925, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
       propertyPath: m_Name
       value: WizardEasy
@@ -363,15 +359,15 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4763590300725236895, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
   m_PrefabInstance: {fileID: 8407800632833354631}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1899798454 stripped
+--- !u!114 &1396317652 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8042340451034030436, guid: 591390c5c8f09b547a7df7547ddbd75a, type: 3}
-  m_PrefabInstance: {fileID: 4654131001558573332}
+  m_CorrespondingSourceObject: {fileID: 5858277992891540433, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
+  m_PrefabInstance: {fileID: 8407800632833354631}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1396317645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b5576da3c44fe049bc28a1ea327b4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4654131001558573332
@@ -471,9 +467,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1396317645}
     - target: {fileID: 8491548309862097445, guid: 591390c5c8f09b547a7df7547ddbd75a, type: 3}
-      propertyPath: playerMPBar
+      propertyPath: accessPlayer
       value: 
-      objectReference: {fileID: 1899798454}
+      objectReference: {fileID: 1396317652}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -551,14 +547,6 @@ PrefabInstance:
     - target: {fileID: 4763590300725236895, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5858277992891540433, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
-      propertyPath: experience
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5858277992891540433, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
-      propertyPath: experienceToNextLevel
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7559576478789734281, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
       propertyPath: m_LocalPosition.x
