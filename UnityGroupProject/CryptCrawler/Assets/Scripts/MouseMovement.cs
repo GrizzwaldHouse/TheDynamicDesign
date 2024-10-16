@@ -9,23 +9,23 @@ public class MouseMovement : MonoBehaviour
 {
     // Sensitivity of the camera's rotation.
     // A higher value makes the camera rotate faster.
-    public float sensitivity = 10f;
+    public float sensitivity ;
     // Minimum vertical angle the camera can rotate.
-    public float minAngle = -45f;
+    public float minAngle ;
     // Maximum vertical angle the camera can rotate.
-    public float maxAngle = 45f;
+    public float maxAngle ;
 
     // Current X-axis rotation of the camera.
-    private float rotationX = 0f;
+    private float rotationX ;
     // Current Y-axis rotation of the camera.
-    private float rotationY = 0f;
+    private float rotationY ;
 
     // Called when the script starts.
     private void Start()
     {
         // Locks the cursor to the center of the screen,
         // preventing it from moving outside the game window.
-        // Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Called every frame.

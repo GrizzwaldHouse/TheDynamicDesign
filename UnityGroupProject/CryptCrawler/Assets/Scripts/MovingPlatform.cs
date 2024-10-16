@@ -88,24 +88,14 @@ public class MovingPlatform : MonoBehaviour
         {
             // Move the platform left and right using a ping-pong motion
             float newX = Mathf.Lerp(_startPosition.x, _startPosition.x + _moveDistance * _movementDirection, Mathf.PingPong(Time.time * _speed, 1.0f));
-            Vector3 targetPosition = new Vector3(newX, _startPosition.y, _startPosition.x); // Calculate the target position
+            Vector3 targetPosition = new Vector3(newX, _startPosition.y, _startPosition.z); // Calculate the target position
 
-            // Move the platform to the target position using the Rigidbody
-            _rb.MovePosition(targetPosition); // Move the platform to the target position
+            // Calculate the velocity needed to reach the target position
+            Vector3 velocity = (targetPosition - transform.position) / Time.deltaTime;
 
-            // Check if the platform has reached the end of its movement
-            if (Mathf.Abs(transform.position.x - _startPosition.x) >= _moveDistance)
-            {
-                if (_loopMovement)
-                {
-                    // Reverse movement direction to loop back to the starting position
-                    _movementDirection = -_movementDirection;
-                }
-                else
-                {
-                    _isMoving = false; // Stop moving the platform
-                }
-            }
+            // Set the velocity of the Rigidbody
+            _rb.velocity = new Vector3(velocity.x, _rb.velocity.y, _rb.velocity.z); // Only update the x-component of the velocity
+
         }
     }
 }

@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -266.56702, y: -29, z: 594.30804}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.1117365, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8531489017910997316}
@@ -58,16 +58,16 @@ MonoBehaviour:
     m_Bits: 128
   HP: 25
   mana: 1000
-  experience: 1
+  experience: 12
   level: 1
-  experienceToNextLevel: 100
+  experienceToNextLevel: 23
   speed: 5
   crouchspeed: 5
   maxslidetime: 10
   slideforce: 10
   slidetimer: 10
   sprintMod: 2
-  jumpSpeed: 5
+  jumpSpeed: 14
   jumpMax: 3
   gravity: 28
   spell: {fileID: 8458811321649852431, guid: 9671b2d9c3b1c724cb91728dcd3191c0, type: 3}
@@ -273,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 8645152624163456067}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.16324072, z: -0, w: 0.9865863}
-  m_LocalPosition: {x: 0.271, y: 1.263, z: 0}
+  m_LocalPosition: {x: 0.271, y: 0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
