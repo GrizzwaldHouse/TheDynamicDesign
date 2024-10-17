@@ -23,16 +23,18 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
+    [SerializeField] List<Wands> Wandlist = new List<Wands>();
     [SerializeField] GameObject spell;
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
+    [SerializeField] GameObject wandModel;
     
 
     Vector3 moveDir;
     Vector3 playerVel;
 
     int jumpCount;
-   
+    int selectwandPos;
     int HPorig;
     int ManaOrig;
     int origSpeed;
@@ -53,8 +55,13 @@ public class PlayerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-       
-        movement();
+
+
+        if (!gamemanager.instance.isPaused)
+        {
+            movement();
+            selectWand();
+        }
         Sprint();
         crouch();
        
@@ -237,5 +244,35 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerMana()
     {
         gamemanager.instance.playerMPBar.fillAmount = (float)mana / ManaOrig;
+    }
+    public void getWandstats(Wands wand)
+    {
+        Wandlist.Add(wand);
+        selectwandPos = Wandlist.Count - 1;
+
+        spell = wand.Spell;
+        shootRate = wand.shootrate;
+        
+    }
+
+    void selectWand()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectwandPos < Wandlist.Count - 1)
+        {
+            selectwandPos++;
+            changeWand();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectwandPos > 0)
+        {
+            selectwandPos--;
+            changeWand();
+        }
+    }
+    void changeWand()
+    {
+       
+        
+        wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectwandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
+        wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectwandPos].wandModel.GetComponent<MeshRenderer>().material;
     }
 }

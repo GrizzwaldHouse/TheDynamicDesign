@@ -16,6 +16,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
     public GameObject PlayerDamageScreen;
+    public PlayerController playerScript;
     public Button saveButton;
     public Button loadButton;
     public GameObject inventoryUI;
