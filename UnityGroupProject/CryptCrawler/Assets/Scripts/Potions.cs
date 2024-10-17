@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Define an enum for the different types of potions
-public enum PotionType { HealthPotion, ManaPotion }
+public enum PotionType { HealthPotion, ManaPotion, PowerBuff, ManaBuff }
 
 // Define an interface for potions
 public interface IPotion
@@ -30,24 +31,27 @@ public class Potions : MonoBehaviour, IInteractable
     {
         
         //Check the type of potion and apply its effect to the player
-        if (potionType == PotionType.HealthPotion)
+        switch (potionType)
         {
-            
+            case PotionType.HealthPotion:
+                targetScript.gainHealth(healthToGain);
+                Destroy(gameObject);
+                break;
 
-            targetScript.gainHealth(healthToGain);
+            case PotionType.ManaPotion:
+                //Add code for ManaPotion
+                targetScript.gainMana(manaToGain);
+                Destroy(gameObject);
+                break;
 
-            // Destroy the potion object
-            Destroy(gameObject);
+            case PotionType.PowerBuff:
+                //Add code for PowerBuff
+                break;
 
+            case PotionType.ManaBuff:
+                //Add code for ManaBuff
+                break;
         }
-        else if (potionType == PotionType.ManaPotion)
-        {
-            //TO DO add mana addition code
-
-            Destroy(gameObject);
-        }
-
-
        
     }
 }
