@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             // Deduct the mana cost from the player's mana
             mana -= spellScript.Manacost;
+            UpdatePlayerMana();
 
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
@@ -181,6 +182,13 @@ public class PlayerController : MonoBehaviour, IDamage
         HP = Mathf.Min(HP + amount, HPorig);
         UpdatePlayerUI();
     }
+
+    public void gainMana(int amount)
+    {
+        mana = Mathf.Min(mana + amount, ManaOrig);
+        UpdatePlayerMana();
+    }
+
     public void gainExperience(int amount)
     {
         experience += amount;
@@ -222,7 +230,12 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPorig;
-        gamemanager.instance.playerMPBar.fillAmount = (float)mana / ManaOrig;
+       
 
+    }
+
+    public void UpdatePlayerMana()
+    {
+        gamemanager.instance.playerMPBar.fillAmount = (float)mana / ManaOrig;
     }
 }
