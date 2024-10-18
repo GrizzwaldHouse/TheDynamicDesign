@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class LavaGolemAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
@@ -153,6 +153,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             isShooting = true;
             anim.SetTrigger("attack");
+            yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
             Instantiate(bullet, shootPos.position, transform.rotation);
             yield return new WaitForSeconds(shootRate);
 
@@ -162,8 +163,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         isHit = true;
-        HP -= amount;
         UpdateEnemyUI();
+        HP -= amount;
 
         if (someCo != null)
         {

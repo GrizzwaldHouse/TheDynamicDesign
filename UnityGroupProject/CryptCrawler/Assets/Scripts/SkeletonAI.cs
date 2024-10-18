@@ -168,25 +168,25 @@ public class SkeletonAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         isHit = true;
-        anim.SetTrigger("damage");
         HP -= amount;
         UpdateEnemyUI();
+
+        if (someCo != null)
+        {
+            StopCoroutine(someCo);
+            isRoaming = false;
+        }
+        anim.SetTrigger("hit");
+        agent.SetDestination(gamemanager.instance.player.transform.position);
+
+        StartCoroutine(flashColor());
 
         if (HP <= 0)
         {
             gamemanager.instance.UpdateGameGoal(-1);
+            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
             Destroy(gameObject);
-            if (gamemanager.instance.accessPlayer != null)
-            {
-                gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
-                Debug.Log("Enemy died, gaining " + ExpWorth + " XP!");
-            }
-            else
-            {
-                Debug.LogError("accessPlayer is null!");
-            }
         }
-        StartCoroutine(flashColor());
         isHit = false;
     }
     IEnumerator flashColor()
