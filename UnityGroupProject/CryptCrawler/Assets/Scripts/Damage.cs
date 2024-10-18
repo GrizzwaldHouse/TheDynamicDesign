@@ -18,7 +18,7 @@ public class Damage : MonoBehaviour
     {
         if (type == damagetype.bullet)
         {
-            rb.velocity = transform.forward * speed;
+            rb.velocity = (gamemanager.instance.player.transform.position - transform.position).normalized * speed;
             Destroy(gameObject, destroytime);
         }
         else if (type == damagetype.chaser)
