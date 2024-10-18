@@ -1,86 +1,102 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    // Serialized fields: These variables can be edited in the Unity Inspector
+    // Serialized fields
     [SerializeField]
-    private float changeDirectionDelay; // The distance the platform will move from its starting position
+    private float _moveDistance;
 
     [SerializeField]
-    private float _speed; // The speed at which the platform will move
-    [SerializeField] Transform startPoint, endPoint;
-    private Transform destinationTarget, departTarget;
-    [SerializeField]private float startTime;
-   [SerializeField] private float journeyLength;
-    bool isWaiting;
+    private float _speed;
 
-    private void Start()
+    [SerializeField]
+    private bool _loopMovement = true;
+
+    [SerializeField]
+    private bool _resetOnCollision = true;
+
+    // Private fields
+    private Vector3 _startPosition;
+    private bool _isMoving = false;
+    [SerializeField] private float _movementDirection;
+
+    // Getters and setters
+    public float MoveDistance
     {
-        departTarget = startPoint;
-        destinationTarget = endPoint;
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(departTarget.position, destinationTarget.position);
+        get { return _moveDistance; }
+        set { _moveDistance = value; }
     }
-    private void Update()
+
+    public float Speed
     {
-        Move();
+        get { return _speed; }
+        set { _speed = value; }
     }
-    private void Move()
+
+    public bool LoopMovement
     {
-        if (!isWaiting)
+        get { return _loopMovement; }
+        set { _loopMovement = value; }
+    }
+
+    public bool ResetOnCollision
+    {
+        get { return _resetOnCollision; }
+        set { _resetOnCollision = value; }
+    }
+
+    void Start()
+    {
+        _startPosition = transform.position;
+    }
+
+
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Check if the character has landed on the platform
+        if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player has landed on the platform!");
+            // Set the flag to move the platform
+            _isMoving = true;
 
+            // Set the movement direction to 1 (right)
+            _movementDirection = 1.0f;
 
-            if (Vector3.Distance(transform.position, destinationTarget.position) > 0.01f)
+            // If reset on collision is true, reset the platform position
+            if (_resetOnCollision)
             {
-                float distCoved = (Time.time - startTime) * _speed;
-                float fractionOfJourney = distCoved / journeyLength;
-                transform.position = Vector3.Lerp(departTarget.position, destinationTarget.position, fractionOfJourney);
-            }
-            else
-            {
-                isWaiting = true;
-                StartCoroutine(changeDelay());
+                transform.position = _startPosition; // Reset platform position
             }
         }
-       
     }
-    void ChangeDestination()
-    {
-        if (departTarget == endPoint && destinationTarget == startPoint)
-        {
-            departTarget = startPoint;
-            destinationTarget = endPoint;
-        }
-        else
-        {
-            departTarget = endPoint;
-            destinationTarget = startPoint;
-        }
-    }
-    IEnumerator changeDelay()
-    {
-        yield return new WaitForSeconds(changeDirectionDelay);
 
-        ChangeDestination();
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(departTarget.position, destinationTarget.position);
-        isWaiting = false;
-    }
-    private void OnTriggerEnter(Collider other)
+
+
+
+    void Update()
     {
-        if (other.gameObject.tag=="Player")
+        if (_isMoving)
         {
-            other.transform.parent = null;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            other.transform.parent = transform;
+            // Move the platform left and right
+            float newX = Mathf.Lerp(_startPosition.x, _startPosition.x + _moveDistance * _movementDirection, Mathf.PingPong(Time.time * _speed, 1.0f));
+            transform.position = new Vector3(newX, _startPosition.y, _startPosition.z);
+
+            // Check if the platform has reached the end of its movement
+            if (Mathf.Abs(transform.position.y - _startPosition.z) >= _moveDistance)
+            {
+                if (_loopMovement)
+                {
+                    // Reverse movement direction
+                    _movementDirection = -_movementDirection;
+                }
+                else
+                {
+                    _isMoving = false; // Stop moving
+                }
+            }
         }
     }
 }
