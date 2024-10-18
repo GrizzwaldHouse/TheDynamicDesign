@@ -148,6 +148,11 @@ public class PlayerController : MonoBehaviour, IDamage
                     // Call the takeDamage method on the enemy
                     hit.collider.GetComponent<EnemyAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                 }
+                else if (hit.collider.CompareTag("Skeleton"))
+                {
+                    // Call the takeDamage method on the enemy
+                    hit.collider.GetComponent<SkeletonAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                }
             }
 
             // Get the spell's script

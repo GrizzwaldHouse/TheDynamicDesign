@@ -1,38 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class SkeletonAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] Transform shootPos;
-    [SerializeField] Transform headPos;
+    [SerializeField] Transform swordTransform; // Transform for sword collider
     [SerializeField] int viewAngle;
-
     [SerializeField] int HP;
     [SerializeField] int rotateSpeed;
-
-    [SerializeField] GameObject bullet;
-    [SerializeField] float shootRate;
+    [SerializeField] int damageAmount; // Damage dealt to the player
+    [SerializeField] float attackRange; // Range for melee attack
+    [SerializeField] float attackRate; // Time between attacks
     [SerializeField] int ExpWorth;
 
-    bool isShooting;
     bool playerInRange;
     public bool isDead;
     public Image enemyHPbar;
+    float playerHealth;
 
-    float angleToplayer;
-
+    float angleToPlayer;
     Vector3 playerDir;
-
     Color colorOg;
     int HPorig;
 
-    // Start is called before the first frame update
     void Start()
     {
         HPorig = HP;
@@ -40,43 +33,39 @@ public class EnemyAI : MonoBehaviour, IDamage
         enemyHPbar.fillAmount = 1f;
         UpdateEnemyUI();
         gamemanager.instance.UpdateGameGoal(1);
+        playerHealth = gamemanager.instance.playerHPBar.fillAmount;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         if (playerInRange && canSeePlayer())
         {
+            // If the player is in range and can be seen, attack
+            if (Vector3.Distance(transform.position, gamemanager.instance.player.transform.position) <= attackRange)
+            {
+                StartCoroutine(Attack());
+            }
         }
     }
 
     bool canSeePlayer()
     {
-        playerDir = gamemanager.instance.player.transform.position - headPos.position;
-        angleToplayer = Vector3.Angle(playerDir, transform.forward);
-        Debug.DrawRay(headPos.position, playerDir);
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        if (Physics.Raycast(transform.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToplayer <= viewAngle)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
                 agent.SetDestination(gamemanager.instance.player.transform.position);
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    faceTarget();
-                }
-
-                if (isShooting == false)
-                {
-                    StartCoroutine(Shoot());
-                }
+                faceTarget();
                 return true;
             }
         }
         return false;
     }
+
     void faceTarget()
     {
         Quaternion rotate = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
@@ -90,6 +79,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             playerInRange = true;
         }
     }
+
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -98,21 +88,39 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator Shoot()
+    IEnumerator Attack()
     {
-        isShooting = true;
-
-        Instantiate(bullet, shootPos.position, transform.rotation);
-        yield return new WaitForSeconds(shootRate);
-
-        isShooting = false;
+        // Prevent multiple attacks at once
+        if (!isDead)
+        {
+            isDead = true; // Prevent further attacks until the coroutine is finished
+            // Call the sword collider method to deal damage to the player
+            DealDamageToPlayer();
+            yield return new WaitForSeconds(attackRate);
+            isDead = false; // Reset for the next attack
+        }
     }
+
+    void DealDamageToPlayer()
+    {
+        
+        // Check for player collision with sword collider
+        Collider[] hitColliders = Physics.OverlapSphere(swordTransform.position, attackRange);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Player"))
+            {
+                if (playerHealth != 0)
+                {
+                    playerHealth -= damageAmount;
+                }
+            }
+        }
+    }
+
     public void takeDamage(int amount)
     {
         HP -= amount;
-        agent.SetDestination(gamemanager.instance.player.transform.position);
-
-        StartCoroutine(flashColor());
         UpdateEnemyUI();
 
         if (HP <= 0)
@@ -131,13 +139,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator flashColor()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOg;
-    }
-
     public void UpdateEnemyUI()
     {
         enemyHPbar.fillAmount = (float)HP / HPorig;
@@ -145,6 +146,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void gainHealth(int amount)
     {
-        
+        throw new System.NotImplementedException();
     }
 }
