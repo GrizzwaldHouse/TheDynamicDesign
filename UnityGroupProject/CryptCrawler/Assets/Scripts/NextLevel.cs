@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     [SerializeField] private string loadLevel;
-   void TriggerNextLevel(Collider other)
+
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "NextLevel")
+        if (other.CompareTag("Player")&&!other.isTrigger)
         {
-           SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
         }
-       
-
-
-        
     }
+    
 }
