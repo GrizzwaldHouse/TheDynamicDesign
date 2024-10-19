@@ -51,11 +51,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: -2047340804817336368}
-  damageamount: 0
-  speed: 0
-  destroytime: 0
-  damageInterval: 0
-  damageRange: 0
+  damageamount: 5
+  speed: 100
+  destroytime: 7
+  damageInterval: 1.5
+  damageRange: 15
 --- !u!54 &-2047340804817336368
 Rigidbody:
   m_ObjectHideFlags: 0

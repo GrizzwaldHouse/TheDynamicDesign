@@ -15,16 +15,28 @@ public class SkeletonAI : MonoBehaviour, IDamage
     [SerializeField] float attackRange; // Range for melee attack
     [SerializeField] float attackRate; // Time between attacks
     [SerializeField] int ExpWorth;
+    [SerializeField] Animator anim;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
+    [SerializeField] Transform headPos;
+    [SerializeField] int shootAngle;
 
+    float angleToplayer;
     bool playerInRange;
     public bool isDead;
+    bool isSwinging;
     public Image enemyHPbar;
     float playerHealth;
+    bool isRoaming;
+    float stoppingDistOrig;
+    bool isHit;
 
     float angleToPlayer;
     Vector3 playerDir;
     Color colorOg;
     int HPorig;
+    Coroutine someCo;
+    Vector3 startingPos;
 
     void Start()
     {
@@ -34,35 +46,77 @@ public class SkeletonAI : MonoBehaviour, IDamage
         UpdateEnemyUI();
         gamemanager.instance.UpdateGameGoal(1);
         playerHealth = gamemanager.instance.playerHPBar.fillAmount;
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
     }
 
     void Update()
     {
-        if (playerInRange && canSeePlayer())
+        if (isSwinging == false)
         {
-            // If the player is in range and can be seen, attack
-            if (Vector3.Distance(transform.position, gamemanager.instance.player.transform.position) <= attackRange)
+            anim.SetFloat("speed", agent.velocity.normalized.magnitude);
+        }
+        if (playerInRange && !canSeePlayer())
+        {
+            if (!isRoaming && agent.remainingDistance < 0.05f)
             {
-                StartCoroutine(Attack());
+                someCo = StartCoroutine(Roam());
+            }
+        }
+        else if (!playerInRange)
+        {
+            if (!isRoaming && agent.remainingDistance < 0.05f)
+            {
+                someCo = StartCoroutine(Roam());
             }
         }
     }
+    IEnumerator Roam()
+    {
+        isRoaming = true;
+        yield return new WaitForSeconds(roamPauseTime);
 
+        //can move this code up
+        agent.stoppingDistance = 0;
+        Vector3 randomDist = Random.insideUnitSphere * roamDist;
+        randomDist += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDist, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
+
+        isRoaming = false;
+        someCo = null;
+    }
     bool canSeePlayer()
     {
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+        playerDir = gamemanager.instance.player.transform.position - headPos.position;
+        angleToplayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        Debug.DrawRay(headPos.position, playerDir);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerDir, out hit))
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            if (hit.collider.CompareTag("Player") && angleToplayer <= viewAngle)
             {
                 agent.SetDestination(gamemanager.instance.player.transform.position);
-                faceTarget();
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    faceTarget();
+                }
+
+                if (isSwinging == false && angleToplayer < shootAngle)
+                {
+                    StartCoroutine(Attack());
+                }
+
+                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }
+
+        agent.stoppingDistance = 0;
+
         return false;
     }
 
@@ -85,60 +139,62 @@ public class SkeletonAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
     IEnumerator Attack()
     {
         // Prevent multiple attacks at once
-        if (!isDead)
+        if (!isHit && transform.position.x != stoppingDistOrig)
         {
-            isDead = true; // Prevent further attacks until the coroutine is finished
+            isSwinging = true; // Prevent further attacks until the coroutine is finished
             // Call the sword collider method to deal damage to the player
-            DealDamageToPlayer();
-            yield return new WaitForSeconds(attackRate);
-            isDead = false; // Reset for the next attack
-        }
-    }
-
-    void DealDamageToPlayer()
-    {
-        
-        // Check for player collision with sword collider
-        Collider[] hitColliders = Physics.OverlapSphere(swordTransform.position, attackRange);
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("Player"))
+            anim.SetTrigger("attack");
+            // Check for player collision with sword collider
+            Collider[] hitColliders = Physics.OverlapSphere(swordTransform.position, attackRange);
+            foreach (var hitCollider in hitColliders)
             {
-                if (playerHealth != 0)
+                if (hitCollider.CompareTag("Player"))
                 {
-                    playerHealth -= damageAmount;
+                    gamemanager.instance.accessPlayer.takeDamage(damageAmount);
                 }
             }
+            yield return new WaitForSeconds(attackRate);
+            isSwinging = false; // Reset for the next attack
         }
     }
 
     public void takeDamage(int amount)
     {
+        isHit = true;
         HP -= amount;
         UpdateEnemyUI();
+
+        if (someCo != null)
+        {
+            StopCoroutine(someCo);
+            isRoaming = false;
+        }
+        anim.SetTrigger("hit");
+        agent.SetDestination(gamemanager.instance.player.transform.position);
+
+        StartCoroutine(flashColor());
 
         if (HP <= 0)
         {
             gamemanager.instance.UpdateGameGoal(-1);
+            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
             Destroy(gameObject);
-            if (gamemanager.instance.accessPlayer != null)
-            {
-                gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
-                Debug.Log("Enemy died, gaining " + ExpWorth + " XP!");
-            }
-            else
-            {
-                Debug.LogError("accessPlayer is null!");
-            }
         }
+        isHit = false;
     }
-
+    IEnumerator flashColor()
+    {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = colorOg;
+    }
     public void UpdateEnemyUI()
     {
         enemyHPbar.fillAmount = (float)HP / HPorig;

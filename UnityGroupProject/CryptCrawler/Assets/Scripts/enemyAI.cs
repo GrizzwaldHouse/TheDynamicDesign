@@ -9,52 +9,95 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
+    [SerializeField] Animator anim;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] int viewAngle;
+
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
 
     [SerializeField] int HP;
     [SerializeField] int rotateSpeed;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
-    [SerializeField] int ExpWorth;
+    [SerializeField] int shootAngle;
+    [SerializeField] Image enemyHPbar;
 
     bool isShooting;
     bool playerInRange;
+    bool isRoaming;
     public bool isDead;
-    public Image enemyHPbar;
+    int HPorig;
+    bool isHit;
 
     float angleToplayer;
+    float stoppingDistOrig;
 
     Vector3 playerDir;
 
+    Vector3 startingPos;
+
     Color colorOg;
-    int HPorig;
+
+    Coroutine someCo;
 
     // Start is called before the first frame update
     void Start()
     {
-        HPorig = HP;
         colorOg = model.material.color;
-        enemyHPbar.fillAmount = 1f;
-        UpdateEnemyUI();
         gamemanager.instance.UpdateGameGoal(1);
+        UpdateEnemyUI();
+        HPorig = HP;
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (playerInRange && canSeePlayer())
+        if (isShooting == false)
         {
+            anim.SetFloat("speed", agent.velocity.normalized.magnitude);
+        }
+        if (playerInRange && !canSeePlayer())
+        {
+            if (!isRoaming && agent.remainingDistance < 0.05f)
+            {
+                someCo = StartCoroutine(Roam());
+            }
+        }
+        else if (!playerInRange)
+        {
+            if (!isRoaming && agent.remainingDistance < 0.05f)
+            {
+                someCo = StartCoroutine(Roam());
+            }
         }
     }
 
+    IEnumerator Roam()
+    {
+        isRoaming = true;
+        yield return new WaitForSeconds(roamPauseTime);
+
+        //can move this code up
+        agent.stoppingDistance = 0;
+        Vector3 randomDist = Random.insideUnitSphere * roamDist;
+        randomDist += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDist, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
+
+        isRoaming = false;
+        someCo = null;
+    }
     bool canSeePlayer()
     {
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
-        angleToplayer = Vector3.Angle(playerDir, transform.forward);
+        angleToplayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
         Debug.DrawRay(headPos.position, playerDir);
 
         RaycastHit hit;
@@ -68,13 +111,18 @@ public class EnemyAI : MonoBehaviour, IDamage
                     faceTarget();
                 }
 
-                if (isShooting == false)
+                if (isShooting == false && angleToplayer < shootAngle)
                 {
                     StartCoroutine(Shoot());
                 }
+
+                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }
+
+        agent.stoppingDistance = 0;
+
         return false;
     }
     void faceTarget()
@@ -95,40 +143,44 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
     IEnumerator Shoot()
     {
-        isShooting = true;
+        if (!isHit)
+        {
+            isShooting = true;
+            anim.SetTrigger("attack");
+            Instantiate(bullet, shootPos.position, transform.rotation);
+            yield return new WaitForSeconds(shootRate);
 
-        Instantiate(bullet, shootPos.position, transform.rotation);
-        yield return new WaitForSeconds(shootRate);
-
-        isShooting = false;
+            isShooting = false;
+        }
     }
     public void takeDamage(int amount)
     {
+        isHit = true;
         HP -= amount;
+        UpdateEnemyUI();
+
+        if (someCo != null)
+        {
+            StopCoroutine(someCo);
+            isRoaming = false;
+        }
+        anim.SetTrigger("hit");
         agent.SetDestination(gamemanager.instance.player.transform.position);
 
         StartCoroutine(flashColor());
-        UpdateEnemyUI();
 
         if (HP <= 0)
         {
             gamemanager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
-            if (gamemanager.instance.accessPlayer != null)
-            {
-                gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
-                Debug.Log("Enemy died, gaining " + ExpWorth + " XP!");
-            }
-            else
-            {
-                Debug.LogError("accessPlayer is null!");
-            }
         }
+        isHit = false;
     }
 
     IEnumerator flashColor()
@@ -137,7 +189,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOg;
     }
-
     public void UpdateEnemyUI()
     {
         enemyHPbar.fillAmount = (float)HP / HPorig;
@@ -145,6 +196,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void gainHealth(int amount)
     {
-        
+
     }
 }
