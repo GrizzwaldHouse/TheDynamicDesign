@@ -44,9 +44,11 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isShooting;
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         HPorig = HP;
         ManaOrig = mana;
+        SetMaxHealth(HPorig);
+        SetMaxMana(ManaOrig);
         origSpeed = speed;
         UpdatePlayerUI();
         
@@ -201,6 +203,16 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerMana();
     }
 
+    public void resetHealth()
+    {
+        HP = HPorig;
+    }
+
+    public void resetMana() 
+    {
+        mana = ManaOrig;
+    }
+
     public void gainExperience(int amount)
     {
         experience += amount;
@@ -211,12 +223,39 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     public int GetLevel() { return level; }
     public int GetHealth() { return HP; }
+    public int GetMana() { return mana; }
+
+    public int GetMaxHealth() { return HPorig; }
+
+    public int GetMaxMana() { return ManaOrig; }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        HPorig = maxHealth;
+    }
+
+    public void SetMaxMana(int maxMana)
+    {
+        ManaOrig = maxMana;
+    }
+
+    public void SetMana(int ManaOrig)
+    {
+        mana = ManaOrig;
+
+    }
+
+    public void SetHealth (int HPOrig)
+    {
+        HP = HPOrig;
+    }
+
     void levelUp()
     {
         level++;
         experience = 0;
         experienceToNextLevel = calculateExperienceToNextLevel();
-        HP = HPorig; //reset health to max
+        HP = HPorig + 50; //reset health to max
         UpdatePlayerUI();
         Debug.Log("Level Up! You are now level " + level);
     }
