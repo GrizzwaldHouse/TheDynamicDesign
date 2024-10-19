@@ -105,6 +105,10 @@ public class Mana : MonoBehaviour
             if (dmg != null)
             {
                 Debug.Log("Damage applied: " + damageamount);
+                if(collision.gameObject.CompareTag("Skeleton") && type == magictype.Holy)
+                {
+                    damageamount *= 2;
+                }
                 dmg.takeDamage(damageamount);
                 if (type == magictype.Fire)
                 {
