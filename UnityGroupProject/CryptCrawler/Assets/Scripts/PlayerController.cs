@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour, IDamage
         selectwandPos = Wandlist.Count - 1;
 
         spell = wand.Spell;
-        shootRate = wand.shootrate;
+        shootRate = wand.shootRate;
         
     }
 
@@ -265,6 +265,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectwandPos < Wandlist.Count - 1)
         {
             selectwandPos++;
+            
             changeWand();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectwandPos > 0)
@@ -275,9 +276,11 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     void changeWand()
     {
-       
-        
+
+
+        spell = Wandlist[selectwandPos].Spell;
+        shootRate = Wandlist[selectwandPos].shootRate;
         wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectwandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
-        wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectwandPos].wandModel.GetComponent<MeshRenderer>().material;
+        wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectwandPos].wandModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
