@@ -1207,16 +1207,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3545877895573832887}
   model: {fileID: 2925310446127114739}
+  anim: {fileID: 0}
   shootPos: {fileID: 4340060859182866154}
   headPos: {fileID: 2334286247037025767}
   viewAngle: 90
+  roamDist: 0
+  roamPauseTime: 0
   HP: 3
   rotateSpeed: 45
-  bullet: {fileID: 0}
+  bullet: {fileID: 419200088238684804, guid: e96da77de1234334bbccc9efd8dc6cea, type: 3}
   shootRate: 23
-  ExpWorth: 10
-  isDead: 0
+  shootAngle: 0
   enemyHPbar: {fileID: 0}
+  isDead: 0
 --- !u!136 &3828518121619122145
 CapsuleCollider:
   m_ObjectHideFlags: 0

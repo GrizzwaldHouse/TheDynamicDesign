@@ -16,8 +16,8 @@ public class Crawler : Maze
     void CrawlV()
     {
         bool done = false;
-        int x = UnityEngine.Random.Range(1,width );
-        int z =1;
+        int x = UnityEngine.Random.Range(0,width );
+        int z =0;
         while (!done)
         {
             Map[x, z] = 0;
@@ -37,7 +37,7 @@ public class Crawler : Maze
         {
             Map[x, z] = 0;
             if (UnityEngine.Random.Range(0, 100) < 50)
-                x += UnityEngine.Random.Range(0, 2);
+                x += UnityEngine.Random.Range(-1, 2);
             else
                 z += UnityEngine.Random.Range(-1, 2);
             done |= (x < 1 || x >= width-1 || z < 1 || z >= depth-1);
