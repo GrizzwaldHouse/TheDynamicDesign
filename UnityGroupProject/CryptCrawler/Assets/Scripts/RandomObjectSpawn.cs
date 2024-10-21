@@ -15,47 +15,43 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField]
     private GameObject spawnObject; // The object to spawn
 
-    // Time interval between each object spawn
-    [SerializeField]
-    private float spawnInterval; // Time interval between spawns
+    //// Time interval between each object spawn
+    //[SerializeField]
+    //private float spawnInterval; // Time interval between spawns
 
-    // Number of objects to spawn in each wave
-    [SerializeField]
-    private int objectsPerWave; // Number of objects to spawn in each wave
+    //// Number of objects to spawn in each wave
+    //[SerializeField]
+    //private int objectsPerWave; // Number of objects to spawn in each wave
 
-    // A specific spawn point for random object spawning
-    [SerializeField]
-    private Transform randomSpawnPoint; // The spawn point for random object spawning
+  
 
-    // The object to spawn when the trigger is activated
-    [SerializeField]
-    private GameObject randomSpawnObject; // The object to spawn on trigger
+ 
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        // Start the coroutine to spawn waves of objects
-        StartCoroutine(SpawnWaves());
-    }
+    //// Start is called before the first frame update
+    //private void Start()
+    //{
+    //    // Start the coroutine to spawn waves of objects
+    //    StartCoroutine(SpawnWaves());
+    //}
 
-    // Coroutine to handle the spawning of objects in waves
-    private IEnumerator SpawnWaves()
-    {
-        // Infinite loop to continuously spawn waves
-        while (true)
-        {
-            // Loop to spawn a specified number of objects in each wave
-            for (int i = 0; i < objectsPerWave; i++)
-            {
-                // Call the method to spawn an object
-                SpawnObject();
-                // Wait for the specified interval before spawning the next object
-                yield return new WaitForSeconds(spawnInterval);
-            }
-            // Wait for a longer interval before starting the next wave
-            yield return new WaitForSeconds(spawnInterval * 2); // Delay between waves
-        }
-    }
+    //// Coroutine to handle the spawning of objects in waves
+    //private IEnumerator SpawnWaves()
+    //{
+    //    // Infinite loop to continuously spawn waves
+    //    while (true)
+    //    {
+    //        // Loop to spawn a specified number of objects in each wave
+    //        for (int i = 0; i < objectsPerWave; i++)
+    //        {
+    //            // Call the method to spawn an object
+    //            SpawnObject();
+    //            // Wait for the specified interval before spawning the next object
+    //            yield return new WaitForSeconds(spawnInterval);
+    //        }
+    //        // Wait for a longer interval before starting the next wave
+    //        yield return new WaitForSeconds(spawnInterval * 2); // Delay between waves
+    //    }
+    //}
 
     // Method to spawn an object at a random spawn point
     private void SpawnObject()
@@ -71,8 +67,10 @@ public class ObjectSpawner : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Trigger"))
         {
+            // Randomly select a spawn point from the list
+            Transform selectedSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
             // Instantiate the random spawn object at the specified spawn point's position and rotation
-            Instantiate(randomSpawnObject, randomSpawnPoint.position, randomSpawnPoint.rotation);
+            Instantiate(spawnObject, selectedSpawnPoint.position, selectedSpawnPoint.rotation);
         }
     }
 }

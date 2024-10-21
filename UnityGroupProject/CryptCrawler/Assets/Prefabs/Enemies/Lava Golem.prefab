@@ -1145,9 +1145,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2333512021212596380}
   - component: {fileID: 8996870423823876829}
-  - component: {fileID: 1444342730396505082}
   - component: {fileID: 3828518121619122145}
   - component: {fileID: 3545877895573832887}
+  - component: {fileID: -3124297631133394133}
   m_Layer: 0
   m_Name: Lava Golem
   m_TagString: Untagged
@@ -1193,33 +1193,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1444342730396505082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5525342613795697729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40933c84a1d2c06438d75af5100659b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 3545877895573832887}
-  model: {fileID: 2925310446127114739}
-  anim: {fileID: 0}
-  shootPos: {fileID: 4340060859182866154}
-  headPos: {fileID: 2334286247037025767}
-  viewAngle: 90
-  roamDist: 0
-  roamPauseTime: 0
-  HP: 3
-  rotateSpeed: 45
-  bullet: {fileID: 419200088238684804, guid: e96da77de1234334bbccc9efd8dc6cea, type: 3}
-  shootRate: 23
-  shootAngle: 0
-  enemyHPbar: {fileID: 0}
-  isDead: 0
 --- !u!136 &3828518121619122145
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1265,6 +1238,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-3124297631133394133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5525342613795697729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa4f07168a1ad740ab998732c829ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 0}
+  anim: {fileID: 0}
+  HP: 0
+  rotateSpeed: 0
+  meleeDamage: 0
+  meleeRange: 0
+  enemyHPbar: {fileID: 0}
 --- !u!1 &5533519148483301347
 GameObject:
   m_ObjectHideFlags: 0
