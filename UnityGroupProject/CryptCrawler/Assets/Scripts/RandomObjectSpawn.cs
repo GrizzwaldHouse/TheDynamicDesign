@@ -65,12 +65,10 @@ public class ObjectSpawner : MonoBehaviour
     // Method called when another collider enters the trigger collider attached to this GameObject
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Trigger"))
+        if (other.gameObject.CompareTag("Player"))
         {
             // Randomly select a spawn point from the list
-            Transform selectedSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
-            // Instantiate the random spawn object at the specified spawn point's position and rotation
-            Instantiate(spawnObject, selectedSpawnPoint.position, selectedSpawnPoint.rotation);
+            SpawnObject();
         }
     }
 }
