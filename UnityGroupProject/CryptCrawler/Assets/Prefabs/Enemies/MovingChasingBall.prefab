@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 7826782710879268821}
   - component: {fileID: 3370066671823476018}
   - component: {fileID: 4999235443400346456}
-  - component: {fileID: 1812947599975478894}
   - component: {fileID: 6853702650704191439}
   m_Layer: 0
   m_Name: MovingChasingBall
@@ -188,28 +187,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &1812947599975478894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8145212079359054994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40933c84a1d2c06438d75af5100659b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 6853702650704191439}
-  model: {fileID: 4406884694549902169}
-  shootPos: {fileID: 2082381543277965455}
-  headPos: {fileID: 2048290295367420897}
-  viewAngle: 90
-  HP: 2
-  rotateSpeed: 90
-  bullet: {fileID: 0}
-  shootRate: 23
-  isDead: 0
 --- !u!195 &6853702650704191439
 NavMeshAgent:
   m_ObjectHideFlags: 0
