@@ -193,8 +193,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6961933357322700971, guid: 53a87d5e43670944caf365161f912c2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 110536748}
   m_SourcePrefab: {fileID: 100100000, guid: 53a87d5e43670944caf365161f912c2e, type: 3}
+--- !u!1 &110536747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6961933357322700971, guid: 53a87d5e43670944caf365161f912c2e, type: 3}
+  m_PrefabInstance: {fileID: 110536746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &110536748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110536747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db5310af768f542a6cf11c42fd9e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePerTick: 5
+  tickRate: 1
 --- !u!1 &116836027
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,10 +823,6 @@ MonoBehaviour:
   - {fileID: 1255105589}
   - {fileID: 1122985093}
   spawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
-  spawnInterval: 0.35
-  objectsPerWave: 5
-  randomSpawnPoint: {fileID: 0}
-  randomSpawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
 --- !u!1 &1033836713 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4552406874366841443, guid: d1293545a3ca9b744b3f6da26dd54447, type: 3}
@@ -838,10 +856,6 @@ MonoBehaviour:
   - {fileID: 1255105589}
   - {fileID: 1122985093}
   spawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
-  spawnInterval: 0.35
-  objectsPerWave: 5
-  randomSpawnPoint: {fileID: 0}
-  randomSpawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
 --- !u!1001 &1089899966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1894,10 +1908,6 @@ MonoBehaviour:
   - {fileID: 1255105589}
   - {fileID: 1122985093}
   spawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
-  spawnInterval: 0.35
-  objectsPerWave: 5
-  randomSpawnPoint: {fileID: 0}
-  randomSpawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
 --- !u!1001 &1730671485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2218,10 +2228,6 @@ MonoBehaviour:
   - {fileID: 1255105589}
   - {fileID: 1122985093}
   spawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
-  spawnInterval: 0.35
-  objectsPerWave: 5
-  randomSpawnPoint: {fileID: 0}
-  randomSpawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
 --- !u!1001 &2011732924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2575,10 +2581,6 @@ MonoBehaviour:
   - {fileID: 1255105589}
   - {fileID: 1122985093}
   spawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
-  spawnInterval: 0.35
-  objectsPerWave: 5
-  randomSpawnPoint: {fileID: 0}
-  randomSpawnObject: {fileID: 1320112554831101448, guid: ca85eccc83b0c9e4090aa3a8e15192f7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
