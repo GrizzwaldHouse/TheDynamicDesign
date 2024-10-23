@@ -16,6 +16,7 @@ public class LavaGolemAI : MonoBehaviour, IDamage
 
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
+    [SerializeField] int ExpWorth;
 
     [SerializeField] int HP;
     [SerializeField] int rotateSpeed;
@@ -163,8 +164,8 @@ public class LavaGolemAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         isHit = true;
-        UpdateEnemyUI();
         HP -= amount;
+        UpdateEnemyUI();
 
         if (someCo != null)
         {

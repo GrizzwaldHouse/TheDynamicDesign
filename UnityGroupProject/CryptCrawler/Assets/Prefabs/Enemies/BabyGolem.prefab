@@ -105,11 +105,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2834964831282710222}
+  - component: {fileID: 3841446544025794160}
   - component: {fileID: 6409057331032773833}
   - component: {fileID: 8208817581231638204}
   - component: {fileID: 5130545047909739450}
   - component: {fileID: 7037619228087623945}
-  - component: {fileID: 3841446544025794160}
   m_Layer: 6
   m_Name: BabyGolem
   m_TagString: Enemy
@@ -135,6 +135,26 @@ Transform:
   - {fileID: 7807258462061973470}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3841446544025794160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320112554831101448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa4f07168a1ad740ab998732c829ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 6409057331032773833}
+  model: {fileID: 6913071850559110090}
+  anim: {fileID: 8208817581231638204}
+  HP: 4
+  rotateSpeed: 56
+  meleeDamage: 0
+  meleeRange: 1
+  enemyHPbar: {fileID: 3659965865670084295}
 --- !u!195 &6409057331032773833
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -222,26 +242,6 @@ CapsuleCollider:
   m_Height: 7
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
---- !u!114 &3841446544025794160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320112554831101448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa4f07168a1ad740ab998732c829ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 6409057331032773833}
-  model: {fileID: 6913071850559110090}
-  anim: {fileID: 8208817581231638204}
-  HP: 4
-  rotateSpeed: 56
-  meleeDamage: 0
-  meleeRange: 1
-  enemyHPbar: {fileID: 3659965865670084295}
 --- !u!1 &1341658085218900388
 GameObject:
   m_ObjectHideFlags: 0
