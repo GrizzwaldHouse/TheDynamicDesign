@@ -29,6 +29,7 @@ public class gamemanager : MonoBehaviour
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
     public GameObject player;
+    public GameObject PlayerSpawnPOS;
     // Player's hp bar.
     public Image playerHPBar;
     public Image playerMPBar;
@@ -55,12 +56,15 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
+        PlayerSpawnPOS = GameObject.FindWithTag("PlayerSpawnPOS");
+
     }
     void Start()
     {
         // Initialize the buttons
         saveButton.onClick.AddListener(SaveGame);
         loadButton.onClick.AddListener(LoadGame);
+        
 
     }
     // This method is called every frame.

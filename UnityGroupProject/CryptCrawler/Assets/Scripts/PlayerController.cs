@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     { 
+        
         HPorig = HP;
         ManaOrig = mana;
         XPorig = experience;
@@ -54,8 +55,17 @@ public class PlayerController : MonoBehaviour, IDamage
         //SetMaxMana(ManaOrig);
         origSpeed = speed;
         UpdatePlayerUI();
-        UpdatePlayerMana();
         
+        UpdatePlayerMana();
+        SpawnPlayer();
+    }
+
+    public void SpawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = gamemanager.instance.PlayerSpawnPOS.transform.position;
+        controller.enabled = true;
+        HP = HPorig;
     }
 
     // Update is called once per frame
