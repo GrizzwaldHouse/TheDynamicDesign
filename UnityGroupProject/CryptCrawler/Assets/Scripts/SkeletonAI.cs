@@ -168,12 +168,6 @@ public class SkeletonAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         isHit = true;
-        if (HP <= 0)
-        {
-            gamemanager.instance.UpdateGameGoal(-1);
-            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
-            Destroy(gameObject);
-        }
         HP -= amount;
         UpdateEnemyUI();
 
@@ -188,6 +182,12 @@ public class SkeletonAI : MonoBehaviour, IDamage
         StartCoroutine(flashColor());
 
         isHit = false;
+        if (HP <= 0)
+        {
+            gamemanager.instance.UpdateGameGoal(-1);
+            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
+            Destroy(gameObject);
+        }
     }
     IEnumerator flashColor()
     {

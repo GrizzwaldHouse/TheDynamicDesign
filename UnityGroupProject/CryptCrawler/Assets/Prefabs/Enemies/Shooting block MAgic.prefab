@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3197578151269306818}
   m_Layer: 6
   m_Name: Shooting block MAgic
-  m_TagString: Enemy
+  m_TagString: MovingBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3843590495638077784}
-  model: {fileID: 0}
+  model: {fileID: 214501586258821577}
   shootPos: {fileID: 8500074016633999919}
   headPos: {fileID: 1171551271261530529}
   viewAngle: 90

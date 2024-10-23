@@ -150,12 +150,16 @@ public class PlayerController : MonoBehaviour, IDamage
                 {
                     // Call the takeDamage method on the enemy
                     hit.collider.GetComponent<EnemyAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
-                    hit.collider.GetComponent<ShootingBoxAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                 }
                 else if (hit.collider.CompareTag("Skeleton"))
                 {
                     // Call the takeDamage method on the enemy
                     hit.collider.GetComponent<SkeletonAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                }
+                else if (hit.collider.CompareTag("MovingBox"))
+                {
+                    // Call the takeDamage method on the enemy
+                    hit.collider.GetComponent<ShootingBoxAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                 }
             }
 
@@ -283,8 +287,6 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPorig;
-       
-
     }
 
     public void UpdatePlayerMana()
@@ -298,7 +300,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
         spell = wand.Spell;
         shootRate = wand.shootRate;
-        
     }
 
     void selectWand()
@@ -317,8 +318,6 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     void changeWand()
     {
-
-
         spell = Wandlist[selectwandPos].Spell;
         shootRate = Wandlist[selectwandPos].shootRate;
         wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectwandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
