@@ -139,9 +139,10 @@ public class PlayerController : MonoBehaviour, IDamage
             isShooting = true;
 
             // Instantiate the spell
-            GameObject spellInstance = Instantiate(spell, shootPos.position, transform.rotation);
+            GameObject spellInstance = Instantiate(spell, shootPos.position, shootPos.rotation);
             // Raycast to check if the spell hits the enemy
             RaycastHit hit;
+           
             if (Physics.Raycast(shootPos.position, transform.forward, out hit, 100f))
             {
                 // Check if the hit object is an enemy
