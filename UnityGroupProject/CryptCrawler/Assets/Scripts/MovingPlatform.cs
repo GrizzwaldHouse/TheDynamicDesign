@@ -74,30 +74,31 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+
+
+
+
+void Update()
+{
+    if (_isMoving)
+    {
+        // Move the platform left and right
+        float newX = Mathf.Lerp(_startPosition.x, _startPosition.x + _moveDistance * _movementDirection, Mathf.PingPong(Time.time * _speed, 1.0f));
+        transform.position = new Vector3(newX, _startPosition.y, _startPosition.z);
+
+        // Check if the platform has reached the end of its movement
+        if (Mathf.Abs(transform.position.y - _startPosition.z) >= _moveDistance)
+        {
+            if (_loopMovement)
+            {
+                // Reverse movement direction
+                _movementDirection = -_movementDirection;
+            }
+            else
+            {
+                _isMoving = false; // Stop moving
+            }
+        }
+    }
 }
-
-
-//    void Update()
-//    {
-//        if (_isMoving)
-//        {
-//            // Move the platform left and right
-//            float newX = Mathf.Lerp(_startPosition.x, _startPosition.x + _moveDistance * _movementDirection, Mathf.PingPong(Time.time * _speed, 1.0f));
-//            transform.position = new Vector3(newX, _startPosition.y, _startPosition.z);
-
-//            // Check if the platform has reached the end of its movement
-//            if (Mathf.Abs(transform.position.y - _startPosition.z) >= _moveDistance)
-//            {
-//                if (_loopMovement)
-//                {
-//                    // Reverse movement direction
-//                    _movementDirection = -_movementDirection;
-//                }
-//                else
-//                {
-//                    _isMoving = false; // Stop moving
-//                }
-//            }
-//        }
-//    }
-//}
+}
