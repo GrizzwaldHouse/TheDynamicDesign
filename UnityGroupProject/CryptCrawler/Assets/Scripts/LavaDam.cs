@@ -23,11 +23,6 @@ public class LavaDam : MonoBehaviour
             // Start the coroutine to apply damage over time to the target
             StartCoroutine(ApplyLavaDamage(target));
         }
-        else
-        {
-            // Log a message indicating that the object does not have an IDamage component
-            Debug.Log("No IDamage component found on: " + other.gameObject.name);
-        }
     }
 
     // This method is called when an object exits the trigger collider
