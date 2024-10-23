@@ -34,5 +34,15 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
 #endif
     }
+    public void BoostHP()
+    {
+        gamemanager.instance.accessPlayer.HP += 20;
+        gamemanager.instance.stateUnpause();
+    }
+    public void BoostMana()
+    {
+        gamemanager.instance.accessPlayer.mana += 20;
+        gamemanager.instance.stateUnpause();
+    }
 
 }

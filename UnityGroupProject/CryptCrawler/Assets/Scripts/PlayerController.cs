@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Threading;
+using System.Xml.XPath;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -9,8 +10,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
 
-    [SerializeField] int HP;
-    [SerializeField] int mana;
+    [SerializeField] public int HP;
+    [SerializeField] public int mana;
     [SerializeField] int experience;
     [SerializeField] int level;
     [SerializeField] int experienceToNextLevel;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour, IDamage
     int jumpCount;
     int selectwandPos;
     int HPorig;
+    int XPorig;
     int ManaOrig;
     int origSpeed;
     
@@ -47,10 +49,12 @@ public class PlayerController : MonoBehaviour, IDamage
     { 
         HPorig = HP;
         ManaOrig = mana;
-        SetMaxHealth(HPorig);
-        SetMaxMana(ManaOrig);
+        XPorig = experience;
+        //SetMaxHealth(HPorig);
+        //SetMaxMana(ManaOrig);
         origSpeed = speed;
         UpdatePlayerUI();
+        UpdatePlayerMana();
         
     }
 
@@ -222,9 +226,10 @@ public class PlayerController : MonoBehaviour, IDamage
     public void gainExperience(int amount)
     {
         experience += amount;
+        UpdatePlayerUI();
         if(experience >= experienceToNextLevel)
         {
-            levelUp();
+            levelUp(); //level up player
         }
     }
     public int GetLevel() { return level; }
@@ -261,7 +266,9 @@ public class PlayerController : MonoBehaviour, IDamage
         level++;
         experience = 0;
         experienceToNextLevel = calculateExperienceToNextLevel();
-        HP = HPorig + 50; //reset health to max
+        HP = HPorig; //reset health to max
+        mana = ManaOrig;
+        gamemanager.instance.LevelUp(); //open menu for leveling up
         UpdatePlayerUI();
         Debug.Log("Level Up! You are now level " + level);
     }
@@ -287,6 +294,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPorig;
+        gamemanager.instance.playerXPBar.fillAmount = (float)experience;
     }
 
     public void UpdatePlayerMana()

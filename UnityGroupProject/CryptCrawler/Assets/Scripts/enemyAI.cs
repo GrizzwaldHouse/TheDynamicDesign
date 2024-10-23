@@ -24,6 +24,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] int shootAngle;
     [SerializeField] Image enemyHPbar;
+    [SerializeField] int ExpWorth;
 
     bool isShooting;
     bool playerInRange;
@@ -178,6 +179,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gamemanager.instance.UpdateGameGoal(-1);
+            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
             Destroy(gameObject);
         }
         isHit = false;

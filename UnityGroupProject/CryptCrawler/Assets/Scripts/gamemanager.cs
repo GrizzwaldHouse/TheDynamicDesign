@@ -11,8 +11,9 @@ using UnityEngine.UI;
 public class gamemanager : MonoBehaviour
 {
     // These variables are exposed to the Unity Inspector, allowing designers to assign the corresponding game objects.
-    [SerializeField] GameObject menuActive; // The currently active menu (e.g. main menu, pause menu, win menu, lose menu)
+    [SerializeField] public GameObject menuActive; // The currently active menu (e.g. main menu, pause menu, win menu, lose menu)
     [SerializeField] GameObject menuPause; // The pause menu game object
+    [SerializeField] GameObject LevelMenu; //Menu for leveling up
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
     public GameObject PlayerDamageScreen;
@@ -31,6 +32,7 @@ public class gamemanager : MonoBehaviour
     // Player's hp bar.
     public Image playerHPBar;
     public Image playerMPBar;
+    public Image playerXPBar;
     // This is a singleton instance of the GameManager, allowing other scripts to access it easily.
     public static gamemanager instance;
     public PlayerController accessPlayer;
@@ -52,6 +54,7 @@ public class gamemanager : MonoBehaviour
         // Store the original time scale.
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerController>();
     }
     void Start()
     {
@@ -161,6 +164,15 @@ public class gamemanager : MonoBehaviour
         menuActive = menuLose;
 
         // Activate the lose menu.
+        menuActive.SetActive(true);
+    }
+
+    public void LevelUp()
+    {
+        statePause();
+
+        menuActive = LevelMenu;
+
         menuActive.SetActive(true);
     }
 
