@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections; // Importing the System.Collections namespace for using collections like IEnumerator
 using System.Collections.Generic; // Importing the System.Collections.Generic namespace for using generic collections like List
-using UnityEngine; // Importing the UnityEngine namespace for Unity-specific functionality
 
 // Class responsible for spawning objects in waves and also handling random object spawning
 public class ObjectSpawner : MonoBehaviour

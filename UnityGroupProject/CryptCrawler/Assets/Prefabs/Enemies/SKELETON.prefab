@@ -604,6 +604,10 @@ MonoBehaviour:
   attackRate: 1
   ExpWorth: 20
   anim: {fileID: 8459366217117873080}
+  roamDist: 15
+  roamPauseTime: 3
+  headPos: {fileID: 9169351749877802274}
+  shootAngle: 15
   isDead: 0
   enemyHPbar: {fileID: 1616326807458153788}
 --- !u!195 &1894028398449566427
@@ -668,10 +672,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1
   m_Height: 7
   m_Direction: 1
-  m_Center: {x: 0, y: 3, z: 0}
+  m_Center: {x: 0, y: 3, z: -0.3}
 --- !u!135 &1216326743900651245
 SphereCollider:
   m_ObjectHideFlags: 0

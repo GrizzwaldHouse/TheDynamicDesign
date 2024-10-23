@@ -563,17 +563,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5145015099662775917}
   model: {fileID: 1812239978926478506}
+  anim: {fileID: 3925047836198953028}
   shootPos: {fileID: 856982558207289373}
   headPos: {fileID: 259049947248139022}
   viewAngle: 90
+  roamDist: 10
+  roamPauseTime: 3
   HP: 15
   rotateSpeed: 100
   bullet: {fileID: 2882795654731209471, guid: a031935e994ec184ab2c3cc37906cbb8, type: 3}
   shootRate: 1
-  ExpWorth: 10
-  isDead: 0
+  shootAngle: 15
   enemyHPbar: {fileID: 9022281977143084099}
-  anim: {fileID: 3925047836198953028}
+  isDead: 0
 --- !u!195 &5145015099662775917
 NavMeshAgent:
   m_ObjectHideFlags: 0
