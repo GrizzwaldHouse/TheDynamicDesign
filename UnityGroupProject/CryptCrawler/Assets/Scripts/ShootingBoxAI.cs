@@ -1,61 +1,57 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class SkeletonAI : MonoBehaviour, IDamage
+public class ShootingBoxAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] Transform swordTransform; // Transform for sword collider
+    [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
     [SerializeField] int viewAngle;
-    [SerializeField] int HP;
-    [SerializeField] int rotateSpeed;
-    [SerializeField] int damageAmount; // Damage dealt to the player
-    [SerializeField] float attackRange; // Range for melee attack
-    [SerializeField] float attackRate; // Time between attacks
-    [SerializeField] int ExpWorth;
-    [SerializeField] Animator anim;
+
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
-    [SerializeField] Transform headPos;
+
+    [SerializeField] int HP;
+    [SerializeField] int rotateSpeed;
+
+    [SerializeField] GameObject bullet;
+    [SerializeField] float shootRate;
     [SerializeField] int shootAngle;
 
-    float angleToplayer;
+    bool isShooting;
     bool playerInRange;
-    public bool isDead;
-    bool isSwinging;
-    public Image enemyHPbar;
-    float playerHealth;
     bool isRoaming;
-    float stoppingDistOrig;
+    public bool isDead;
     bool isHit;
 
-    float angleToPlayer;
+    float angleToplayer;
+    float stoppingDistOrig;
+
     Vector3 playerDir;
-    Color colorOg;
-    int HPorig;
-    Coroutine someCo;
+
     Vector3 startingPos;
 
+    Color colorOg;
+
+    Coroutine someCo;
+
+    // Start is called before the first frame update
     void Start()
     {
-        HPorig = HP;
         colorOg = model.material.color;
-        enemyHPbar.fillAmount = 1f;
-        UpdateEnemyUI();
         gamemanager.instance.UpdateGameGoal(1);
-        playerHealth = gamemanager.instance.playerHPBar.fillAmount;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (isSwinging == false)
-        {
-            anim.SetFloat("speed", agent.velocity.normalized.magnitude);
-        }
         if (playerInRange && !canSeePlayer())
         {
             if (!isRoaming && agent.remainingDistance < 0.05f)
@@ -71,6 +67,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
             }
         }
     }
+
     IEnumerator Roam()
     {
         isRoaming = true;
@@ -105,9 +102,9 @@ public class SkeletonAI : MonoBehaviour, IDamage
                     faceTarget();
                 }
 
-                if (isSwinging == false && angleToplayer < shootAngle)
+                if (isShooting == false && angleToplayer < shootAngle)
                 {
-                    StartCoroutine(Attack());
+                    StartCoroutine(Shoot());
                 }
 
                 agent.stoppingDistance = stoppingDistOrig;
@@ -119,7 +116,6 @@ public class SkeletonAI : MonoBehaviour, IDamage
 
         return false;
     }
-
     void faceTarget()
     {
         Quaternion rotate = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
@@ -133,7 +129,6 @@ public class SkeletonAI : MonoBehaviour, IDamage
             playerInRange = true;
         }
     }
-
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -143,65 +138,48 @@ public class SkeletonAI : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator Attack()
+    IEnumerator Shoot()
     {
-        anim.SetTrigger("attack");
-        // Prevent multiple attacks at once
-        if (!isHit && transform.position.x != stoppingDistOrig)
+        if (!isHit)
         {
-            isSwinging = true; // Prevent further attacks until the coroutine is finished
-            // Call the sword collider method to deal damage to the player
-            // Check for player collision with sword collider
-            Collider[] hitColliders = Physics.OverlapSphere(swordTransform.position, attackRange);
-            foreach (var hitCollider in hitColliders)
-            {
-                if (hitCollider.CompareTag("Player"))
-                {
-                    gamemanager.instance.accessPlayer.takeDamage(damageAmount);
-                }
-            }
-            yield return new WaitForSeconds(attackRate);
-            isSwinging = false; // Reset for the next attack
+            isShooting = true;
+            Instantiate(bullet, shootPos.position, transform.rotation);
+            yield return new WaitForSeconds(shootRate);
+
+            isShooting = false;
         }
     }
-
     public void takeDamage(int amount)
     {
         isHit = true;
-        if (HP <= 0)
-        {
-            gamemanager.instance.UpdateGameGoal(-1);
-            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
-            Destroy(gameObject);
-        }
         HP -= amount;
-        UpdateEnemyUI();
 
         if (someCo != null)
         {
             StopCoroutine(someCo);
             isRoaming = false;
         }
-        anim.SetTrigger("hit");
         agent.SetDestination(gamemanager.instance.player.transform.position);
 
         StartCoroutine(flashColor());
 
+        if (HP <= 0)
+        {
+            gamemanager.instance.UpdateGameGoal(-1);
+            Destroy(gameObject);
+        }
         isHit = false;
     }
+
     IEnumerator flashColor()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOg;
     }
-    public void UpdateEnemyUI()
-    {
-        enemyHPbar.fillAmount = (float)HP / HPorig;
-    }
 
     public void gainHealth(int amount)
     {
-        throw new System.NotImplementedException();
+
     }
 }

@@ -149,6 +149,7 @@ public class PlayerController : MonoBehaviour, IDamage
                 {
                     // Call the takeDamage method on the enemy
                     hit.collider.GetComponent<EnemyAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                    hit.collider.GetComponent<ShootingBoxAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                 }
                 else if (hit.collider.CompareTag("Skeleton"))
                 {
