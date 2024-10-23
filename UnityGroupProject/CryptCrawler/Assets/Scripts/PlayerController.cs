@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Xml.XPath;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -163,7 +164,19 @@ public class PlayerController : MonoBehaviour, IDamage
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     // Call the takeDamage method on the enemy
-                    hit.collider.GetComponent<EnemyAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                    if(hit.collider.CompareTag("Enemy") && hit.collider.GetComponent<EnemyAI>())
+                    {
+                        hit.collider.GetComponent<EnemyAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                    }
+                    else if(hit.collider.CompareTag("Enemy") && hit.collider.GetComponent<LavaGolemAI>())
+                    {
+                        hit.collider.GetComponent<LavaGolemAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                    }
+                    else if (hit.collider.CompareTag("Enemy") && hit.collider.GetComponent<BabLava>())
+                    {
+                        hit.collider.GetComponent<BabLava>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                    }
+
                 }
                 else if (hit.collider.CompareTag("Skeleton"))
                 {
@@ -304,7 +317,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPorig;
-        gamemanager.instance.playerXPBar.fillAmount = (float)experience;
+        gamemanager.instance.playerXPBar.fillAmount = (float)experience / experienceToNextLevel;
     }
 
     public void UpdatePlayerMana()

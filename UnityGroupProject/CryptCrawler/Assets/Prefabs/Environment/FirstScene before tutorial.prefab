@@ -701,7 +701,7 @@ Transform:
   m_GameObject: {fileID: 2507595662229017436}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1000.6891, y: -622.7949, z: 183.23502}
+  m_LocalPosition: {x: -1000.6891, y: -621.35876, z: 183.23502}
   m_LocalScale: {x: 6.78, y: 6.780001, z: 6.780001}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3350,7 +3350,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 855
+  m_VersionIndex: 861
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6507,9 +6507,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7221773419190552725, guid: c0a384ca08f24d842bc515d1b46ce749, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4652590893015050546}
-    - targetCorrespondingSourceObject: {fileID: 7221773419190552725, guid: c0a384ca08f24d842bc515d1b46ce749, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8502991646500770522}
   m_SourcePrefab: {fileID: 100100000, guid: c0a384ca08f24d842bc515d1b46ce749, type: 3}
 --- !u!1 &3622800113644790798 stripped
 GameObject:
@@ -6539,19 +6536,6 @@ CapsuleCollider:
   m_Height: 2.21
   m_Direction: 1
   m_Center: {x: -0.12, y: 1.84, z: -1.9}
---- !u!114 &8502991646500770522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3622800113644790798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4179091785fd6844ca46c7bec8a20ca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadLevel: LavaFight
 --- !u!4 &4959372085654348979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1345762139336771624, guid: c0a384ca08f24d842bc515d1b46ce749, type: 3}
