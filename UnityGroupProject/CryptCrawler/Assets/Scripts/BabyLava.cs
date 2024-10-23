@@ -16,11 +16,13 @@ public class BabLava : MonoBehaviour, IDamage
     [SerializeField] int meleeDamage; // Damage dealt to the player on melee attack
     [SerializeField] float meleeRange; // Range within which the Golem can attack the player
     [SerializeField] Image enemyHPbar; // UI element to display the enemy's health
+    [SerializeField] int ExpWorth;
 
     // Private variables to manage the state of the Golem
     bool isDead; // Flag to check if the Golem is dead
     int HPorig; // Original health points for calculating health percentage
-    bool isHit; // Flag to prevent multiple hits during an attack
+    bool isHit;
+    bool isAttacking;// Flag to prevent multiple hits during an attack
 
     Vector3 playerDir; // Direction vector pointing towards the player
 
@@ -37,6 +39,7 @@ public class BabLava : MonoBehaviour, IDamage
 
         // Set the initial destination of the Golem to the player's position
         agent.SetDestination(gamemanager.instance.player.transform.position);
+        UpdateEnemyUI();
     }
 
     // Update is called once per frame
@@ -70,17 +73,16 @@ public class BabLava : MonoBehaviour, IDamage
     IEnumerator MeleeAttack()
     {
         // Set the hit flag to true to prevent further attacks during this animation
-        isHit = true;
-
+        isAttacking = true;
         // Trigger the attack animation
         anim.SetTrigger("attack");
 
         // Wait for the duration of the attack animation before proceeding
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
-      
+
         // Reset the hit flag to allow future attacks
-        isHit = false;
+        isAttacking = false;
     }
 
     // Method to rotate the Golem to face the player
@@ -99,33 +101,25 @@ public class BabLava : MonoBehaviour, IDamage
     // Method to handle damage taken by the Golem
     public void takeDamage(int amount)
     {
-        // Update the enemy UI to reflect the current health
+        isHit = true;
+        HP -= amount;
         UpdateEnemyUI();
 
-        // Subtract the damage amount from the Golem's health
-        HP -= amount;
-
-        // Trigger the hit animation
         anim.SetTrigger("hit");
+        agent.SetDestination(gamemanager.instance.player.transform.position);
 
-        // Start the color flash coroutine to indicate damage
         StartCoroutine(flashColor());
 
-        // Check if the Golem's health has dropped to zero or below
+        isHit = false;
         if (HP <= 0)
         {
-            // Update the game goal to reflect the Golem's defeat
             gamemanager.instance.UpdateGameGoal(-1);
-
-            // Destroy the Golem object
+            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
             Destroy(gameObject);
-
-            // Set the dead flag to true
-            isDead = true;
         }
     }
 
-    // Coroutine to flash the G olem's color to indicate damage
+    // Coroutine to flash the Golem's color to indicate damage
     IEnumerator flashColor()
     {
         // Set the Golem's color to red to indicate damage
