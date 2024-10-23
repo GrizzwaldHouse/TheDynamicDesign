@@ -18,7 +18,7 @@ public class LavaGolemAI : MonoBehaviour, IDamage
     [SerializeField] int roamPauseTime;
     [SerializeField] int ExpWorth;
 
-    [SerializeField] int HP;
+    [SerializeField] public int HP;
     [SerializeField] int rotateSpeed;
 
     [SerializeField] GameObject bullet;

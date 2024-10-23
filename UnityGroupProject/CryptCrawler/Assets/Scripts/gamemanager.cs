@@ -17,6 +17,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
     public GameObject PlayerDamageScreen;
+    public LavaGolemAI boss;
     public PlayerController playerScript;
     public Button saveButton;
     public Button loadButton;
@@ -141,7 +142,7 @@ public class gamemanager : MonoBehaviour
         enemyCountText.text = enemyCount.ToString("F0");
 
         // If the enemy count reaches 0 or less, pause the game and show the win menu.
-        if (enemyCount <= 0)
+        if (boss.HP <= 0 )
         {
             // Call the statePause method to pause the game.
             statePause();
