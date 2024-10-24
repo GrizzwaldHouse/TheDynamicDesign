@@ -63,11 +63,10 @@ public class Damage : MonoBehaviour
                 IDamage dmg = hitCollider.GetComponent<IDamage>();
                 if (dmg != null)
                 {
-                    dmg.takeDamage(damageAmount);
+                     dmg.takeDamage(damageAmount);
+                     yield return new WaitForSeconds(damageInterval);
                 }
             }
-
-            yield return new WaitForSeconds(damageInterval);
         }
     }
 

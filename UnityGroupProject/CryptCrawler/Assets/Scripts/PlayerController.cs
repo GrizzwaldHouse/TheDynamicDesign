@@ -178,6 +178,11 @@ public class PlayerController : MonoBehaviour, IDamage
                         damageAmount = spell.GetComponent<Mana>().damageamount;
                         hit.collider.GetComponent<BabLava>().takeDamage(spell.GetComponent<Mana>().damageamount);
                     }
+                    else if (hit.collider.CompareTag("Enemy") && hit.collider.GetComponent<Destroywall>())
+                    {
+                        damageAmount = spell.GetComponent<Mana>().damageamount;
+                        hit.collider.GetComponent<BabLava>().takeDamage(spell.GetComponent<Mana>().damageamount);
+                    }
 
                 }
                 else if (hit.collider.CompareTag("Skeleton"))
@@ -186,7 +191,7 @@ public class PlayerController : MonoBehaviour, IDamage
                     damageAmount = spell.GetComponent<Mana>().damageamount;
                     hit.collider.GetComponent<SkeletonAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                 }
-                else if (hit.collider.CompareTag("MovingBox"))
+                else if (hit.collider.CompareTag("MovingBox") && hit.collider.GetComponent<ShootingBoxAI>())
                 {
                     // Call the takeDamage method on the enemy
                     damageAmount = spell.GetComponent<Mana>().damageamount;
@@ -230,7 +235,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void gainHealth(int amount)
     {
-        HP = Mathf.Min(HP + amount, HPorig);
+        HP += amount;
         UpdatePlayerUI();
     }
 

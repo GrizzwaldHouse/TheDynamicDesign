@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public enum PotionType { HealthPotion, ManaPotion, HealthBuff, ManaBuff }
 
 // Define a class for potions
-public class Potions : MonoBehaviour, IInteractable
+public class Potions : MonoBehaviour
 {
     // Define a variable to store the type of potion
     public PotionType potionType;
@@ -32,44 +32,7 @@ public class Potions : MonoBehaviour, IInteractable
     int tempManaBuff;
     int originalHP;
     int originalMP;
-
-      public void Interact()
-    {
-        // Disable the visual representation and collider so the object is no longer visible or interactive
-        GetComponent<Renderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
-
-        //Check the type of potion and apply its effect to the player
-        switch (potionType)
-        {
-            case PotionType.HealthPotion:
-                //Add code for HealthPotion
-                targetScript.gainHealth(healthToGain);
-                Destroy(gameObject);
-                break;
-
-            case PotionType.ManaPotion:
-                //Add code for ManaPotion
-                targetScript.gainMana(manaToGain);
-                Destroy(gameObject);
-                break;
-
-            case PotionType.HealthBuff:
-                //Add code for HealthBuff
-                StartCoroutine(HPBuff());
-                
-                
-                break;
-
-            case PotionType.ManaBuff:
-                //Add code for ManaBuff
-                StartCoroutine(MPBuff());
-               
-                
-                break;
-        }
-       
-    }
+    bool itemIsPickedUp;
 
     IEnumerator MPBuff()
     {
@@ -131,9 +94,11 @@ public class Potions : MonoBehaviour, IInteractable
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !itemIsPickedUp)
         {
-            potText.SetActive(true);          
+            itemIsPickedUp = true;
+            gamemanager.instance.accessPlayer.gainHealth(healthToGain);
+            Destroy(gameObject);
         }
     }
 

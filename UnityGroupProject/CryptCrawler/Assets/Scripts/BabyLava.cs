@@ -22,7 +22,7 @@ public class BabLava : MonoBehaviour, IDamage
     bool isDead; // Flag to check if the Golem is dead
     int HPorig; // Original health points for calculating health percentage
     bool isHit;
-    bool isAttacking;// Flag to prevent multiple hits during an attack
+    bool isAttacking; // Flag to prevent multiple hits during an attack
 
     Vector3 playerDir; // Direction vector pointing towards the player
 
@@ -72,7 +72,6 @@ public class BabLava : MonoBehaviour, IDamage
     // Coroutine to handle the melee attack
     IEnumerator MeleeAttack()
     {
-        isAttacking = true;
         // Set the hit flag to true to prevent further attacks during this animation
         isAttacking = true;
         // Trigger the attack animation

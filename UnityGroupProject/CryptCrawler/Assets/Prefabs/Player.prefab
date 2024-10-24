@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &385890470734408099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6832053800628416604}
+  m_Layer: 7
+  m_Name: headPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6832053800628416604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385890470734408099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.899, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7559576478789734281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4763590300725236895
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +69,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8531489017910997316}
+  - {fileID: 6832053800628416604}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5858277992891540433
@@ -67,17 +99,20 @@ MonoBehaviour:
   slideforce: 10
   slidetimer: 10
   sprintMod: 3
-  jumpSpeed: 14
+  jumpSpeed: 32
   jumpMax: 3
-  gravity: 28
+  gravity: 50
   Wandlist:
   - {fileID: 11400000, guid: 71ef3afde9d85e4429beb66af76d3304, type: 2}
   - {fileID: 11400000, guid: a723a0caf51b4ba48937a5a758fefeae, type: 2}
   - {fileID: 11400000, guid: bdbe4c5bcb60ec646a55fb7008ba5b05, type: 2}
   spell: {fileID: 8458811321649852431, guid: 9671b2d9c3b1c724cb91728dcd3191c0, type: 3}
   shootPos: {fileID: 1542949930818792601}
+  headPos: {fileID: 6832053800628416604}
   shootRate: 1
   wandModel: {fileID: 8153308546465221335}
+  HPorig: 0
+  ManaOrig: 0
 --- !u!143 &7572256470491037903
 CharacterController:
   m_ObjectHideFlags: 0
@@ -206,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0137ede0fd7f35945852ba014da9e3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractorSource: {fileID: 8531489017910997316}
+  InteractorSource: {fileID: 7559576478789734281}
   InteractRange: 5
 --- !u!136 &3893084841958490669
 CapsuleCollider:
