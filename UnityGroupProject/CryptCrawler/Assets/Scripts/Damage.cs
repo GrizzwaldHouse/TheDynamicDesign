@@ -65,8 +65,8 @@ public class Damage : MonoBehaviour
                 {
                      dmg.takeDamage(damageAmount);
                 }
-                yield return new WaitForSeconds(damageInterval);
             }
+            yield return new WaitForSeconds(damageInterval);
         }
     }
 
