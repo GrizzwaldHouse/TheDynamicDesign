@@ -18,7 +18,6 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose; // The lose menu game object
     public GameObject PlayerDamageScreen;
     public LavaGolemAI boss;
-    public PlayerController playerScript;
     public Button saveButton;
     public Button loadButton;
     public GameObject inventoryUI;
@@ -30,7 +29,7 @@ public class gamemanager : MonoBehaviour
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
     public GameObject player;
-    public GameObject PlayerSpawnPOS;
+  
     // Player's hp bar.
     public Image playerHPBar;
     public Image playerMPBar;
@@ -41,7 +40,7 @@ public class gamemanager : MonoBehaviour
 
     // This flag indicates whether the game is currently paused.
     public bool isPaused;
-
+    
     // This variable stores the original time scale, which is restored when the game is unpaused.
     float timeScaleOrig;
 
@@ -56,13 +55,14 @@ public class gamemanager : MonoBehaviour
         // Store the original time scale.
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
-        PlayerSpawnPOS = GameObject.FindWithTag("PlayerSpawnPOS");
+        accessPlayer = player.GetComponent<PlayerController>();
+       
+        
 
     }
     void Start()
     {
-        // Initialize the buttons
+        //Initialize the buttons
         saveButton.onClick.AddListener(SaveGame);
         loadButton.onClick.AddListener(LoadGame);
         
@@ -211,10 +211,10 @@ public class gamemanager : MonoBehaviour
     // This method loads the game by calling the LoadSystem method on the PlayerController.
     public void LoadGame()
     {
-        // Find the PlayerController script in the scene.
+        //// Find the PlayerController script in the scene.
         PlayerController player = GameObject.FindObjectOfType<PlayerController>();
 
-        // Call the LoadSystem method on the PlayerController.
+        //// Call the LoadSystem method on the PlayerController.
         player.LoadSystem();
 
         // Log a message to the console to indicate that the game has been loaded.
