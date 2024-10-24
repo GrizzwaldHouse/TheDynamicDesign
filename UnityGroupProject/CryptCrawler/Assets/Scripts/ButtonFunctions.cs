@@ -37,11 +37,13 @@ public class ButtonFunctions : MonoBehaviour
     public void BoostHP()
     {
         gamemanager.instance.accessPlayer.HP += 20;
+        gamemanager.instance.accessPlayer.HPorig = gamemanager.instance.accessPlayer.HP;
         gamemanager.instance.stateUnpause();
     }
     public void BoostMana()
     {
         gamemanager.instance.accessPlayer.mana += 20;
+        gamemanager.instance.accessPlayer.ManaOrig = gamemanager.instance.accessPlayer.mana;
         gamemanager.instance.stateUnpause();
     }
 

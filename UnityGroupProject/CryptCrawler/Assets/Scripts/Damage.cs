@@ -7,7 +7,7 @@ public class Damage : MonoBehaviour
     [SerializeField] enum damagetype { bullet, stationary, chaser }
     [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
-    [SerializeField] int damageamount;
+    [SerializeField] int damageAmount;
     [SerializeField] int speed;
     [SerializeField] int destroytime;
     [SerializeField] float damageInterval;
@@ -18,7 +18,7 @@ public class Damage : MonoBehaviour
     {
         if (type == damagetype.bullet)
         {
-            rb.velocity = (gamemanager.instance.player.transform.position - transform.position).normalized * speed;
+            rb.velocity = (gamemanager.instance.player.transform.position - transform.position).normalized *speed;
             Destroy(gameObject, destroytime);
         }
         else if (type == damagetype.chaser)
@@ -40,7 +40,7 @@ public class Damage : MonoBehaviour
         IDamage dmg = other.GetComponent<IDamage>();
         if (dmg != null)
         {
-            dmg.takeDamage(damageamount);
+            dmg.takeDamage(damageAmount);
         }
         if (type == damagetype.bullet || type == damagetype.chaser)
         {
@@ -63,7 +63,7 @@ public class Damage : MonoBehaviour
                 IDamage dmg = hitCollider.GetComponent<IDamage>();
                 if (dmg != null)
                 {
-                    dmg.takeDamage(damageamount);
+                    dmg.takeDamage(damageAmount);
                 }
             }
 

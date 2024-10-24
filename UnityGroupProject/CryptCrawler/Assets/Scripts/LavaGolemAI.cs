@@ -53,6 +53,7 @@ public class LavaGolemAI : MonoBehaviour, IDamage
         HPorig = HP;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -156,7 +157,6 @@ public class LavaGolemAI : MonoBehaviour, IDamage
             anim.SetTrigger("attack");
             yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
             Instantiate(bullet, shootPos.position, transform.rotation);
-            yield return new WaitForSeconds(shootRate);
 
             isShooting = false;
         }
@@ -180,6 +180,8 @@ public class LavaGolemAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gamemanager.instance.UpdateGameGoal(-1);
+            isDead = true;
+            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
             Destroy(gameObject);
         }
         isHit = false;

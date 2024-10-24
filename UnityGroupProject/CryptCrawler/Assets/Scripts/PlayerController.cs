@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] List<Wands> Wandlist = new List<Wands>();
     [SerializeField] GameObject spell;
     [SerializeField] Transform shootPos;
+    [SerializeField] public Transform headPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;
     
@@ -37,10 +38,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
     int jumpCount;
     int selectwandPos;
-    int HPorig;
+    public int HPorig;
     int XPorig;
-    int ManaOrig;
+    public int ManaOrig;
     int origSpeed;
+    float damageAmount;
     
     bool isSprinting;
     bool isSliding;
@@ -163,14 +165,17 @@ public class PlayerController : MonoBehaviour, IDamage
                     // Call the takeDamage method on the enemy
                     if(hit.collider.CompareTag("Enemy") && hit.collider.GetComponent<EnemyAI>())
                     {
+                        damageAmount = spell.GetComponent<Mana>().damageamount;
                         hit.collider.GetComponent<EnemyAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                     }
                     else if(hit.collider.CompareTag("Enemy") && hit.collider.GetComponent<LavaGolemAI>())
                     {
+                        damageAmount = spell.GetComponent<Mana>().damageamount;
                         hit.collider.GetComponent<LavaGolemAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                     }
                     else if (hit.collider.CompareTag("Enemy") && hit.collider.GetComponent<BabLava>())
                     {
+                        damageAmount = spell.GetComponent<Mana>().damageamount;
                         hit.collider.GetComponent<BabLava>().takeDamage(spell.GetComponent<Mana>().damageamount);
                     }
 
@@ -178,11 +183,13 @@ public class PlayerController : MonoBehaviour, IDamage
                 else if (hit.collider.CompareTag("Skeleton"))
                 {
                     // Call the takeDamage method on the enemy
+                    damageAmount = spell.GetComponent<Mana>().damageamount;
                     hit.collider.GetComponent<SkeletonAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                 }
                 else if (hit.collider.CompareTag("MovingBox"))
                 {
                     // Call the takeDamage method on the enemy
+                    damageAmount = spell.GetComponent<Mana>().damageamount;
                     hit.collider.GetComponent<ShootingBoxAI>().takeDamage(spell.GetComponent<Mana>().damageamount);
                 }
             }

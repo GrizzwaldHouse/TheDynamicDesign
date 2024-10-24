@@ -72,6 +72,7 @@ public class BabLava : MonoBehaviour, IDamage
     // Coroutine to handle the melee attack
     IEnumerator MeleeAttack()
     {
+        isAttacking = true;
         // Set the hit flag to true to prevent further attacks during this animation
         isAttacking = true;
         // Trigger the attack animation

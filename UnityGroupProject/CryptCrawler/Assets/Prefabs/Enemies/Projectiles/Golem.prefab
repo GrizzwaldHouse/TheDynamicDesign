@@ -371,31 +371,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -118.32
+      value: -164.38788
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.8
+      value: 13.000004
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -126.72
+      value: 409.3518
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.088683054
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9960599
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 190.176
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -515,6 +515,7 @@ MonoBehaviour:
   viewAngle: 90
   roamDist: 5
   roamPauseTime: 3
+  ExpWorth: 0
   HP: 100
   rotateSpeed: 100
   bullet: {fileID: 419200088238684804, guid: e96da77de1234334bbccc9efd8dc6cea, type: 3}
@@ -563,7 +564,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 15
+  m_Radius: 50
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!136 &4603939554636889703
 CapsuleCollider:
