@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Define an enum for the different types of potions
 public enum PotionType { HealthPotion, ManaPotion, HealthBuff, ManaBuff }
@@ -19,6 +20,7 @@ public class Potions : MonoBehaviour, IInteractable
     [SerializeField] int healthBuff;
     [SerializeField] int manaBuff;
     [SerializeField] int buffTimer;
+    [SerializeField] GameObject potText;
 
 
     GameObject HealthPotion;
@@ -127,5 +129,20 @@ public class Potions : MonoBehaviour, IInteractable
         Destroy(gameObject);
     }
 
-    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            potText.SetActive(true);          
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            potText.SetActive(false);
+        }
+    }
+
 }

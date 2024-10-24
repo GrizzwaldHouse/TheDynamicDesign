@@ -102,7 +102,7 @@ public class ShootingBoxAI : MonoBehaviour, IDamage
                     faceTarget();
                 }
 
-                if (isShooting == false && angleToplayer < shootAngle)
+                if (!isShooting && angleToplayer < shootAngle)
                 {
                     StartCoroutine(Shoot());
                 }
