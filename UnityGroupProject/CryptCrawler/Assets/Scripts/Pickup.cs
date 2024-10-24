@@ -15,7 +15,7 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gamemanager.instance.playerScript.getWandstats(wand);
+            gamemanager.instance.accessPlayer.getWandstats(wand);
             Destroy(gameObject);
         }
     }
