@@ -211,13 +211,13 @@ public class gamemanager : MonoBehaviour
     // This method loads the game by calling the LoadSystem method on the PlayerController.
     public void LoadGame()
     {
-        // Find the PlayerController script in the scene.
-        PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+        //// Find the PlayerController script in the scene.
+        //PlayerController player = GameObject.FindObjectOfType<PlayerController>();
 
-        // Call the LoadSystem method on the PlayerController.
-        player.LoadSystem();
+        //// Call the LoadSystem method on the PlayerController.
+        //player.LoadSystem();
 
-        // Log a message to the console to indicate that the game has been loaded.
-        Debug.Log("Game loaded!");
+        //// Log a message to the console to indicate that the game has been loaded.
+        //Debug.Log("Game loaded!");
     }
 }
