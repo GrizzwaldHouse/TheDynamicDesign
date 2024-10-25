@@ -224,9 +224,13 @@ public class gamemanager : MonoBehaviour
     public void OpenQuest()
     {
         questMenu.SetActive(true);
-        if (accessPlayer.hasQuest)
+        if (accessPlayer.hasQuest == true)
         {
             questText.text = accessPlayer.currentQuest.text;
+        }
+        else
+        {
+            questText.text = "No Current Quests!";
         }
     }
 

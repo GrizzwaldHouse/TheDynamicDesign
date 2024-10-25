@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //SetMaxHealth(HPorig);
         //SetMaxMana(ManaOrig);
         origSpeed = speed;
+        hasQuest = false;
         UpdatePlayerUI();
         UpdatePlayerMana();
         
