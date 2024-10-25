@@ -16,6 +16,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject LevelMenu; //Menu for leveling up
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
+    [SerializeField] public GameObject questMenu;
     public GameObject PlayerDamageScreen;
     public LavaGolemAI boss;
     public Button saveButton;
@@ -26,6 +27,7 @@ public class gamemanager : MonoBehaviour
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TextMeshProUGUI questText;
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
     public GameObject player;
@@ -96,6 +98,17 @@ public class gamemanager : MonoBehaviour
             else
             {
                 OpenInventory();
+            }
+        }
+        if (Input.GetButtonUp("Quest"))
+        {
+            if (questMenu.activeSelf)
+            {
+                CloseQuest();
+            }
+            else
+            {
+                OpenQuest();
             }
         }
     }
@@ -206,6 +219,20 @@ public class gamemanager : MonoBehaviour
     {
         // Deactivate the inventory UI.
         inventoryUI.SetActive(false);
+    }
+
+    public void OpenQuest()
+    {
+        questMenu.SetActive(true);
+        if (accessPlayer.hasQuest)
+        {
+            questText.text = accessPlayer.currentQuest.text;
+        }
+    }
+
+    public void CloseQuest()
+    {
+        questMenu.SetActive(false);
     }
 
     // This method loads the game by calling the LoadSystem method on the PlayerController.
