@@ -26,6 +26,8 @@ public class gamemanager : MonoBehaviour
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField]  public TMP_Text LevelText;
+    [SerializeField] public TMP_Text XpText;
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
     public GameObject player;
@@ -46,6 +48,7 @@ public class gamemanager : MonoBehaviour
 
     // This variable keeps track of the current enemy count.
     int enemyCount;
+    int level;
     // This method is called once at the start of the game.
     void Awake()
     {

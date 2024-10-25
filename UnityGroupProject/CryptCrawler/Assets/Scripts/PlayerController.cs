@@ -300,6 +300,7 @@ public class PlayerController : MonoBehaviour, IDamage
         experienceToNextLevel = calculateExperienceToNextLevel();
         HP = HPorig; //reset health to max
         mana = ManaOrig;
+        spell.GetComponent<Mana>().damageamount += 5;
         gamemanager.instance.LevelUp(); //open menu for leveling up
         UpdatePlayerUI();
         Debug.Log("Level Up! You are now level " + level);
@@ -327,6 +328,9 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPorig;
         gamemanager.instance.playerXPBar.fillAmount = (float)experience / experienceToNextLevel;
+        gamemanager.instance.LevelText.text = level.ToString();
+        gamemanager.instance.XpText.text = experience.ToString() + " / " + experienceToNextLevel.ToString();
+       
     }
 
     public void UpdatePlayerMana()
