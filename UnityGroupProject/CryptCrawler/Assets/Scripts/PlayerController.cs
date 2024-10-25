@@ -5,6 +5,8 @@ using System.Threading;
 using System.Xml.XPath;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
+using UnityEditor.UI;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 moveDir;
     Vector3 playerVel;
 
+    public TextMeshProUGUI currentQuest;
+
     int jumpCount;
     int selectwandPos;
     public int HPorig;
@@ -47,6 +51,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isSprinting;
     bool isSliding;
     bool isShooting;
+    public bool hasQuest;
    
 
     // Start is called before the first frame update
@@ -59,20 +64,16 @@ public class PlayerController : MonoBehaviour, IDamage
         //SetMaxHealth(HPorig);
         //SetMaxMana(ManaOrig);
         origSpeed = speed;
+        hasQuest = false;
         UpdatePlayerUI();
         UpdatePlayerMana();
         
        
         
     }
-
-    
-
     // Update is called once per frame
     void Update()
     {
-
-
         if (!gamemanager.instance.isPaused)
         {
             movement();
