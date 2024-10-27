@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 124197562}
   - component: {fileID: 124197564}
   - component: {fileID: 124197563}
+  - component: {fileID: 124197565}
   m_Layer: 0
   m_Name: BigTomb2 (13)
   m_TagString: Untagged
@@ -347,7 +348,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.50658417, y: -0.49332803, z: -0.49332803, w: 0.50658417}
   m_LocalPosition: {x: -1093.5, y: -915.5, z: -166.5}
-  m_LocalScale: {x: 13.58, y: 13.58, z: 13.58}
+  m_LocalScale: {x: 17.2, y: 17.2, z: 17.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -402,6 +403,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124197561}
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &124197565
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124197561}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &141285269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -416,7 +439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4359284606184036615, guid: 378a63cdf3e446c4dbf18907e2d37bfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -936.72424
+      value: -956.7
       objectReference: {fileID: 0}
     - target: {fileID: 4359284606184036615, guid: 378a63cdf3e446c4dbf18907e2d37bfa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -424,7 +447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4359284606184036615, guid: 378a63cdf3e446c4dbf18907e2d37bfa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.65252686
+      value: -13.1
       objectReference: {fileID: 0}
     - target: {fileID: 4359284606184036615, guid: 378a63cdf3e446c4dbf18907e2d37bfa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -606,6 +629,7 @@ GameObject:
   - component: {fileID: 234108267}
   - component: {fileID: 234108269}
   - component: {fileID: 234108268}
+  - component: {fileID: 234108270}
   m_Layer: 0
   m_Name: BigTomb (10)
   m_TagString: Untagged
@@ -623,7 +647,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5192473, y: -0.47662044, z: -0.5039221, w: -0.4992772}
   m_LocalPosition: {x: -966.9, y: -915.8, z: -57.5}
-  m_LocalScale: {x: 11.94, y: 5.169999, z: 15.47}
+  m_LocalScale: {x: 11.94, y: 13.4, z: 15.47}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -677,6 +701,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234108266}
+  m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
+--- !u!64 &234108270
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234108266}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
 --- !u!1001 &251147133
 PrefabInstance:
@@ -1055,6 +1101,7 @@ GameObject:
   - component: {fileID: 312190076}
   - component: {fileID: 312190078}
   - component: {fileID: 312190077}
+  - component: {fileID: 312190079}
   m_Layer: 0
   m_Name: BigTomb2 (36)
   m_TagString: Untagged
@@ -1126,6 +1173,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312190075}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &312190079
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312190075}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &315770330
 PrefabInstance:
@@ -1719,6 +1788,124 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2062898245743167005, guid: 11bd476b5dfbb6048980a0e946822042, type: 3}
   m_PrefabInstance: {fileID: 480428129}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &486256169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486256172}
+  - component: {fileID: 486256171}
+  - component: {fileID: 486256170}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &486256170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486256169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+--- !u!108 &486256171
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486256169}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 0.5947242, g: 0.8113208, b: 0.14032264, a: 1}
+  m_Intensity: 53.23
+  m_Range: 27.667995
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 9.47
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &486256172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486256169}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 554.8, y: -9, z: -1084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &501988110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1808,6 +1995,7 @@ GameObject:
   - component: {fileID: 545112569}
   - component: {fileID: 545112571}
   - component: {fileID: 545112570}
+  - component: {fileID: 545112572}
   m_Layer: 0
   m_Name: BigTomb2 (25)
   m_TagString: Untagged
@@ -1879,6 +2067,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545112568}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &545112572
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545112568}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &555111735
 PrefabInstance:
@@ -2120,6 +2330,7 @@ GameObject:
   - component: {fileID: 641216681}
   - component: {fileID: 641216683}
   - component: {fileID: 641216682}
+  - component: {fileID: 641216684}
   m_Layer: 0
   m_Name: BigTomb2 (29)
   m_TagString: Untagged
@@ -2191,6 +2402,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641216680}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &641216684
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641216680}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &676903978
 PrefabInstance:
@@ -2281,6 +2514,7 @@ GameObject:
   - component: {fileID: 677791168}
   - component: {fileID: 677791170}
   - component: {fileID: 677791169}
+  - component: {fileID: 677791171}
   m_Layer: 0
   m_Name: BigTomb2 (32)
   m_TagString: Untagged
@@ -2352,6 +2586,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677791167}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &677791171
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677791167}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &687983528
 PrefabInstance:
@@ -3156,6 +3412,7 @@ GameObject:
   - component: {fileID: 832848713}
   - component: {fileID: 832848715}
   - component: {fileID: 832848714}
+  - component: {fileID: 832848716}
   m_Layer: 0
   m_Name: BigTomb2 (37)
   m_TagString: Untagged
@@ -3172,8 +3429,8 @@ Transform:
   m_GameObject: {fileID: 832848712}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -844.5, y: -915.45776, z: -82.07489}
-  m_LocalScale: {x: 10.69, y: 10.689999, z: 10.689999}
+  m_LocalPosition: {x: -855.6, y: -915.5, z: -95.9}
+  m_LocalScale: {x: 15.3, y: 15.3, z: 15.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -3227,6 +3484,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832848712}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &832848716
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832848712}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &843847852
 PrefabInstance:
@@ -3586,6 +3865,124 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1215263352829926172, guid: b55aa1b82b5fb2140b82556015f4afea, type: 3}
   m_PrefabInstance: {fileID: 904948812}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &912367157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 912367158}
+  - component: {fileID: 912367160}
+  - component: {fileID: 912367159}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &912367158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912367157}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06, y: -0, z: 0.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950101143}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &912367159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912367157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+--- !u!108 &912367160
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912367157}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 2.15
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &953957177
 GameObject:
   m_ObjectHideFlags: 0
@@ -3842,6 +4239,7 @@ GameObject:
   - component: {fileID: 1013547343}
   - component: {fileID: 1013547345}
   - component: {fileID: 1013547344}
+  - component: {fileID: 1013547346}
   m_Layer: 0
   m_Name: BigTomb2 (35)
   m_TagString: Untagged
@@ -3858,8 +4256,8 @@ Transform:
   m_GameObject: {fileID: 1013547342}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1029.8457, y: -915.64026, z: 11.92511}
-  m_LocalScale: {x: 10.9, y: 10.9, z: 10.9}
+  m_LocalPosition: {x: -1005.1, y: -915.64026, z: 11.92511}
+  m_LocalScale: {x: 15.999999, y: 15.999999, z: 15.999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -3914,6 +4312,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013547342}
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1013547346
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013547342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1 &1021956717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3925,6 +4345,7 @@ GameObject:
   - component: {fileID: 1021956718}
   - component: {fileID: 1021956720}
   - component: {fileID: 1021956719}
+  - component: {fileID: 1021956721}
   m_Layer: 0
   m_Name: BigTomb2 (28)
   m_TagString: Untagged
@@ -3996,6 +4417,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021956717}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1021956721
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021956717}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1 &1036512777 stripped
 GameObject:
@@ -4148,6 +4591,7 @@ GameObject:
   - component: {fileID: 1093273380}
   - component: {fileID: 1093273382}
   - component: {fileID: 1093273381}
+  - component: {fileID: 1093273383}
   m_Layer: 0
   m_Name: BigTomb (9)
   m_TagString: Untagged
@@ -4219,6 +4663,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093273379}
+  m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
+--- !u!64 &1093273383
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093273379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
 --- !u!1001 &1118457504
 PrefabInstance:
@@ -4459,6 +4925,7 @@ GameObject:
   - component: {fileID: 1199740835}
   - component: {fileID: 1199740837}
   - component: {fileID: 1199740836}
+  - component: {fileID: 1199740838}
   m_Layer: 0
   m_Name: BigTomb (8)
   m_TagString: Untagged
@@ -4475,9 +4942,9 @@ Transform:
   m_GameObject: {fileID: 1199740834}
   serializedVersion: 2
   m_LocalRotation: {x: -0.4981782, y: -0.50181514, z: -0.50181514, w: 0.4981782}
-  m_LocalPosition: {x: -967.3, y: -914.9, z: -112.1}
-  m_LocalScale: {x: 9.38, y: 9.38, z: 9.38}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -967.4, y: -914.9, z: -101.1}
+  m_LocalScale: {x: 12.59, y: 12.59, z: 12.59}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450228408}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90.417}
@@ -4530,6 +4997,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199740834}
+  m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
+--- !u!64 &1199740838
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199740834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
 --- !u!1001 &1200704327
 PrefabInstance:
@@ -4615,6 +5104,7 @@ GameObject:
   - component: {fileID: 1202132181}
   - component: {fileID: 1202132183}
   - component: {fileID: 1202132182}
+  - component: {fileID: 1202132184}
   m_Layer: 0
   m_Name: BigTomb2 (26)
   m_TagString: Untagged
@@ -4687,6 +5177,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202132180}
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1202132184
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202132180}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1 &1219612596
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,6 +5241,7 @@ GameObject:
   - component: {fileID: 1257935455}
   - component: {fileID: 1257935457}
   - component: {fileID: 1257935456}
+  - component: {fileID: 1257935458}
   m_Layer: 0
   m_Name: BigTomb2 (27)
   m_TagString: Untagged
@@ -4800,6 +5313,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257935454}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1257935458
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257935454}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &1259313353
 PrefabInstance:
@@ -5108,6 +5643,7 @@ GameObject:
   - component: {fileID: 1275266387}
   - component: {fileID: 1275266389}
   - component: {fileID: 1275266388}
+  - component: {fileID: 1275266390}
   m_Layer: 0
   m_Name: MainHouse
   m_TagString: Untagged
@@ -5124,8 +5660,8 @@ Transform:
   m_GameObject: {fileID: 1275266386}
   serializedVersion: 2
   m_LocalRotation: {x: -0.51017743, y: 0.48961106, z: 0.48961106, w: 0.51017743}
-  m_LocalPosition: {x: -1100.7727, y: -884.7, z: -16.54004}
-  m_LocalScale: {x: 45.9, y: 16.5, z: 46}
+  m_LocalPosition: {x: -1107.5, y: -884.7, z: -16.8}
+  m_LocalScale: {x: 55.7, y: 22.2, z: 55.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1510272295}
@@ -5180,6 +5716,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275266386}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1275266390
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275266386}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!43 &1279644104
 Mesh:
@@ -5527,6 +6085,7 @@ GameObject:
   - component: {fileID: 1302863643}
   - component: {fileID: 1302863645}
   - component: {fileID: 1302863644}
+  - component: {fileID: 1302863646}
   m_Layer: 0
   m_Name: BigTomb2 (30)
   m_TagString: Untagged
@@ -5544,7 +6103,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -1071.2, y: -915.6, z: 70.6}
-  m_LocalScale: {x: 13.162595, y: 13.162596, z: 13.162596}
+  m_LocalScale: {x: 14.709999, y: 14.709999, z: 14.709999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -5598,6 +6157,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302863642}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1302863646
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302863642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &1380155721
 PrefabInstance:
@@ -5684,6 +6265,7 @@ GameObject:
   - component: {fileID: 1383404833}
   - component: {fileID: 1383404835}
   - component: {fileID: 1383404834}
+  - component: {fileID: 1383404836}
   m_Layer: 0
   m_Name: BigTomb2 (24)
   m_TagString: Untagged
@@ -5755,6 +6337,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383404832}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1383404836
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383404832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &1397303649
 PrefabInstance:
@@ -5840,6 +6444,7 @@ GameObject:
   - component: {fileID: 1402644115}
   - component: {fileID: 1402644117}
   - component: {fileID: 1402644116}
+  - component: {fileID: 1402644118}
   m_Layer: 0
   m_Name: BigTomb (13)
   m_TagString: Untagged
@@ -5911,6 +6516,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402644114}
+  m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
+--- !u!64 &1402644118
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402644114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
 --- !u!1 &1450228407
 GameObject:
@@ -6063,6 +6690,7 @@ GameObject:
   - component: {fileID: 1492501005}
   - component: {fileID: 1492501007}
   - component: {fileID: 1492501006}
+  - component: {fileID: 1492501008}
   m_Layer: 0
   m_Name: BigTomb2 (31)
   m_TagString: Untagged
@@ -6134,6 +6762,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492501004}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1492501008
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492501004}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!4 &1493931090 stripped
 Transform:
@@ -7213,6 +7863,7 @@ GameObject:
   - component: {fileID: 1729203547}
   - component: {fileID: 1729203549}
   - component: {fileID: 1729203548}
+  - component: {fileID: 1729203550}
   m_Layer: 0
   m_Name: BigTomb2 (33)
   m_TagString: Untagged
@@ -7230,7 +7881,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -970.4442, y: -914.9141, z: 17.960999}
-  m_LocalScale: {x: 6.78, y: 6.780001, z: 6.780001}
+  m_LocalScale: {x: 11.019999, y: 11.019999, z: 11.019999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -7284,6 +7935,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729203546}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &1729203550
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729203546}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!850595691 &1735883209
 LightingSettings:
@@ -7479,8 +8152,8 @@ Transform:
   m_GameObject: {fileID: 1741279069}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1102.0042, y: -902.49133, z: -20.91272}
-  m_LocalScale: {x: 30.914207, y: 31.932201, z: 144.1734}
+  m_LocalPosition: {x: -1108.5, y: -902.49133, z: -20.91272}
+  m_LocalScale: {x: 35.76, y: 31.932201, z: 144.1734}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -7899,7 +8572,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1279644104}
 --- !u!33 &1941623265
@@ -9020,7 +9693,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7069628, z: -0, w: 0.7072508}
   m_LocalPosition: {x: 419.9, y: -1.625001, z: -531.2}
-  m_LocalScale: {x: 22.12, y: 12.1, z: 9.8}
+  m_LocalScale: {x: 22.12, y: 12.1, z: 10.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -9053,10 +9726,11 @@ Transform:
   m_GameObject: {fileID: 1950101142}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -850.9, y: -914.9, z: -153.7}
+  m_LocalPosition: {x: -850.9, y: -915.3, z: -153.7}
   m_LocalScale: {x: 25.08, y: 26.7, z: 35.6}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 912367158}
   m_Father: {fileID: 1450228408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1950101144
@@ -9128,7 +9802,7 @@ MeshCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &1983936791
@@ -9566,6 +10240,7 @@ GameObject:
   - component: {fileID: 2109856821}
   - component: {fileID: 2109856823}
   - component: {fileID: 2109856822}
+  - component: {fileID: 2109856824}
   m_Layer: 0
   m_Name: BigTomb2 (21)
   m_TagString: Untagged
@@ -9583,7 +10258,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.5235978, y: -0.47523195, z: -0.47523195, w: 0.5235978}
   m_LocalPosition: {x: -930.6, y: -915.1, z: -148.2}
-  m_LocalScale: {x: 10.070001, y: 10.070001, z: 15.55}
+  m_LocalScale: {x: 14.2, y: 20.62, z: 25.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450228408}
@@ -9637,6 +10312,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109856820}
+  m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
+--- !u!64 &2109856824
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109856820}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dab64ad3e16e8d942b56af5f95a96140, type: 3}
 --- !u!1001 &2111456345
 PrefabInstance:
@@ -9798,6 +10495,7 @@ GameObject:
   - component: {fileID: 2124900509}
   - component: {fileID: 2124900511}
   - component: {fileID: 2124900510}
+  - component: {fileID: 2124900512}
   m_Layer: 0
   m_Name: BigTomb (12)
   m_TagString: Untagged
@@ -9869,6 +10567,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124900508}
+  m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
+--- !u!64 &2124900512
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124900508}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 063116c25d480f24087ab73b47ce40d0, type: 3}
 --- !u!1001 &2132284474
 PrefabInstance:
@@ -10142,3 +10862,4 @@ SceneRoots:
   - {fileID: 1941623268}
   - {fileID: 756824978}
   - {fileID: 8092387183717252114}
+  - {fileID: 486256172}

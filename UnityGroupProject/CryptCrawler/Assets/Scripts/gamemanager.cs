@@ -26,12 +26,12 @@ public class gamemanager : MonoBehaviour
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the text component that displays the enemy count.
     [SerializeField] TMP_Text enemyCountText;
-    [SerializeField]  public TMP_Text LevelText;
+    [SerializeField] public TMP_Text LevelText;
     [SerializeField] public TMP_Text XpText;
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
     public GameObject player;
-  
+
     // Player's hp bar.
     public Image playerHPBar;
     public Image playerMPBar;
@@ -39,6 +39,10 @@ public class gamemanager : MonoBehaviour
     // This is a singleton instance of the GameManager, allowing other scripts to access it easily.
     public static gamemanager instance;
     public PlayerController accessPlayer;
+    // New variables to track objectives
+    [SerializeField] int totalObjectives ; // Set this to the total number of objectives in your game
+    [SerializeField] int completedObjectives;
+    [SerializeField] TMP_Text objectivesText; // Reference to the UI Text for displaying objectives
 
     // This flag indicates whether the game is currently paused.
     public bool isPaused;
@@ -68,7 +72,8 @@ public class gamemanager : MonoBehaviour
         //Initialize the buttons
         saveButton.onClick.AddListener(SaveGame);
         loadButton.onClick.AddListener(LoadGame);
-        
+        // Initialize the objectives UI
+        UpdateObjectivesUI();
 
     }
     // This method is called every frame.
@@ -223,4 +228,38 @@ public class gamemanager : MonoBehaviour
         // Log a message to the console to indicate that the game has been loaded.
         Debug.Log("Game loaded!");
     }
+
+
+    public void CompleteObjective()
+    {
+        // Increment the completed objectives count
+        completedObjectives++;
+
+        // Update the UI
+        UpdateObjectivesUI();
+
+        // Check if all objectives are completed
+        if (completedObjectives >= totalObjectives)
+        {
+            // Call the method to handle quest completion
+            QuestCompleted();
+        }
+    }
+
+    private void UpdateObjectivesUI()
+    {
+        // Update the UI text to show remaining and completed objectives
+        objectivesText.text = $"Objectives: {completedObjectives}/{totalObjectives}";
+    }
+    private void QuestCompleted()
+    {
+        // Handle quest completion (e.g., show win menu, reward player, etc.)
+        Debug.Log("All objectives completed!");
+    }
+
+
+
+
+
+
 }
