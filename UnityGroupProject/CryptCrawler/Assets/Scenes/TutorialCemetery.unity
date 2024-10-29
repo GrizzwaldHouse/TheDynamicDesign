@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &414305133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+  m_PrefabInstance: {fileID: 1036775816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fac47759dd33dc4dafbb0d0c62e082d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &475775033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2191469572817720871, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.31
+      value: 9.41
       objectReference: {fileID: 0}
     - target: {fileID: 2191469572817720871, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -439,6 +450,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestGiver
       objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: questObjectiveCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1313500581}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1072600276}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShowObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ObjectiveCounter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -454,6 +521,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7559576478789734281, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
   m_PrefabInstance: {fileID: 497578964}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1038086248 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5858277992891540433, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
+  m_PrefabInstance: {fileID: 497578964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038086232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5576da3c44fe049bc28a1ea327b4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1072600276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7475955058137736833, guid: 591390c5c8f09b547a7df7547ddbd75a, type: 3}
+  m_PrefabInstance: {fileID: 2036283221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652c9013ba3b9c844a62a88d4deabcc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1261594661
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +648,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1313500581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2173582257313102247, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+  m_PrefabInstance: {fileID: 1036775816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1460176314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,6 +1339,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 363.70004
       objectReference: {fileID: 0}
+    - target: {fileID: 7236364007235973632, guid: 16e38c938dbc14e469c59c65a021bfe5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -904.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236364007235973632, guid: 16e38c938dbc14e469c59c65a021bfe5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -621.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8029463962433912628, guid: 16e38c938dbc14e469c59c65a021bfe5, type: 3}
       propertyPath: spawnObject
       value: 
@@ -1524,6 +1626,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8491548309862097445, guid: 591390c5c8f09b547a7df7547ddbd75a, type: 3}
+      propertyPath: accessPlayer
+      value: 
+      objectReference: {fileID: 1038086248}
+    - target: {fileID: 8491548309862097445, guid: 591390c5c8f09b547a7df7547ddbd75a, type: 3}
+      propertyPath: accessQuestGiver
+      value: 
+      objectReference: {fileID: 414305133}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
