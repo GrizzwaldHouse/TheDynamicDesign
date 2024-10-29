@@ -15,6 +15,13 @@ public class QuestGiver : MonoBehaviour
 
     void GiveQuest()
     {
+
+        QuestManager questManager = FindObjectOfType<QuestManager>();
+        if (questManager != null)
+        {
+            questManager.CreateQuest("Clear Cemetary", "Kill 10 skeletons.");
+            questText.text = "Quest Accepted: Clear Cemetary";
+        }
         menuActive = questTextScreen.gameObject;
         gamemanager.instance.accessPlayer.currentQuest = questText;
         menuActive.SetActive(true);

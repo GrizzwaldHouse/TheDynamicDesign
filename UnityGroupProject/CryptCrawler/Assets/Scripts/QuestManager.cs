@@ -1,6 +1,6 @@
-using System.Collections; // Importing the System.Collections namespace for collection-related functionality
-using System.Collections.Generic; // Importing the System.Collections.Generic namespace for generic collections
-using UnityEngine; // Importing the UnityEngine namespace for Unity-specific functionality
+using System.Collections; 
+using System.Collections.Generic; 
+using UnityEngine;
 
 // Class representing a quest in the game
 public class Quest
