@@ -56,38 +56,38 @@ public class SkeletonAI : MonoBehaviour, IDamage
         {
             anim.SetFloat("speed", agent.velocity.normalized.magnitude);
         }
-        if (playerInRange && !canSeePlayer())
-        {
-            if (!isRoaming && agent.remainingDistance < 0.05f)
-            {
-                someCo = StartCoroutine(Roam());
-            }
-        }
-        else if (!playerInRange)
-        {
-            if (!isRoaming && agent.remainingDistance < 0.05f)
-            {
-                someCo = StartCoroutine(Roam());
-            }
-        }
+        //if (playerInRange && !canSeePlayer())
+        //{
+        //    if (!isRoaming && agent.remainingDistance < 0.05f)
+        //    {
+        //        someCo = StartCoroutine(Roam());
+        //    }
+        //}
+        //else if (!playerInRange)
+        //{
+        //    if (!isRoaming && agent.remainingDistance < 0.05f)
+        //    {
+        //        someCo = StartCoroutine(Roam());
+        //    }
+        //}
     }
-    IEnumerator Roam()
-    {
-        isRoaming = true;
-        yield return new WaitForSeconds(roamPauseTime);
+    //IEnumerator Roam()
+    //{
+    //    isRoaming = true;
+    //    yield return new WaitForSeconds(roamPauseTime);
 
-        //can move this code up
-        agent.stoppingDistance = 0;
-        Vector3 randomDist = Random.insideUnitSphere * roamDist;
-        randomDist += startingPos;
+    //    //can move this code up
+    //    agent.stoppingDistance = 0;
+    //    Vector3 randomDist = Random.insideUnitSphere * roamDist;
+    //    randomDist += startingPos;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomDist, out hit, roamDist, 1);
-        agent.SetDestination(hit.position);
+    //    NavMeshHit hit;
+    //    NavMesh.SamplePosition(randomDist, out hit, roamDist, 1);
+    //    agent.SetDestination(hit.position);
 
-        isRoaming = false;
-        someCo = null;
-    }
+    //    isRoaming = false;
+    //    someCo = null;
+    //}
     bool canSeePlayer()
     {
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
