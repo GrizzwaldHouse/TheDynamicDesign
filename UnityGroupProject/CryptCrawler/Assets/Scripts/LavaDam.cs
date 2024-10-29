@@ -8,43 +8,42 @@ public class LavaDam : MonoBehaviour
     public float damagePerTick = 5f;
     // Time interval in seconds between each damage tick
     public float tickRate = 1f;
-
+    private IDamage currentTarget;
     // This method is called when another collider enters the trigger collider attached to this GameObject
     private void OnTriggerEnter(Collider other)
     {
         // Attempt to get the IDamage component from the object that entered the lava pit
-        IDamage target = other.GetComponent<IDamage>();
+        currentTarget = other.GetComponent<IDamage>();
 
         // Check if the object has an IDamage component (indicating it can take damage)
-        if (target != null)
+        if (currentTarget != null)
         {
             // Log a message indicating that a target has entered the lava pit
             Debug.Log("Target entered lava pit: " + other.gameObject.name);
             // Start the coroutine to apply damage over time to the target
-            StartCoroutine(ApplyLavaDamage(target));
+            InvokeRepeating(nameof(ApplyLavaDamage),0f,tickRate);
         }
     }
 
     // This method is called when an object exits the trigger collider
     private void OnTriggerExit(Collider other)
     {
-        // Log a message indicating that the target has exited the lava pit
-        Debug.Log("Target exited lava pit: " + other.gameObject.name);
-        // Here you can implement logic to stop damage if necessary, though it's currently not implemented.
+        if (currentTarget != null && other.GetComponent<IDamage>() == currentTarget)
+        {
+            currentTarget = null;
+            CancelInvoke(nameof(ApplyLavaDamage));
+        }
     }
 
-    // Coroutine that applies continuous damage to the target while it is inside the lava pit
-    private IEnumerator ApplyLavaDamage(IDamage target)
+    // Method that applies damage to the target
+    private void ApplyLavaDamage()
     {
-        // Loop indefinitely to apply damage continuously
-        while (true)
+        if (currentTarget != null)
         {
             // Apply damage to the target
-            target.takeDamage((int)damagePerTick);
+            currentTarget.takeDamage((int)damagePerTick);
             // Log the amount of damage being applied
             Debug.Log("Applying lava damage: " + damagePerTick);
-            // Wait for the specified tickRate before applying damage again
-            yield return new WaitForSeconds(tickRate);
         }
     }
 }
