@@ -932,7 +932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5831589948891638304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1892,6 +1892,7 @@ MonoBehaviour:
   LevelMenu: {fileID: 3684472090541665723}
   menuWin: {fileID: 8010442169827926852}
   menuLose: {fileID: 1599395077239595997}
+  questMenu: {fileID: 8445669972198339538}
   PlayerDamageScreen: {fileID: 4416803794900291861}
   boss: {fileID: 4085718017944406507, guid: 8d0d9aa2b60fa534fb85a8d9673972fc, type: 3}
   saveButton: {fileID: 8875219533301373258}
@@ -1900,6 +1901,7 @@ MonoBehaviour:
   enemyCountText: {fileID: 2260539991361310344}
   LevelText: {fileID: 2092048116080688639}
   XpText: {fileID: 7910876537319550176}
+  questText: {fileID: 9038064430285546580}
   player: {fileID: 0}
   playerHPBar: {fileID: 7155794719226929777}
   playerMPBar: {fileID: 8042340451034030436}
