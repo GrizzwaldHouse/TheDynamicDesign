@@ -17,6 +17,7 @@ public class ObjectSpawner : MonoBehaviour
     private List<GameObject> spawnedObjects = new List<GameObject>();
     // Reference to the quest manager
     private IQuestManager questManager;
+    private GameObject lastSpawnedObject; // Variable to hold the last spawned object
     private void Start()
     {
         // Find the QuestManager in the scene and assign it to the questManager variable
@@ -47,6 +48,8 @@ public class ObjectSpawner : MonoBehaviour
         {
             // Spawn an object when the player enters the trigger
             SpawnObject();
+            // Notify the QuestManager that an object has been spawned
+            questManager?.NotifyObjectSpawned(this);
         }
     }
 
@@ -76,4 +79,13 @@ public class ObjectSpawner : MonoBehaviour
         // Clear the list after destroying the objects
         spawnedObjects.Clear(); // Reset the list for future spawns
     }
+  
+
+ 
+    // Method to get the last spawned object
+    public GameObject GetLastSpawnedObject()
+    {
+        return lastSpawnedObject; // Return the last spawned object
+    }
+
 }

@@ -6,7 +6,7 @@ using System.Xml.XPath;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
-using UnityEditor.UI;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamage
 {

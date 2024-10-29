@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IQuestManager
 {
+    void CreateQuest(string questName, string description);
     // Method to complete a quest
     void CompleteQuest();
 
@@ -12,4 +13,6 @@ public interface IQuestManager
 
     // Method to remove a spawner from the quest manager
     void RemoveSpawner(ObjectSpawner spawner);
+    void NotifyObjectSpawned(ObjectSpawner spawner); // Define the method
+
 }
