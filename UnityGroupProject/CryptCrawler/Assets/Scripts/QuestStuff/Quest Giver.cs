@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class QuestGiver : MonoBehaviour
 {
     [SerializeField] Canvas questTextScreen;
     [SerializeField] TextMeshProUGUI questText;
     [SerializeField] public GameObject menuActive;
+    [SerializeField] public int questObjectiveCount;
+    public UnityEvent GetQuest;
 
     public bool hasQuest;
     bool playerInRange;
@@ -43,6 +46,7 @@ public class QuestGiver : MonoBehaviour
         {
             menuActive.SetActive(false);
             playerInRange = false;
+            GetQuest.Invoke();
         }
     }
 }

@@ -122,6 +122,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &88159653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2173582257313102247, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+  m_PrefabInstance: {fileID: 1036775816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &406469665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+  m_PrefabInstance: {fileID: 1036775816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fac47759dd33dc4dafbb0d0c62e082d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &475775033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -436,9 +452,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5162311062582535108, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: m_text
+      value: Kill 10 Skeletons in the Cemetary for me, and I'll reward you.
+      objectReference: {fileID: 0}
     - target: {fileID: 6300626963503455476, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
       propertyPath: m_Name
       value: QuestGiver
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: questObjectiveCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 88159653}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1419446185}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShowObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ObjectiveCounter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -464,6 +540,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b5576da3c44fe049bc28a1ea327b4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1419446185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7475955058137736833, guid: 591390c5c8f09b547a7df7547ddbd75a, type: 3}
+  m_PrefabInstance: {fileID: 2036283221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652c9013ba3b9c844a62a88d4deabcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1460176314
@@ -1458,6 +1545,10 @@ PrefabInstance:
       propertyPath: objectivesText
       value: 
       objectReference: {fileID: 2144514266}
+    - target: {fileID: 8491548309862097445, guid: 591390c5c8f09b547a7df7547ddbd75a, type: 3}
+      propertyPath: accessQuestGiver
+      value: 
+      objectReference: {fileID: 406469665}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
