@@ -47,6 +47,9 @@ public class gamemanager : MonoBehaviour
     [SerializeField] int totalObjectives ; // Set this to the total number of objectives in your game
     [SerializeField] int completedObjectives;
     [SerializeField] TMP_Text objectivesText; // Reference to the UI Text for displaying objectives
+   
+    private int totalDestroyedObjects = 0; // Track the total number of destroyed objects
+    [SerializeField] private int questAmount; // Number of objects to destroy to disable the spawner
 
     // This flag indicates whether the game is currently paused.
     public bool isPaused;
@@ -77,7 +80,7 @@ public class gamemanager : MonoBehaviour
         saveButton.onClick.AddListener(SaveGame);
         loadButton.onClick.AddListener(LoadGame);
         // Initialize the objectives UI
-        UpdateObjectivesUI();
+       UpdateObjectivesUI();
 
     }
     // This method is called every frame.
@@ -262,7 +265,6 @@ public class gamemanager : MonoBehaviour
         Debug.Log("Game loaded!");
     }
 
-
     public void CompleteObjective()
     {
         // Increment the completed objectives count
@@ -289,6 +291,16 @@ public class gamemanager : MonoBehaviour
         // Handle quest completion (e.g., show win menu, reward player, etc.)
         Debug.Log("All objectives completed!");
     }
+
+
+
+
+
+
+
+
+
+
 
 
 
