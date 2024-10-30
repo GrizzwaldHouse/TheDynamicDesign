@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7559576478789734281}
   - component: {fileID: 5858277992891540433}
   - component: {fileID: 7572256470491037903}
-  - component: {fileID: 4302654915937850690}
   - component: {fileID: 8643125980622549897}
   - component: {fileID: 6374853436708073689}
   - component: {fileID: 513361052438624508}
@@ -107,13 +106,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71ef3afde9d85e4429beb66af76d3304, type: 2}
   - {fileID: 11400000, guid: a723a0caf51b4ba48937a5a758fefeae, type: 2}
   - {fileID: 11400000, guid: bdbe4c5bcb60ec646a55fb7008ba5b05, type: 2}
+  - {fileID: 11400000, guid: 15eca5a498f6b67419513ac7d5caf416, type: 2}
+  - {fileID: 11400000, guid: 11ef105d90d4ec448b1b322eba4e78bd, type: 2}
   spell: {fileID: 8458811321649852431, guid: 9671b2d9c3b1c724cb91728dcd3191c0, type: 3}
   shootPos: {fileID: 8821863652002304109}
   headPos: {fileID: 9085298495036573359}
   shootRate: 1
   wandModel: {fileID: 8153308546465221335}
+  currentQuest: {fileID: 0}
   HPorig: 0
   ManaOrig: 0
+  hasQuest: 0
 --- !u!143 &7572256470491037903
 CharacterController:
   m_ObjectHideFlags: 0
@@ -140,19 +143,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4302654915937850690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4763590300725236895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a721f3dd43ea9e468368adbba2d97b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSection: {fileID: 8938539512365454460, guid: 8e4aa967792d4914a9c3416dd6cb8494, type: 3}
 --- !u!54 &8643125980622549897
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -327,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 8645152624163456067}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.16324072, z: -0, w: 0.9865863}
-  m_LocalPosition: {x: -0.089, y: 1.08, z: 0}
+  m_LocalPosition: {x: -0.089, y: 1.116, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
