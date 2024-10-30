@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class SkeletonAI : MonoBehaviour, IDamage
 {
@@ -30,6 +31,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
     bool isRoaming;
     float stoppingDistOrig;
     bool isHit;
+    public UnityEvent UpdateObjective;
 
     float angleToPlayer;
     Vector3 playerDir;

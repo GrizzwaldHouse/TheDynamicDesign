@@ -461,6 +461,10 @@ PrefabInstance:
       value: QuestGiver
       objectReference: {fileID: 0}
     - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: QuestEnemyToBeat
+      value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
       propertyPath: questObjectiveCount
       value: 10
       objectReference: {fileID: 0}
@@ -507,6 +511,10 @@ PrefabInstance:
     - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
       propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: ObjectiveCounter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
+      propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8850593504368657652, guid: 7bac789b4d0714840a501a6d85e4256c, type: 3}
       propertyPath: GetQuest.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

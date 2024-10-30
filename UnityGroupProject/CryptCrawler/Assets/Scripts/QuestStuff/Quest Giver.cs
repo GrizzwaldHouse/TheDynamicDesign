@@ -1,30 +1,27 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class QuestGiver : MonoBehaviour
+public class QuestGiver : MonoBehaviour, IQuestManager
 {
     [SerializeField] Canvas questTextScreen;
-    [SerializeField] TextMeshProUGUI questText;
+    [SerializeField] public TextMeshProUGUI questText;
     [SerializeField] public GameObject menuActive;
     [SerializeField] public int questObjectiveCount;
+    [SerializeField] string QuestName;
     public UnityEvent GetQuest;
+
+    [SerializeField] public string QuestEnemyToBeat;
 
     public bool hasQuest;
     bool playerInRange;
 
     void GiveQuest()
     {
-
-        QuestManager questManager = FindObjectOfType<QuestManager>();
-        if (questManager != null)
-        {
-            questManager.CreateQuest("Clear Cemetary", "Kill 10 skeletons.");
-            questText.text = "Quest Accepted: Clear Cemetary";
-        }
+        CreateQuest(QuestName, questText.text);
         menuActive = questTextScreen.gameObject;
         gamemanager.instance.accessPlayer.currentQuest = questText;
         menuActive.SetActive(true);
@@ -48,5 +45,30 @@ public class QuestGiver : MonoBehaviour
             playerInRange = false;
             GetQuest.Invoke();
         }
+    }
+
+    public void CreateQuest(string questName, string description)
+    {
+        
+    }
+
+    public void CompleteQuest()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddSpawner(ObjectSpawner spawner)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveSpawner(ObjectSpawner spawner)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void NotifyObjectSpawned(ObjectSpawner spawner)
+    {
+        throw new System.NotImplementedException();
     }
 }
