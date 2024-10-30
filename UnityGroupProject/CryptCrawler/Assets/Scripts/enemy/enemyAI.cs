@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootAngle;
     [SerializeField] Image enemyHPbar;
     [SerializeField] int ExpWorth;
-
+    private ObjectSpawner spawner; // Reference to the spawner
     bool isShooting;
     bool playerInRange;
     bool isRoaming;
@@ -53,6 +53,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         HPorig = HP;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+        spawner = FindObjectOfType<ObjectSpawner>();
     }
 
     // Update is called once per frame
@@ -180,6 +181,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             gamemanager.instance.UpdateGameGoal(-1);
             gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
+            spawner?.ObjectDestroyed(); // Notify the spawner that an object has been destroyed
             Destroy(gameObject);
         }
         isHit = false;

@@ -1,5 +1,5 @@
-using System.Collections; 
-using System.Collections.Generic; 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Class representing a quest in the game
@@ -56,7 +56,7 @@ public class Quest
 public class QuestManager : MonoBehaviour, IQuestManager
 {
     // List of ObjectSpawners to control, exposed to the Unity Inspector
-    [SerializeField]  private List<ObjectSpawner> objectSpawners; // List of spawners to manage
+    [SerializeField] private List<ObjectSpawner> objectSpawners; // List of spawners to manage
 
     // List of quests, exposed to the Unity Inspector
     [SerializeField]
@@ -76,7 +76,7 @@ public class QuestManager : MonoBehaviour, IQuestManager
             // Check if the quest has this spawner in its list of spawners
             if (quest.Spawners.Contains(spawner))
             {
-              
+
                 // Assuming the quest has a method to track spawned objects
                 quest.TrackSpawnedObject(spawner.GetLastSpawnedObject());
 
@@ -84,7 +84,7 @@ public class QuestManager : MonoBehaviour, IQuestManager
                 if (quest.CheckCompletionCriteria())
                 {
                     quest.CompleteQuest(); // Mark the quest as completed
-                                           
+
                     Debug.Log($"Quest '{quest.QuestName}' has been completed!");
                 }
             }

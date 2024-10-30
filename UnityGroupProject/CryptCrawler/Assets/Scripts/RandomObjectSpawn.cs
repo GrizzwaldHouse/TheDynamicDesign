@@ -18,14 +18,14 @@ public class ObjectSpawner : MonoBehaviour
     // Reference to the quest manager
     private IQuestManager questManager;
     private GameObject lastSpawnedObject; // Variable to hold the last spawned object
+     // Maximum number of destroyed objects before the spawner is disabled
+    [SerializeField]
+    private int maxDestroyedCount ; // Set this to your desired limit
+    private int currentDestroyedCount ; // Counter for destroyed objects
     private void Start()
     {
-        // Find the QuestManager in the scene and assign it to the questManager variable
-        questManager = FindObjectOfType<QuestManager>();
-        if (questManager != null)
-        {
-            questManager.AddSpawner(this); // Register this spawner with the quest manager
-        }
+       // gamemanager.instance.AddSpawner(this); // Assuming GameManager is a singleton
+
     }
     // Method to spawn an object at a random spawn point
     private void SpawnObject()
@@ -38,6 +38,7 @@ public class ObjectSpawner : MonoBehaviour
 
         // Add the spawned object to the list for tracking
         spawnedObjects.Add(spawnedObject);
+        lastSpawnedObject = spawnedObject; // Update the last spawned object reference
     }
 
     // Method called when another collider enters the trigger collider attached to this GameObject
@@ -79,9 +80,12 @@ public class ObjectSpawner : MonoBehaviour
         // Clear the list after destroying the objects
         spawnedObjects.Clear(); // Reset the list for future spawns
     }
-  
 
- 
+    public void ObjectDestroyed()
+    {
+     
+    }
+
     // Method to get the last spawned object
     public GameObject GetLastSpawnedObject()
     {
