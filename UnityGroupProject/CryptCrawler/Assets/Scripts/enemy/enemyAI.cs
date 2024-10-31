@@ -25,14 +25,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootAngle;
     [SerializeField] Image enemyHPbar;
     [SerializeField] int ExpWorth;
-    private ObjectSpawner spawner; // Reference to the spawner
+  //  private ObjectSpawner spawner; // Reference to the spawner
     bool isShooting;
     bool playerInRange;
     bool isRoaming;
     public bool isDead;
+    private bool isBeingDestoryed;
     int HPorig;
     bool isHit;
-
+    private ObjectSpawner objectSpawner;
     float angleToplayer;
     float stoppingDistOrig;
 
@@ -53,7 +54,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         HPorig = HP;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
-        spawner = FindObjectOfType<ObjectSpawner>();
+        objectSpawner = FindObjectOfType<ObjectSpawner>();
     }
 
     // Update is called once per frame
@@ -163,6 +164,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount)
     {
+        if(isBeingDestoryed) return; 
         isHit = true;
         HP -= amount;
         UpdateEnemyUI();
@@ -181,7 +183,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             gamemanager.instance.UpdateGameGoal(-1);
             gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
-            spawner?.ObjectDestroyed(); // Notify the spawner that an object has been destroyed
+            OnDestroy();
+            isBeingDestoryed = true;
             Destroy(gameObject);
         }
         isHit = false;
@@ -197,7 +200,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         enemyHPbar.fillAmount = (float)HP / HPorig;
     }
-
+    private void OnDestroy()
+    {
+        isBeingDestoryed = false; // Set flag when destoryed
+                                  // Call ObjectDestroyed when this enemy is destroyed
+        if (objectSpawner != null)
+        {
+            objectSpawner.ObjectDestroyed(gameObject);
+        } // Notify the spawner that an object has been destroyed
+    }
     public void gainHealth(int amount)
     {
 

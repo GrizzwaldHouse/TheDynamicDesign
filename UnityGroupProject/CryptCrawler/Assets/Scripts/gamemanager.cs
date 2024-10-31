@@ -60,6 +60,9 @@ public class gamemanager : MonoBehaviour
     // This variable keeps track of the current enemy count.
     int enemyCount;
     int level;
+    // Reference to the ObjectSpawner
+    [SerializeField] private ObjectSpawner objectSpawner; // Add this line
+
     // This method is called once at the start of the game.
     void Awake()
     {
@@ -196,6 +199,11 @@ public class gamemanager : MonoBehaviour
 
         // Activate the lose menu.
         menuActive.SetActive(true);
+        // Call ResetSpawner to reset the spawner state
+        if (objectSpawner != null)
+        {
+            objectSpawner.ResetSpawner();
+        }
     }
 
     public void LevelUp()

@@ -58,7 +58,7 @@ public class Mana : MonoBehaviour
 
     private IEnumerator ApplyBurnEffect(IDamage target)
     {
-        if (isBurning) yield break; // Exit if already burning
+        if (isBurning||target ==null) yield break; // Exit if already burning or target is null
         isBurning = true;
 
         Debug.Log("Burn effect started.");
@@ -70,8 +70,11 @@ public class Mana : MonoBehaviour
             tickTime += Time.deltaTime;
             if (tickTime >= firetickrate)
             {
-                target.takeDamage(damagePerTick);
-                Debug.Log("Applying burn damage: " + damagePerTick);
+                if (target != null) // Check if target is still valid
+                {
+                    target.takeDamage(damagePerTick);
+                    Debug.Log("Applying burn damage: " + damagePerTick);
+                }
                 tickTime = 0f;
             }
             elapsed += Time.deltaTime;
@@ -156,10 +159,8 @@ public class Mana : MonoBehaviour
                     StartCoroutine(ChainLightning(collision.transform, damageamount));
                     
                 }
-                else
-                {
                     Destroy(gameObject);
-                }
+                
             }
             else
             {
