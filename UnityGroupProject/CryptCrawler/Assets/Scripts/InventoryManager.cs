@@ -18,15 +18,23 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory") && menuAct)
         {
+            Time.timeScale = 1;
             InventoryMenu.SetActive(false);
             menuAct = false;
         }
 
         else if (Input.GetButtonDown("Inventory") && !menuAct)
         {
+            Time .timeScale = 0;
             InventoryMenu.SetActive(true);
             menuAct = true;
         }
 
+    }
+
+
+    public void AddItem(string itemName, int quantity, Sprite itemSPrite)
+    {
+        Debug.Log("itemName = " + itemName + "quantity = " + quantity + "itemSprite = " + itemSPrite);
     }
 }
