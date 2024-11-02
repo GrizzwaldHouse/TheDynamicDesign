@@ -14,12 +14,12 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        intentoryManager = GameObject.Find("IntentoryCanvas").GetComponent<InventoryManager>();
+        intentoryManager = GameObject.Find("InventoryCan").GetComponent<InventoryManager>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(UnityEngine.Collider other)
     {
-        if(collision.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
             intentoryManager.AddItem(itemName, quantity, sprite);
             Destroy(gameObject);
