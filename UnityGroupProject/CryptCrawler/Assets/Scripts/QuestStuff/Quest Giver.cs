@@ -24,6 +24,7 @@ public class QuestGiver : MonoBehaviour, IQuestManager
         CreateQuest(QuestName, questText.text);
         menuActive = questTextScreen.gameObject;
         gamemanager.instance.accessPlayer.currentQuest = questText;
+        gamemanager.instance.accessSectionTrigger.playerQuest = questText;
         menuActive.SetActive(true);
         gamemanager.instance.accessPlayer.hasQuest = true;
     }
@@ -34,6 +35,7 @@ public class QuestGiver : MonoBehaviour, IQuestManager
         {
             playerInRange = true;
             GiveQuest();
+            gamemanager.instance.accessPlayer.playerQuest = gamemanager.instance.accessPlayer.currentQuest;
         }
     }
 
