@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public int ManaOrig;
     int origSpeed;
     float damageAmount;
+    public TextMeshProUGUI playerQuest;
     
     bool isSprinting;
     bool isSliding;

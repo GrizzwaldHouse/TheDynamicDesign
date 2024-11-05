@@ -43,6 +43,7 @@ public class gamemanager : MonoBehaviour
     public static gamemanager instance;
     public PlayerController accessPlayer;
     public QuestGiver accessQuestGiver;
+    public SectionTrigger accessSectionTrigger;
     // New variables to track objectives
     [SerializeField] int totalObjectives ; // Set this to the total number of objectives in your game
     [SerializeField] int completedObjectives;

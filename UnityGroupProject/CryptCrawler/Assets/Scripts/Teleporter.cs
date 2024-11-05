@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour
@@ -16,6 +17,7 @@ public class Teleporter : MonoBehaviour
     // This will be set in the Unity editor to specify the player's game object
     private void OnTriggerEnter(Collider other)
     {
+
         // Check if the collider that entered the trigger has a tag "Player"
         if (other.CompareTag("Player"))
         {
