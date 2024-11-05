@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 playerVel;
 
     public TextMeshProUGUI currentQuest;
-
+    public string currentQuestName; // Current quest name
     int jumpCount;
     int selectwandPos;
     public int HPorig;
@@ -315,13 +315,26 @@ public class PlayerController : MonoBehaviour, IDamage
     public void LoadSystem()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        level = data.level;
-        HP = data.health;
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
+        if (data != null)
+        {
+            level = data.level;
+            HP = data.health;
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
+            // Load quest data
+            if (data.hasQuest)
+            {
+                QuestGiver questGiver = FindObjectOfType<QuestGiver>();
+                if (questGiver != null)
+                {
+                    currentQuestName = data.currentQuestName;
+                    hasQuest = true; // Indicate that the player has a quest
+                }
+            }
+        }
     }
     public void UpdatePlayerUI()
     {

@@ -73,6 +73,7 @@ public class ObjectSpawner : MonoBehaviour
         if (collider != null)
         {
             collider.enabled = false; // Disable the collider
+            questManager?.RemoveSpawner(this);
         }
     }
 

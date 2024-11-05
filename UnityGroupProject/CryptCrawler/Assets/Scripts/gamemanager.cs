@@ -219,11 +219,9 @@ public class gamemanager : MonoBehaviour
     // This method saves the game by calling the SavePlayer method on the PlayerController.
     public void SaveGame()
     {
-        // Find the PlayerController script in the scene.
-        PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+        // Call the SavePlayer method in the SaveSystem.
+        SaveSystem.SavePlayer(accessPlayer); // Pass the PlayerController to save its state
 
-        // Call the SavePlayer method on the PlayerController.
-        player.SavePlayer();
 
         // Log a message to the console to indicate that the game has been saved.
         Debug.Log("Game saved!");
@@ -264,11 +262,9 @@ public class gamemanager : MonoBehaviour
     // This method loads the game by calling the LoadSystem method on the PlayerController.
     public void LoadGame()
     {
-        //// Find the PlayerController script in the scene.
-        PlayerController player = GameObject.FindObjectOfType<PlayerController>();
-
+     
         //// Call the LoadSystem method on the PlayerController.
-        player.LoadSystem();
+        accessPlayer.LoadSystem();
 
         // Log a message to the console to indicate that the game has been loaded.
         Debug.Log("Game loaded!");
@@ -300,20 +296,5 @@ public class gamemanager : MonoBehaviour
         // Handle quest completion (e.g., show win menu, reward player, etc.)
         Debug.Log("All objectives completed!");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
