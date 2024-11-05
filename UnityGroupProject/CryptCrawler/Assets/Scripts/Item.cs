@@ -8,20 +8,20 @@ public class Item : MonoBehaviour
 
     [SerializeField] private int quantity;
 
-    [SerializeField] private Sprite sprite;
+    [SerializeField] public Sprite sprite;
 
-    private InventoryManager intentoryManager;
+    private InventoryManager inventoryManager;
     // Start is called before the first frame update
     void Start()
     {
-        intentoryManager = GameObject.Find("InventoryCan").GetComponent<InventoryManager>();
+        inventoryManager = GameObject.Find("InventoryCan").GetComponent<InventoryManager>();
     }
 
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            intentoryManager.AddItem(itemName, quantity, sprite);
+            inventoryManager.AddItem(itemName, quantity, sprite);
             Destroy(gameObject);
         }
     }
