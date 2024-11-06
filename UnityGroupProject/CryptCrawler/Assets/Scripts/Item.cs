@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] private string itemName;
+    [SerializeField] private ItemData itemData;
+  // [SerializeField] private string itemName;
+  
+  [SerializeField] private int quantity;
+ /// </summary>
 
-    [SerializeField] private int quantity;
 
-    [SerializeField] public Sprite sprite;
 
-    private InventoryManager inventoryManager;
+   private InventoryManager inventoryManager;
     // Start is called before the first frame update
     void Start()
     {
-        inventoryManager = GameObject.Find("InventoryCan").GetComponent<InventoryManager>();
-    }
 
-    private void OnTriggerEnter(UnityEngine.Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            inventoryManager.AddItem(itemName, quantity, sprite);
-            Destroy(gameObject);
-        }
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+       
+
+            if (inventoryManager != null)
+            {
+
+
+                inventoryManager.AddItem(itemData, quantity);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogError("InventoryManager in not assigned or not found.");
+            }
+
+
+        }
 }

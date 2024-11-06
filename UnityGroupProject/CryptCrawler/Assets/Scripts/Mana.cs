@@ -48,7 +48,7 @@ public class Mana : MonoBehaviour
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, destroytime);
         }
-        else if (type == magictype.Lightning) ;
+        else if (type == magictype.Lightning) 
         {
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, destroytime);
@@ -87,7 +87,7 @@ public class Mana : MonoBehaviour
 
     private void ApplyFreezeEffect(NavMeshAgent target)
     {
-        if (isFrozen) return; // Exit if already frozen
+        if (isFrozen|| target==null || !target.isActiveAndEnabled) return; // Exit if already frozen
         isFrozen = true;
         // Stop the NavMesh agent
         target.isStopped = true; // Set the agent's isStopped flag to true
@@ -103,13 +103,17 @@ public class Mana : MonoBehaviour
 
         while (elapsed < freezeDuration)
         {
+            if(target ==null || !target.isActiveAndEnabled) yield break;
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         isFrozen = false; // Reset the frozen state
-        target.isStopped = false; // Set the agent's isStopped flag to false
-        ; // Resume the NavMesh agent
+        if (target != null && target.isActiveAndEnabled)
+        {
+            target.isStopped = false; // Set the agent's isStopped flag to false
+        }
+        // Resume the NavMesh agent
     }
 
 

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb332a369b3ca64abd3228c55ce63f1, type: 3}
+  m_Name: HealthPot
+  m_EditorClassIdentifier: 
+  healingAmount: 10
+  manaRAmount: 0
+  healthBoosted: 0
+  manaBoosted: 0
+  inventoryModel: {fileID: 2019579000201188734, guid: 7015ba93df8ff84419032539836ef1b1, type: 3}
+  menuName: HealthPot
+  category: 2
+  maxStackSize: 5
+  isStackable: 1
