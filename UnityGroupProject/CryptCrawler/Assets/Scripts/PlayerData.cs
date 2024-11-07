@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 // This attribute is used to indicate that the PlayerData class can be serialized.
 // Serialization is the process of converting an object's state to a format that can be written to a file or transmitted over a network.
@@ -20,7 +19,7 @@ public class PlayerData
     // It's a public array of floats, which means it can be accessed and modified from outside the class.
     // The array has three elements, representing the x, y, and z coordinates of the player's position.
     public float[] position;
-    public TextMeshProUGUI currentQuestName; // New field for the current quest name
+    public string currentQuestName; // New field for the current quest name
     public bool hasQuest; // New field to indicate if the player has a quest
 
     // This is a constructor for the PlayerData class.
@@ -45,7 +44,7 @@ public class PlayerData
         position[0] = player.transform.position.x;
         position[1] = player.transform.position.y;
         position[2] = player.transform.position.z;
-        currentQuestName = player.currentQuest; // Save current quest name
+        currentQuestName = player.currentQuestName; // Save current quest name
         hasQuest = player.hasQuest; // Save whether the player has a quest
     }
 
