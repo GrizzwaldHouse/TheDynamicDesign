@@ -85,6 +85,7 @@ public class gamemanager : MonoBehaviour
         loadButton.onClick.AddListener(LoadGame);
         // Initialize the objectives UI
        UpdateObjectivesUI();
+        
 
     }
     // This method is called every frame.
