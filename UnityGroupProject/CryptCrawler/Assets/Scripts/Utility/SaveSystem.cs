@@ -8,6 +8,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 // It inherits from MonoBehaviour, which means it can be attached to a GameObject in the Unity scene.
 public class SaveSystem : MonoBehaviour
 {
+   private PlayerData playerData;
+    public static SaveSystem instance;
     // This method saves the player's data to a file.
     // It's a static method, which means it can be called without creating an instance of the SaveSystem class.
     public static void SavePlayer(PlayerController player)
@@ -71,5 +73,11 @@ public class SaveSystem : MonoBehaviour
             return null;
         }
     }
-}
+
+    public void NewGame(PlayerController player)
+    {
+        playerData = new PlayerData(player);
+    }
+
+    }
 

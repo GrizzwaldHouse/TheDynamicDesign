@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class QuestGiver : MonoBehaviour, IQuestManager
+public class QuestGiver : MonoBehaviour
 {
     [SerializeField] Canvas questTextScreen;
     [SerializeField] public TextMeshProUGUI questText;
@@ -21,7 +21,6 @@ public class QuestGiver : MonoBehaviour, IQuestManager
 
     void GiveQuest()
     {
-        CreateQuest(QuestName, questText.text);
         menuActive = questTextScreen.gameObject;
         gamemanager.instance.accessPlayer.currentQuest = questText;
         gamemanager.instance.accessSectionTrigger.playerQuest = questText;
@@ -35,7 +34,6 @@ public class QuestGiver : MonoBehaviour, IQuestManager
         {
             playerInRange = true;
             GiveQuest();
-            gamemanager.instance.accessPlayer.playerQuest = gamemanager.instance.accessPlayer.currentQuest;
         }
     }
 
@@ -47,30 +45,5 @@ public class QuestGiver : MonoBehaviour, IQuestManager
             playerInRange = false;
             GetQuest.Invoke();
         }
-    }
-
-    public void CreateQuest(string questName, string description)
-    {
-        
-    }
-
-    public void CompleteQuest()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void AddSpawner(ObjectSpawner spawner)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void RemoveSpawner(ObjectSpawner spawner)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void NotifyObjectSpawned(ObjectSpawner spawner)
-    {
-        throw new System.NotImplementedException();
     }
 }

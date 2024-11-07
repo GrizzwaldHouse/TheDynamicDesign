@@ -28,37 +28,42 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
     [SerializeField] List<Wands> Wandlist = new List<Wands>();
+    [SerializeField] List<ItemData> itemList = new List<ItemData>();
     [SerializeField] GameObject spell;
     [SerializeField] Transform shootPos;
     [SerializeField] public Transform headPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;
-    
-
+    [SerializeField] GameObject inventoryModel;
+    [SerializeField] int healedAmount;
+    [SerializeField] int manaRestored;
+    [SerializeField] int healthBoosted;
+    [SerializeField] int manaBoosted;
     Vector3 moveDir;
     Vector3 playerVel;
 
     public TextMeshProUGUI currentQuest;
-
+    public string currentQuestName; // Current quest name
     int jumpCount;
-    int selectwandPos;
+    int selectWandPos;
+    public int selectItemPos;
     public int HPorig;
     int XPorig;
     public int ManaOrig;
     int origSpeed;
     float damageAmount;
     public TextMeshProUGUI playerQuest;
-    
+    bool usingItem;
     bool isSprinting;
     bool isSliding;
     bool isShooting;
     public bool hasQuest;
-   
+
 
     // Start is called before the first frame update
     void Start()
-    { 
-        
+    {
+
         HPorig = HP;
         ManaOrig = mana;
         XPorig = experience;
@@ -67,9 +72,9 @@ public class PlayerController : MonoBehaviour, IDamage
         origSpeed = speed;
         UpdatePlayerUI();
         UpdatePlayerMana();
-        
-       
-        
+
+
+
     }
     // Update is called once per frame
     void Update()
@@ -78,6 +83,11 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             movement();
             selectWand();
+            selectItem();
+            if (Input.GetButtonDown("UseItem") && !usingItem && itemList.Count > 0)
+            {
+                StartCoroutine(useItem());
+            }
         }
         Sprint();
         crouch();
@@ -125,27 +135,89 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     void crouch()
     {
-        
-            if (Input.GetButtonDown("Crouch"))
-            {
+
+        if (Input.GetButtonDown("Crouch"))
+        {
             speed = crouchspeed;
             controller.height = 1;
-            
-            
-            }
+
+
+        }
         if (Input.GetButtonUp("Crouch") && !isSliding)
         {
             speed = origSpeed;
             controller.height = 2;
-           
-            
+
+
         }
     }
 
-    
-    
 
-    IEnumerator Shoot()
+    IEnumerator useItem()
+    {
+        if (Input.GetButtonDown("UseItem") && !usingItem && itemList.Count > 0)
+        {
+            usingItem = true;
+            if (selectItemPos < 0 || selectItemPos >= itemList.Count)
+            {
+                selectItemPos = 0;
+            }
+            // Use the item
+            ItemData item = itemList[selectItemPos];
+
+            // Apply the item's effects
+            if (item.category == ItemCategory.Consumable)
+            {
+                // Heal the player
+                if (healedAmount > 0)
+                {
+                    gainHealth(healedAmount);
+                }
+
+                // Restore mana
+                if (manaRestored > 0)
+                {
+                    gainMana(manaRestored);
+                }
+
+                // Remove the item from the list
+                itemList.RemoveAt(selectItemPos);
+             if (itemList.Count > 0)
+                {
+                    if(selectItemPos >= itemList.Count)
+                    {
+                        selectItemPos = itemList.Count - 1;
+                    }
+                    //Update the list of items to next in list
+                    changeItem();
+                }
+             else
+                {
+                    // If there are no items left, reset selection
+                    inventoryModel.GetComponent<MeshFilter>().sharedMesh = null;
+                    inventoryModel.GetComponent<MeshRenderer>().enabled = false;
+                    selectItemPos = 0;
+
+                }
+                // Adjust the selected item position
+                if (selectItemPos >= itemList.Count && itemList.Count > 0)
+                {
+                    selectItemPos = itemList.Count - 1; // Move to the last item if the current one is removed
+                }
+                else if (itemList.Count == 0)
+                {
+                    // If there are no items left, reset selection
+                    selectItemPos = 0;
+                }
+            }
+
+            Debug.LogWarning("Item " + selectItemPos + "used");
+            yield return new WaitForSeconds(1f); // Example cooldown time
+            usingItem = false;
+
+        }
+    }
+IEnumerator Shoot()
     {
         if (mana >= spell.GetComponent<Mana>().Manacost)
         {
@@ -315,13 +387,26 @@ public class PlayerController : MonoBehaviour, IDamage
     public void LoadSystem()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        level = data.level;
-        HP = data.health;
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
+        if (data != null)
+        {
+            level = data.level;
+            HP = data.health;
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
+            // Load quest data
+            if (data.hasQuest)
+            {
+                QuestGiver questGiver = FindObjectOfType<QuestGiver>();
+                if (questGiver != null)
+                {
+                    currentQuestName = data.currentQuestName;
+                    hasQuest = true; // Indicate that the player has a quest
+                }
+            }
+        }
     }
     public void UpdatePlayerUI()
     {
@@ -339,31 +424,80 @@ public class PlayerController : MonoBehaviour, IDamage
     public void getWandstats(Wands wand)
     {
         Wandlist.Add(wand);
-        selectwandPos = Wandlist.Count - 1;
+        selectWandPos = Wandlist.Count - 1;
 
         spell = wand.Spell;
         shootRate = wand.shootRate;
     }
-
+    public void getItemStats(ItemData item)
+    {
+        itemList.Add(item);
+        selectItemPos = itemList.Count - 1;
+        healedAmount = item.healingAmount;
+        manaRestored=item.manaRAmount; ///
+        healthBoosted=item.healthBoosted;
+        manaBoosted = item.manaBoosted;
+        inventoryModel.GetComponent<MeshFilter>().sharedMesh=item .inventoryModel.GetComponent<MeshFilter>().sharedMesh;
+        inventoryModel.GetComponent<MeshRenderer>().sharedMaterial=item.inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+    void selectItem()
+    {
+        if (Input.GetButtonDown("InventoryScrollUp") && selectItemPos < itemList.Count - 1)
+        {
+            selectItemPos++;
+            changeItem();
+           
+        }
+        else if (Input.GetButtonDown("InventoryScrollDown")  && selectItemPos > 0)
+        {
+            selectItemPos--;
+            changeItem();
+        }
+    }
     void selectWand()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectwandPos < Wandlist.Count - 1)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectWandPos < Wandlist.Count - 1)
         {
-            selectwandPos++;
+            selectWandPos++;
             
             changeWand();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectwandPos > 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectWandPos > 0)
         {
-            selectwandPos--;
+            selectWandPos--;
             changeWand();
         }
     }
+    void changeItem()
+    {
+        if (selectItemPos < 0 || selectItemPos >= itemList.Count)
+        {
+            selectItemPos = 0;
+        }
+        if (itemList.Count > 0)
+        {
+
+            healedAmount = itemList[selectItemPos].healingAmount;
+            manaRestored = itemList[selectItemPos].manaRAmount; ///
+            healthBoosted = itemList[selectItemPos].healthBoosted;
+            manaBoosted = itemList[selectItemPos].manaBoosted;
+            inventoryModel.GetComponent<MeshFilter>().sharedMesh = itemList[selectItemPos].inventoryModel.GetComponent<MeshFilter>().sharedMesh;
+            inventoryModel.GetComponent<MeshRenderer>().sharedMaterial = itemList[selectItemPos].inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
+        }
+        else
+        {
+            inventoryModel.GetComponent<MeshRenderer>().enabled = false;
+            inventoryModel.GetComponent<MeshFilter>().sharedMesh = null;
+        }
+    }
+
+        
     void changeWand()
     {
-        spell = Wandlist[selectwandPos].Spell;
-        shootRate = Wandlist[selectwandPos].shootRate;
-        wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectwandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
-        wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectwandPos].wandModel.GetComponent<MeshRenderer>().sharedMaterial;
+        spell = Wandlist[selectWandPos].Spell;
+        shootRate = Wandlist[selectWandPos].shootRate;
+        wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectWandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
+        wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectWandPos].wandModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
+    
 }

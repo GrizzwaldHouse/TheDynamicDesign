@@ -29,7 +29,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] public TMP_Text LevelText;
     [SerializeField] public TMP_Text XpText;
-    [SerializeField] TextMeshProUGUI questText;
+    [SerializeField] public TextMeshProUGUI questText;
     [SerializeField] TextMeshProUGUI QuestProgress;
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
@@ -69,14 +69,13 @@ public class gamemanager : MonoBehaviour
     {
         // Set the singleton instance of the GameManager to this script.
         instance = this;
-
         // Store the original time scale.
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         accessPlayer = player.GetComponent<PlayerController>();
-       
-        
-
+        //DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.QuestProgress);
+        //DontDestroyOnLoad(this.accessPlayer);
     }
     void Start()
     {
@@ -219,11 +218,9 @@ public class gamemanager : MonoBehaviour
     // This method saves the game by calling the SavePlayer method on the PlayerController.
     public void SaveGame()
     {
-        // Find the PlayerController script in the scene.
-        PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+        // Call the SavePlayer method in the SaveSystem.
+        SaveSystem.SavePlayer(accessPlayer); // Pass the PlayerController to save its state
 
-        // Call the SavePlayer method on the PlayerController.
-        player.SavePlayer();
 
         // Log a message to the console to indicate that the game has been saved.
         Debug.Log("Game saved!");
@@ -264,11 +261,9 @@ public class gamemanager : MonoBehaviour
     // This method loads the game by calling the LoadSystem method on the PlayerController.
     public void LoadGame()
     {
-        //// Find the PlayerController script in the scene.
-        PlayerController player = GameObject.FindObjectOfType<PlayerController>();
-
+     
         //// Call the LoadSystem method on the PlayerController.
-        player.LoadSystem();
+        accessPlayer.LoadSystem();
 
         // Log a message to the console to indicate that the game has been loaded.
         Debug.Log("Game loaded!");
@@ -300,20 +295,5 @@ public class gamemanager : MonoBehaviour
         // Handle quest completion (e.g., show win menu, reward player, etc.)
         Debug.Log("All objectives completed!");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -201,13 +201,21 @@ public class EnemyAI : MonoBehaviour, IDamage
         enemyHPbar.fillAmount = (float)HP / HPorig;
     }
     private void OnDestroy()
-    {
-        isBeingDestoryed = false; // Set flag when destoryed
+    { 
+        // Prevent further actions if already being destroyed
+        if (isBeingDestoryed) return;
+        isBeingDestoryed = true; // Set flag to indicate destruction in progress
+        if (agent != null && agent.isActiveAndEnabled)
+        {
+            agent.isStopped = true;
+        }
+       
                                   // Call ObjectDestroyed when this enemy is destroyed
         if (objectSpawner != null)
         {
             objectSpawner.ObjectDestroyed(gameObject);
         } // Notify the spawner that an object has been destroyed
+     
     }
     public void gainHealth(int amount)
     {
