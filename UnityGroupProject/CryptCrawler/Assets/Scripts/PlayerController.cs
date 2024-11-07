@@ -58,12 +58,20 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isSliding;
     bool isShooting;
     public bool hasQuest;
-
-
+    public static PlayerController instance;
+    public string areaTransitionName;
     // Start is called before the first frame update
     void Start()
     {
-
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         HPorig = HP;
         ManaOrig = mana;
         XPorig = experience;
@@ -72,9 +80,6 @@ public class PlayerController : MonoBehaviour, IDamage
         origSpeed = speed;
         UpdatePlayerUI();
         UpdatePlayerMana();
-
-
-
     }
     // Update is called once per frame
     void Update()
