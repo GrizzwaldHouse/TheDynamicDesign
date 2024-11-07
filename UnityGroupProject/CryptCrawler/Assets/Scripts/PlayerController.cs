@@ -84,7 +84,10 @@ public class PlayerController : MonoBehaviour, IDamage
             movement();
             selectWand();
             selectItem();
-            StartCoroutine(useItem());
+            if (Input.GetButtonDown("UseItem") && !usingItem && itemList.Count > 0)
+            {
+                StartCoroutine(useItem());
+            }
         }
         Sprint();
         crouch();
