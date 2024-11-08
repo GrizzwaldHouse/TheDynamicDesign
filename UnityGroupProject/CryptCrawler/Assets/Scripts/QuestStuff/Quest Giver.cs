@@ -29,7 +29,7 @@ public class QuestGiver : MonoBehaviour, IQuestManager
     {
         CreateQuest(QuestName, questText.text);
         menuActive = questTextScreen.gameObject;
-        gamemanager.instance.accessPlayer.currentQuest.text = QuestName;
+        gamemanager.instance.accessPlayer.currentQuest = questText;
         gamemanager.instance.accessSectionTrigger.playerQuest = questText;
         menuActive.SetActive(true);
         gamemanager.instance.accessPlayer.hasQuest = true;
