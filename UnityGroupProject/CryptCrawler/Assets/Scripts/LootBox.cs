@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 
 
+/*
+ * This LootBox script is attached to the treasure box prefab.
+ * All you have to do is drag the prefab onto the scene and
+ * in the inspector, look for the Box Contents list under the Loot Box (script)
+ * component. You add game object to this list and set the Drop chance (0.0f - 1f).
+ * The higher the number the higher the chance that specific item will drop.
+ */
+
 [Serializable]
 public class Loot
 {
@@ -88,6 +96,8 @@ public class LootBox : MonoBehaviour
         if (isOpen) return;
         isOpen = true;
 
+        if (interactionText) interactionText.gameObject.SetActive(false);
+
         if (animator) animator.Play("Open");
 
         GameObject selectedLoot = null;
@@ -148,7 +158,7 @@ public class LootBox : MonoBehaviour
         if (openingMethod == OpeningMethods.OpenOnTouch) return;
 
         // check if the hitting object is our player
-        if (collider.gameObject.CompareTag(playerTag))
+        if (collider.gameObject.CompareTag(playerTag) && boxContents.Count > 0)
         {
             playerTransform = collider.transform;
             isPlayerAround = true;
