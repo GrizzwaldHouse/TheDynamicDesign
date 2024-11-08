@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Class representing a quest in the game
@@ -104,8 +105,12 @@ public class QuestManager : MonoBehaviour, IQuestManager
     // Method to add a new spawner to the objectSpawners list
     public void AddSpawner(ObjectSpawner spawner)
     {
-        // Implementation for adding a spawner
-        objectSpawners.Add(spawner); // Add the spawner to the list of object spawners
+        if (!objectSpawners.Contains(spawner))
+        {
+            objectSpawners.Add(spawner);
+            Debug.Log($"Spawner '{spawner.name}' added to the quest manager.");
+        }
+     
     }
 
     // Method to be called when the quest is completed
@@ -128,7 +133,10 @@ public class QuestManager : MonoBehaviour, IQuestManager
     // Method to remove a spawner from the objectSpawners list
     public void RemoveSpawner(ObjectSpawner spawner)
     {
-        // Implementation for removing a spawner
-        objectSpawners.Remove(spawner); // Remove the specified spawner from the list
+        if (objectSpawners.Contains(spawner))
+        {
+            objectSpawners.Remove(spawner);
+            Debug.Log($"Spawner '{spawner.name}' added to the quest manager.");
+        }
     }
 }

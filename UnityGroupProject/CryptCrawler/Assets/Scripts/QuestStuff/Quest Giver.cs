@@ -18,12 +18,18 @@ public class QuestGiver : MonoBehaviour, IQuestManager
 
     public bool hasQuest;
     bool playerInRange;
-
+    private void Start()
+    {
+        if (gamemanager.instance.accessPlayer.hasQuest)
+        {
+            CreateQuest(gamemanager.instance.accessPlayer.currentQuestName, questText.text);
+        }
+    }
     void GiveQuest()
     {
         CreateQuest(QuestName, questText.text);
         menuActive = questTextScreen.gameObject;
-        gamemanager.instance.accessPlayer.currentQuest = questText;
+        gamemanager.instance.accessPlayer.currentQuest.text = QuestName;
         gamemanager.instance.accessSectionTrigger.playerQuest = questText;
         menuActive.SetActive(true);
         gamemanager.instance.accessPlayer.hasQuest = true;
@@ -51,7 +57,7 @@ public class QuestGiver : MonoBehaviour, IQuestManager
 
     public void CreateQuest(string questName, string description)
     {
-        
+        questText.text = $"{questName}: {description}"; // Display the quest name and description
     }
 
     public void CompleteQuest()
