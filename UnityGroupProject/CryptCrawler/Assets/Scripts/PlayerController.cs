@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering.HighDefinition;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -28,12 +29,19 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
     [SerializeField] List<Wands> Wandlist = new List<Wands>();
+    [SerializeField] GameObject shieldPrefab;
+    [SerializeField] float shieldDuration;
+    [SerializeField] LayerMask enemyLayer; // Layer for enemies
     [SerializeField] GameObject spell;
-    [SerializeField] Transform shootPos;
+    [SerializeField] public Transform shootPos;
     [SerializeField] public Transform headPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;
-    
+    [SerializeField] float skillCooldownDuration;
+    private float skillCooldown; // Tracks the cooldown time
+    private GameObject currentShield;
+
+
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -42,6 +50,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     int jumpCount;
     int selectwandPos;
+    int selectedSkillIndex;
     public int HPorig;
     int XPorig;
     public int ManaOrig;
@@ -52,6 +61,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isSprinting;
     bool isSliding;
     bool isShooting;
+    bool SkillUsed;
     public bool hasQuest;
    
 
@@ -78,7 +88,22 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             movement();
             selectWand();
+            // Check for ability activation
+            if (Input.GetButtonDown("Fire2") && Wandlist.Count > 0)
+            {
+                ActivateWandAbility();
+            }
+            if (Input.GetButtonDown("Shield")) // Change "Fire3" to whatever button you want
+            {
+                ActivateShield();
+            }
+
+            if (skillCooldown > 0)
+        {
+            skillCooldown -= Time.deltaTime; // Decrease cooldown timer
         }
+        }
+    
         Sprint();
         crouch();
     }
@@ -110,6 +135,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             StartCoroutine(Shoot());
         }
+       
     }
 
     void Sprint()
@@ -142,8 +168,35 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    
-    
+
+    void ActivateWandAbility()
+    {
+        if (Wandlist.Count > 0)
+        {
+            Wands currentWand = Wandlist[selectwandPos];
+
+                if (currentWand.skill != null && skillCooldown <= 0) // Check cooldown
+                {
+                    currentWand.skill.Activate(this);
+                    skillCooldown = skillCooldownDuration; // Reset cooldown
+                }
+            
+        }
+    }
+     
+        void ActivateShield()
+        {
+            if (currentShield == null) // Check if a shield is already active
+            {
+                // Instantiate the shield at the player's position
+                currentShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+                currentShield.transform.SetParent(transform); // Optionally set parent to the player
+
+                // Destroy the shield after the specified duration
+                Destroy(currentShield, shieldDuration);
+            }
+        }
+
 
     IEnumerator Shoot()
     {
@@ -214,6 +267,8 @@ public class PlayerController : MonoBehaviour, IDamage
             Debug.Log("Not enough mana to cast the spell!");
         }
     }
+   
+
     IEnumerator DamageFlash()
     {
         gamemanager.instance.PlayerDamageScreen.SetActive(true);
@@ -343,6 +398,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         spell = wand.Spell;
         shootRate = wand.shootRate;
+       
+       
     }
 
     void selectWand()
@@ -367,3 +424,4 @@ public class PlayerController : MonoBehaviour, IDamage
         wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectwandPos].wandModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
+
