@@ -38,8 +38,18 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;
     [SerializeField] float skillCooldownDuration;
+    [SerializeField] int healedAmount;
+    [SerializeField] int manaRestored;
+    [SerializeField] int healthBoosted;
+    [SerializeField] int manaBoosted;
     private float skillCooldown; // Tracks the cooldown time
     private GameObject currentShield;
+    public int selectItemPos;
+    public List<ItemData> itemList = new List<ItemData>();
+    [SerializeField] GameObject inventoryModel;
+    public static PlayerController instance;
+    public string areaTransitionName;
+    public string currentQuestName; // Current quest name
 
 
 
@@ -67,8 +77,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
     // Start is called before the first frame update
     void Start()
-    { 
-        
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         HPorig = HP;
         ManaOrig = mana;
         XPorig = experience;
@@ -401,6 +419,18 @@ public class PlayerController : MonoBehaviour, IDamage
        
        
     }
+
+    public void getItemStats(ItemData item)
+ {
+     itemList.Add(item);
+     selectItemPos = itemList.Count - 1;
+     healedAmount = item.healingAmount;
+     manaRestored=item.manaRAmount; ///
+     healthBoosted=item.healthBoosted;
+     manaBoosted = item.manaBoosted;
+     inventoryModel.GetComponent<MeshFilter>().sharedMesh=item .inventoryModel.GetComponent<MeshFilter>().sharedMesh;
+     inventoryModel.GetComponent<MeshRenderer>().sharedMaterial=item.inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
+ }
 
     void selectWand()
     {
