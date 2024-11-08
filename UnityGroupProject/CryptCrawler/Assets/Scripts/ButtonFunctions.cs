@@ -5,6 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
+    public ShopManager shopManager;
+    public int itemIndex;
+    public bool isSellButton;
+    public void OnButtonClick()
+    {
+        if(shopManager == null)
+        {
+            Debug.LogError("ShopManager reference is missing");
+        }
+        // Check if the current button is designated as the "Sell" button.
+        // The boolean variable 'isSellButton' determines the action to be taken.
+        if (isSellButton)
+        { 
+            // If it is a sell button, call the SellItem method on the shopManager.
+          // Pass the itemIndex to specify which item to sell.
+          // This will trigger the selling process for the specified item.
+            shopManager.SellItem(itemIndex);
+        }
+        else
+        {
+            // If it is not a sell button, it is assumed to be a "Buy" button.
+            // Call the BuyItem method on the shopManager.
+            // Again, pass the itemIndex to indicate which item to buy.
+            // This will initiate the buying process for the specified item.
+            shopManager.BuyItem(itemIndex);
+        } 
+    }
     public void resume()
     {
         gamemanager.instance.stateUnpause();
@@ -16,6 +43,7 @@ public class ButtonFunctions : MonoBehaviour
         gamemanager.instance.stateUnpause();
 
     }
+
     //public void useHealthPotion()
     //{
     //    gamemanager.instance.playerHealth += 10;
@@ -46,5 +74,6 @@ public class ButtonFunctions : MonoBehaviour
         gamemanager.instance.accessPlayer.ManaOrig = gamemanager.instance.accessPlayer.mana;
         gamemanager.instance.stateUnpause();
     }
+
 
 }

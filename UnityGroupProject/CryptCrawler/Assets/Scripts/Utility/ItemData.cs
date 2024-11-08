@@ -20,6 +20,8 @@ public class ItemData : ScriptableObject
     public int maxStackSize;
     public bool isStackable = true;
     //public float weight;
+    [Header("Currency")]
+    public int currencyValue;
 }
 public enum ItemCategory
 {
@@ -27,5 +29,6 @@ public enum ItemCategory
     Armor,
     Consumable,
     Material,
-    QuestItem
+    QuestItem,
+    Currency
 }

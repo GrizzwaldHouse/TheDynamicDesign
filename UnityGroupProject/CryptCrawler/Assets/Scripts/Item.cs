@@ -8,11 +8,9 @@ public class Item : MonoBehaviour
   // [SerializeField] private string itemName;
   
   [SerializeField] private int quantity;
- /// </summary>
-
-
-
    private InventoryManager inventoryManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +18,8 @@ public class Item : MonoBehaviour
         inventoryManager = FindObjectOfType<InventoryManager>();
     }
     private void OnTriggerEnter(Collider other)
-    {
-       
+        {
+
 
             if (inventoryManager != null)
             {

@@ -10,10 +10,6 @@ public class CoinSystem : MonoBehaviour
     public int defaultCoin;
     public int coin;
 
-
-
-
-
     void Start()
     {
         coin = defaultCoin;
