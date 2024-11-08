@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class Mana : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] enum magictype { Fire, Ice, Holy, Lightning, Wind }
-    [SerializeField] magictype type;
+    [SerializeField] public enum magictype { Fire, Ice, Holy, Lightning, Wind }
+    [SerializeField]  public magictype type;
     [SerializeField] Rigidbody rb;
     [SerializeField] float freezeDuration;
     [SerializeField] float firetickrate;
@@ -17,7 +17,7 @@ public class Mana : MonoBehaviour
     [SerializeField] public int damageamount;
     [SerializeField] public int Manacost;
     [SerializeField] int speed;
-    [SerializeField] int destroytime;
+    [SerializeField] public int destroytime;
     [SerializeField] float damageRange;
     [SerializeField] int maxChainJumps;
     [SerializeField] float chainJumpRange;

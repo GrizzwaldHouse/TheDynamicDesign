@@ -7,6 +7,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering.HighDefinition;
+using System.Collections.Concurrent;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -28,42 +30,64 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
     [SerializeField] List<Wands> Wandlist = new List<Wands>();
-    [SerializeField] List<ItemData> itemList = new List<ItemData>();
+    [SerializeField] GameObject shieldPrefab;
+    [SerializeField] float shieldDuration;
+    [SerializeField] LayerMask enemyLayer; // Layer for enemies
     [SerializeField] GameObject spell;
-    [SerializeField] Transform shootPos;
+    [SerializeField] public Transform shootPos;
     [SerializeField] public Transform headPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;
-    [SerializeField] GameObject inventoryModel;
+    [SerializeField] float skillCooldownDuration;
     [SerializeField] int healedAmount;
     [SerializeField] int manaRestored;
     [SerializeField] int healthBoosted;
     [SerializeField] int manaBoosted;
+    private float skillCooldown; // Tracks the cooldown time
+    private GameObject currentShield;
+    public int selectItemPos;
+    public List<ItemData> itemList = new List<ItemData>();
+    [SerializeField] GameObject inventoryModel;
+    public static PlayerController instance;
+    public string areaTransitionName;
+    public string currentQuestName; // Current quest name
+
+
+
     Vector3 moveDir;
     Vector3 playerVel;
 
     public TextMeshProUGUI currentQuest;
-    public string currentQuestName; // Current quest name
+
     int jumpCount;
-    int selectWandPos;
-    public int selectItemPos;
+    int selectwandPos;
+    int selectedSkillIndex;
     public int HPorig;
     int XPorig;
     public int ManaOrig;
     int origSpeed;
     float damageAmount;
     public TextMeshProUGUI playerQuest;
-    bool usingItem;
+    
     bool isSprinting;
     bool isSliding;
     bool isShooting;
+    bool SkillUsed;
     public bool hasQuest;
-
+   
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         HPorig = HP;
         ManaOrig = mana;
         XPorig = experience;
@@ -71,10 +95,19 @@ public class PlayerController : MonoBehaviour, IDamage
         //SetMaxMana(ManaOrig);
         origSpeed = speed;
         UpdatePlayerUI();
+        SpawnPlayer();
         UpdatePlayerMana();
+        
+       
+        
+    }
 
-
-
+    public void SpawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = gamemanager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+        HP = HPorig;
     }
     // Update is called once per frame
     void Update()
@@ -83,12 +116,22 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             movement();
             selectWand();
-            selectItem();
-            if (Input.GetButtonDown("UseItem") && !usingItem && itemList.Count > 0)
+            // Check for ability activation
+            if (Input.GetButtonDown("Fire2") && Wandlist.Count > 0)
             {
-                StartCoroutine(useItem());
+                ActivateWandAbility();
             }
+            if (Input.GetButtonDown("Shield")) // Change "Fire3" to whatever button you want
+            {
+                ActivateShield();
+            }
+
+            if (skillCooldown > 0)
+        {
+            skillCooldown -= Time.deltaTime; // Decrease cooldown timer
         }
+        }
+    
         Sprint();
         crouch();
     }
@@ -120,6 +163,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             StartCoroutine(Shoot());
         }
+       
     }
 
     void Sprint()
@@ -135,89 +179,54 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     void crouch()
     {
-
-        if (Input.GetButtonDown("Crouch"))
-        {
+        
+            if (Input.GetButtonDown("Crouch"))
+            {
             speed = crouchspeed;
             controller.height = 1;
-
-
-        }
+            
+            
+            }
         if (Input.GetButtonUp("Crouch") && !isSliding)
         {
             speed = origSpeed;
             controller.height = 2;
-
-
+           
+            
         }
     }
 
 
-    IEnumerator useItem()
+    void ActivateWandAbility()
     {
-        if (Input.GetButtonDown("UseItem") && !usingItem && itemList.Count > 0)
+        if (Wandlist.Count > 0)
         {
-            usingItem = true;
-            if (selectItemPos < 0 || selectItemPos >= itemList.Count)
-            {
-                selectItemPos = 0;
-            }
-            // Use the item
-            ItemData item = itemList[selectItemPos];
+            Wands currentWand = Wandlist[selectwandPos];
 
-            // Apply the item's effects
-            if (item.category == ItemCategory.Consumable)
-            {
-                // Heal the player
-                if (healedAmount > 0)
+                if (currentWand.skill != null && skillCooldown <= 0) // Check cooldown
                 {
-                    gainHealth(healedAmount);
+                    currentWand.skill.Activate(this);
+                    skillCooldown = skillCooldownDuration; // Reset cooldown
                 }
-
-                // Restore mana
-                if (manaRestored > 0)
-                {
-                    gainMana(manaRestored);
-                }
-
-                // Remove the item from the list
-                itemList.RemoveAt(selectItemPos);
-             if (itemList.Count > 0)
-                {
-                    if(selectItemPos >= itemList.Count)
-                    {
-                        selectItemPos = itemList.Count - 1;
-                    }
-                    //Update the list of items to next in list
-                    changeItem();
-                }
-             else
-                {
-                    // If there are no items left, reset selection
-                    inventoryModel.GetComponent<MeshFilter>().sharedMesh = null;
-                    inventoryModel.GetComponent<MeshRenderer>().enabled = false;
-                    selectItemPos = 0;
-
-                }
-                // Adjust the selected item position
-                if (selectItemPos >= itemList.Count && itemList.Count > 0)
-                {
-                    selectItemPos = itemList.Count - 1; // Move to the last item if the current one is removed
-                }
-                else if (itemList.Count == 0)
-                {
-                    // If there are no items left, reset selection
-                    selectItemPos = 0;
-                }
-            }
-
-            Debug.LogWarning("Item " + selectItemPos + "used");
-            yield return new WaitForSeconds(1f); // Example cooldown time
-            usingItem = false;
-
+            
         }
     }
-IEnumerator Shoot()
+     
+        void ActivateShield()
+        {
+            if (currentShield == null) // Check if a shield is already active
+            {
+                // Instantiate the shield at the player's position
+                currentShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+                currentShield.transform.SetParent(transform); // Optionally set parent to the player
+
+                // Destroy the shield after the specified duration
+                Destroy(currentShield, shieldDuration);
+            }
+        }
+
+
+    IEnumerator Shoot()
     {
         if (mana >= spell.GetComponent<Mana>().Manacost)
         {
@@ -286,6 +295,8 @@ IEnumerator Shoot()
             Debug.Log("Not enough mana to cast the spell!");
         }
     }
+   
+
     IEnumerator DamageFlash()
     {
         gamemanager.instance.PlayerDamageScreen.SetActive(true);
@@ -387,26 +398,13 @@ IEnumerator Shoot()
     public void LoadSystem()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        if (data != null)
-        {
-            level = data.level;
-            HP = data.health;
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-            transform.position = position;
-            // Load quest data
-            if (data.hasQuest)
-            {
-                QuestGiver questGiver = FindObjectOfType<QuestGiver>();
-                if (questGiver != null)
-                {
-                    currentQuestName = data.currentQuestName;
-                    hasQuest = true; // Indicate that the player has a quest
-                }
-            }
-        }
+        level = data.level;
+        HP = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
     }
     public void UpdatePlayerUI()
     {
@@ -424,80 +422,46 @@ IEnumerator Shoot()
     public void getWandstats(Wands wand)
     {
         Wandlist.Add(wand);
-        selectWandPos = Wandlist.Count - 1;
+        selectwandPos = Wandlist.Count - 1;
 
         spell = wand.Spell;
         shootRate = wand.shootRate;
+       
+       
     }
+
     public void getItemStats(ItemData item)
-    {
-        itemList.Add(item);
-        selectItemPos = itemList.Count - 1;
-        healedAmount = item.healingAmount;
-        manaRestored=item.manaRAmount; ///
-        healthBoosted=item.healthBoosted;
-        manaBoosted = item.manaBoosted;
-        inventoryModel.GetComponent<MeshFilter>().sharedMesh=item .inventoryModel.GetComponent<MeshFilter>().sharedMesh;
-        inventoryModel.GetComponent<MeshRenderer>().sharedMaterial=item.inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
-    }
-    void selectItem()
-    {
-        if (Input.GetButtonDown("InventoryScrollUp") && selectItemPos < itemList.Count - 1)
-        {
-            selectItemPos++;
-            changeItem();
-           
-        }
-        else if (Input.GetButtonDown("InventoryScrollDown")  && selectItemPos > 0)
-        {
-            selectItemPos--;
-            changeItem();
-        }
-    }
+ {
+     itemList.Add(item);
+     selectItemPos = itemList.Count - 1;
+     healedAmount = item.healingAmount;
+     manaRestored=item.manaRAmount; ///
+     healthBoosted=item.healthBoosted;
+     manaBoosted = item.manaBoosted;
+     inventoryModel.GetComponent<MeshFilter>().sharedMesh=item .inventoryModel.GetComponent<MeshFilter>().sharedMesh;
+     inventoryModel.GetComponent<MeshRenderer>().sharedMaterial=item.inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
+ }
+
     void selectWand()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectWandPos < Wandlist.Count - 1)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectwandPos < Wandlist.Count - 1)
         {
-            selectWandPos++;
+            selectwandPos++;
             
             changeWand();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectWandPos > 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectwandPos > 0)
         {
-            selectWandPos--;
+            selectwandPos--;
             changeWand();
         }
     }
-    void changeItem()
-    {
-        if (selectItemPos < 0 || selectItemPos >= itemList.Count)
-        {
-            selectItemPos = 0;
-        }
-        if (itemList.Count > 0)
-        {
-
-            healedAmount = itemList[selectItemPos].healingAmount;
-            manaRestored = itemList[selectItemPos].manaRAmount; ///
-            healthBoosted = itemList[selectItemPos].healthBoosted;
-            manaBoosted = itemList[selectItemPos].manaBoosted;
-            inventoryModel.GetComponent<MeshFilter>().sharedMesh = itemList[selectItemPos].inventoryModel.GetComponent<MeshFilter>().sharedMesh;
-            inventoryModel.GetComponent<MeshRenderer>().sharedMaterial = itemList[selectItemPos].inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
-        }
-        else
-        {
-            inventoryModel.GetComponent<MeshRenderer>().enabled = false;
-            inventoryModel.GetComponent<MeshFilter>().sharedMesh = null;
-        }
-    }
-
-        
     void changeWand()
     {
-        spell = Wandlist[selectWandPos].Spell;
-        shootRate = Wandlist[selectWandPos].shootRate;
-        wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectWandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
-        wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectWandPos].wandModel.GetComponent<MeshRenderer>().sharedMaterial;
+        spell = Wandlist[selectwandPos].Spell;
+        shootRate = Wandlist[selectwandPos].shootRate;
+        wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectwandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
+        wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectwandPos].wandModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
-    
 }
+

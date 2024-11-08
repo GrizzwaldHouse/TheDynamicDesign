@@ -1,10 +1,10 @@
 using JetBrains.Annotations;
+using SkeletonEditor;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -23,7 +23,7 @@ public class gamemanager : MonoBehaviour
     public Button saveButton;
     public Button loadButton;
     public GameObject inventoryUI;
-    string SavedScene;
+    public GameObject playerSpawnPos;
 
 
 
@@ -31,7 +31,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] public TMP_Text LevelText;
     [SerializeField] public TMP_Text XpText;
-    [SerializeField] public TextMeshProUGUI questText;
+    [SerializeField] TextMeshProUGUI questText;
     [SerializeField] TextMeshProUGUI QuestProgress;
 
     // This variable is exposed to the Unity Inspector, allowing designers to assign the player game object.
@@ -71,11 +71,15 @@ public class gamemanager : MonoBehaviour
     {
         // Set the singleton instance of the GameManager to this script.
         instance = this;
+
         // Store the original time scale.
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         accessPlayer = player.GetComponent<PlayerController>();
-        //DontDestroyOnLoad(this.accessPlayer);
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+       
+        
+
     }
     void Start()
     {
@@ -84,6 +88,7 @@ public class gamemanager : MonoBehaviour
         loadButton.onClick.AddListener(LoadGame);
         // Initialize the objectives UI
        UpdateObjectivesUI();
+        
 
     }
     // This method is called every frame.
@@ -218,9 +223,9 @@ public class gamemanager : MonoBehaviour
     // This method saves the game by calling the SavePlayer method on the PlayerController.
     public void SaveGame()
     {
-        SavedScene = SceneManager.GetActiveScene().name;
         // Call the SavePlayer method in the SaveSystem.
         SaveSystem.SavePlayer(accessPlayer); // Pass the PlayerController to save its state
+
 
         // Log a message to the console to indicate that the game has been saved.
         Debug.Log("Game saved!");
@@ -261,7 +266,7 @@ public class gamemanager : MonoBehaviour
     // This method loads the game by calling the LoadSystem method on the PlayerController.
     public void LoadGame()
     {
-        SceneManager.LoadScene(SavedScene);
+     
         //// Call the LoadSystem method on the PlayerController.
         accessPlayer.LoadSystem();
 

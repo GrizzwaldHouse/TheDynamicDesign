@@ -47,4 +47,10 @@ public class ButtonFunctions : MonoBehaviour
         gamemanager.instance.stateUnpause();
     }
 
+
+    public void Respawn()
+    {
+        gamemanager.instance.accessPlayer.SpawnPlayer();
+        gamemanager.instance.stateUnpause();
+    }
 }
