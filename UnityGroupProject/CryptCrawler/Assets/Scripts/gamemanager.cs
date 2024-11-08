@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -22,6 +23,7 @@ public class gamemanager : MonoBehaviour
     public Button saveButton;
     public Button loadButton;
     public GameObject inventoryUI;
+    string SavedScene;
 
 
 
@@ -73,8 +75,6 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         accessPlayer = player.GetComponent<PlayerController>();
-        //DontDestroyOnLoad(this.gameObject);
-        //DontDestroyOnLoad(this.QuestProgress);
         //DontDestroyOnLoad(this.accessPlayer);
     }
     void Start()
@@ -218,9 +218,9 @@ public class gamemanager : MonoBehaviour
     // This method saves the game by calling the SavePlayer method on the PlayerController.
     public void SaveGame()
     {
+        SavedScene = SceneManager.GetActiveScene().name;
         // Call the SavePlayer method in the SaveSystem.
         SaveSystem.SavePlayer(accessPlayer); // Pass the PlayerController to save its state
-
 
         // Log a message to the console to indicate that the game has been saved.
         Debug.Log("Game saved!");
@@ -261,7 +261,7 @@ public class gamemanager : MonoBehaviour
     // This method loads the game by calling the LoadSystem method on the PlayerController.
     public void LoadGame()
     {
-     
+        SceneManager.LoadScene(SavedScene);
         //// Call the LoadSystem method on the PlayerController.
         accessPlayer.LoadSystem();
 

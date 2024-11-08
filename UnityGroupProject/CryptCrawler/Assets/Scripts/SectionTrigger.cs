@@ -10,7 +10,6 @@ public class SectionTrigger : MonoBehaviour
     public string nextSceneName; 
     private void OnTriggerEnter(Collider other)
     {
-        DontDestroyOnLoad(playerQuest);
         if (other.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(nextSceneName);
