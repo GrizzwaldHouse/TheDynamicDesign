@@ -8,6 +8,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering.HighDefinition;
+using System.Collections.Concurrent;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -94,10 +95,19 @@ public class PlayerController : MonoBehaviour, IDamage
         //SetMaxMana(ManaOrig);
         origSpeed = speed;
         UpdatePlayerUI();
+        SpawnPlayer();
         UpdatePlayerMana();
         
        
         
+    }
+
+    public void SpawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = gamemanager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+        HP = HPorig;
     }
     // Update is called once per frame
     void Update()

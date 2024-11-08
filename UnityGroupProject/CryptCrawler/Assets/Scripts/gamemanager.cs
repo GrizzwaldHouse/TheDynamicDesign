@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using SkeletonEditor;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,6 +23,7 @@ public class gamemanager : MonoBehaviour
     public Button saveButton;
     public Button loadButton;
     public GameObject inventoryUI;
+    public GameObject playerSpawnPos;
 
 
 
@@ -74,6 +76,7 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         accessPlayer = player.GetComponent<PlayerController>();
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
        
         
 
