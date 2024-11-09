@@ -11,6 +11,14 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private CoinSystem coinSystem;
     // Reference to ShopUI to update the inventory UI after buying or selling an item.
     [SerializeField] private ShopUI shopUI;
+    private void Start()
+    {
+        // Ensure the ShopUI is initially inactive
+        if (shopUI != null)
+        {
+            shopUI.gameObject.SetActive(false);
+        }
+    }
 
     public List<ItemData> GetShopItems()
     {
@@ -97,7 +105,22 @@ public class ShopManager : MonoBehaviour
         coinSystem.UpdateCoin();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) // Ensure the player has the correct tag
+        {
+            shopUI.gameObject.SetActive(true); // Activate the shop UI
+            shopUI.PopulateShopUI(); // Populate the shop UI with items
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")) // Ensure the player has the correct tag
+        {
+            shopUI.gameObject.SetActive(false); // Deactivate the shop UI
+        }
+    }
 
 }
 

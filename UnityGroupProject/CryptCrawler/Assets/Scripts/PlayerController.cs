@@ -61,17 +61,25 @@ public class PlayerController : MonoBehaviour, IDamage
     public bool hasQuest;
     public static PlayerController instance;
     public string areaTransitionName;
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        // Ensure that this is the only instance of PlayerController
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject); // Keep this object across scenes
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroy duplicate instance
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Debug.Log("PlayerController Start called");
+       
         DontDestroyOnLoad(gameObject);
         HPorig = HP;
         ManaOrig = mana;

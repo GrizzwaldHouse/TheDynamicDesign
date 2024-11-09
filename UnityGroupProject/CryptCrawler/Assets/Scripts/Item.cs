@@ -1,38 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Collections; // Importing the System.Collections namespace for collection-related functionality
+using System.Collections.Generic; // Importing the System.Collections.Generic namespace for generic collections
+using UnityEngine; // Importing the UnityEngine namespace to access Unity-specific classes and functions
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour // Item class inherits from MonoBehaviour, allowing it to be attached to GameObjects
 {
+    // Serialized field to expose the ItemData ScriptableObject in the Unity Inspector
     [SerializeField] private ItemData itemData;
-  // [SerializeField] private string itemName;
-  
-  [SerializeField] private int quantity;
-   private InventoryManager inventoryManager;
 
+    // Serialized field for the quantity of this item; currently commented out
+    // [SerializeField] private string itemName;
+
+    // Serialized field to store the quantity of this item in the inventory
+    [SerializeField] private int quantity;
+
+    // Reference to the InventoryManager instance, used to manage the inventory
+    private InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        // Find and assign the InventoryManager instance in the scene
         inventoryManager = FindObjectOfType<InventoryManager>();
     }
+
+    // Method called when another collider enters the trigger collider attached to this GameObject
     private void OnTriggerEnter(Collider other)
+    {
+        // Check if the inventoryManager has been successfully assigned
+        if (inventoryManager != null)
         {
+            // Add the item to the inventory using the itemData and quantity
+            inventoryManager.AddItem(itemData, quantity);
 
-
-            if (inventoryManager != null)
-            {
-
-
-                inventoryManager.AddItem(itemData, quantity);
-                Destroy(gameObject);
-            }
-            else
-            {
-                Debug.LogError("InventoryManager in not assigned or not found.");
-            }
-
-
+            // Destroy this GameObject (the item) after it has been collected
+            Destroy(gameObject);
         }
+        else
+        {
+            // Log an error message if the InventoryManager is not found
+            Debug.LogError("InventoryManager is not assigned or not found.");
+        }
+    }
 }
