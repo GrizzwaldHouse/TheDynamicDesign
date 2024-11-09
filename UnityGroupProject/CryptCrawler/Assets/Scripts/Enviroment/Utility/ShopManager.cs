@@ -83,15 +83,13 @@ public class ShopManager : MonoBehaviour
     }
     public void RenderInventoryItem(ItemData item)
     {
-        if(item== null)
-        {
-            return;
+        if(item== null)  return;
             PlayerController.instance.getItemStats(item);
             // Log a message indicating the item was successfully bought.
             Debug.Log($"Bought {item.menuName}");
             UpdateCoinDisplay();
             
-        }
+        
     }
     private void UpdateCoinDisplay()
     {

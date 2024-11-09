@@ -22,6 +22,9 @@ public class ItemData : ScriptableObject
     //public float weight;
     [Header("Currency")]
     public int currencyValue;
+    [Header("Model")]
+    public MeshFilter inventoryMeshFilter; // MeshFilter for the item model
+    public MeshRenderer inventoryMeshRenderer; // MeshRenderer for the item modeln
 }
 public enum ItemCategory
 {

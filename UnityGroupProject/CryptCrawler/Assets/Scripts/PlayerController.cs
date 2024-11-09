@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public List<ItemData> itemList = new List<ItemData>();
 
     [SerializeField] GameObject spell;
-    [SerializeField] Transform shootPos;
+      public Transform shootPos;
     [SerializeField] public Transform headPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;

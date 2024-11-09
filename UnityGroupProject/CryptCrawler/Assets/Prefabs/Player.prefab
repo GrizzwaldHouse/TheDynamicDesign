@@ -133,6 +133,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7559576478789734281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2288011790339107129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5375413794339600595}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5375413794339600595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288011790339107129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8531489017910997316}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3496166202921690274
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,31 +375,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a723a0caf51b4ba48937a5a758fefeae, type: 2}
   - {fileID: 11400000, guid: 15eca5a498f6b67419513ac7d5caf416, type: 2}
   - {fileID: 11400000, guid: 11ef105d90d4ec448b1b322eba4e78bd, type: 2}
-  shieldPrefab: {fileID: 3969733815278623380, guid: 7da9f6569f9376446b4c2d2ba35e9100, type: 3}
-  shieldDuration: 5
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  itemList:
+  - {fileID: 11400000, guid: c63671f5b318566459f40ea139081d74, type: 2}
+  - {fileID: 11400000, guid: 0fbe50fdc08b9254a94c656a7995b9c7, type: 2}
+  - {fileID: 11400000, guid: 5a76281573edf794baf1e1e254fefc6b, type: 2}
   spell: {fileID: 8458811321649852431, guid: 9671b2d9c3b1c724cb91728dcd3191c0, type: 3}
   shootPos: {fileID: 1787715501831790672}
   headPos: {fileID: 9085298495036573359}
   shootRate: 1
   wandModel: {fileID: 8136887162229823524}
-  skillCooldownDuration: 5
+  inventoryModel: {fileID: 5221951250196987144}
   healedAmount: 0
   manaRestored: 0
   healthBoosted: 0
   manaBoosted: 0
-  selectItemPos: 0
-  itemList: []
-  inventoryModel: {fileID: 5221951250196987144}
-  areaTransitionName: 
-  currentQuestName: 
   currentQuest: {fileID: 0}
+  currentQuestName: 
+  selectItemPos: 0
   HPorig: 0
   ManaOrig: 0
   playerQuest: {fileID: 0}
   hasQuest: 0
+  areaTransitionName: 
 --- !u!143 &7572256470491037903
 CharacterController:
   m_ObjectHideFlags: 0
@@ -692,6 +720,7 @@ Transform:
   - {fileID: 8821863652002304109}
   - {fileID: 8910327262882382494}
   - {fileID: 1787715501831790672}
+  - {fileID: 5375413794339600595}
   m_Father: {fileID: 7559576478789734281}
   m_LocalEulerAnglesHint: {x: 0, y: 18.79, z: 0}
 --- !u!114 &7277552816406520314

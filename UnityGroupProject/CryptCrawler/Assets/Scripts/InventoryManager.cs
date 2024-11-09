@@ -7,12 +7,24 @@ using UnityEngine.ProBuilder.MeshOperations;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance { get; private set; }
     [SerializeField] GameObject InventoryMenu;
     private bool menuActive;
     [SerializeField ] ItemSlotM[] itemSlots;
     private Dictionary<ItemData, int> inventory = new Dictionary<ItemData, int>();
     private List<ItemData> itemList = new List<ItemData>();
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Optional: Keep it across scenes
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -73,7 +85,24 @@ public class InventoryManager : MonoBehaviour
             Debug.LogWarning($"Item not stackable: {itemData.menuName}");
         }
     }
+    public void RemoveItem(ItemData itemData, int quantity)
+    {
+        if (inventory.ContainsKey(itemData))
+        {
+            inventory[itemData] -= quantity;
 
+            if (inventory[itemData] <= 0)
+            {
+                inventory.Remove(itemData);
+            }
+
+            UpdateInventoryUI(); // Update UI after removal
+        }
+        else
+        {
+            Debug.LogWarning($"Item {itemData.menuName} not found in inventory.");
+        }
+    }
 
 
     private void UpdateInventoryUI()

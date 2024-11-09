@@ -106,14 +106,41 @@ public class ShopUI : MonoBehaviour
                 itemText.text = item.menuName;
             }
 
+
             Image itemIcon = slot.GetComponentInChildren<Image>();
             if (itemIcon != null && item.inventoryModel != null)
             {
-                // Assuming the item model has an associated icon sprite
-                itemIcon.sprite = item.inventoryModel.GetComponent<SpriteRenderer>()?.sprite;
+                // Instantiate the item model using MeshFilter and MeshRenderer
+                if (item.inventoryMeshFilter != null && item.inventoryMeshRenderer != null)
+                {
+                    GameObject itemModel = new GameObject(item.menuName);
+                    MeshFilter meshFilter = itemModel.AddComponent<MeshFilter>();
+                    MeshRenderer meshRenderer = itemModel.AddComponent<MeshRenderer>();
+
+                    meshFilter.sharedMesh = item.inventoryMeshFilter.sharedMesh; // Set the mesh
+                    meshRenderer.sharedMaterials = item.inventoryMeshRenderer.sharedMaterials; // Set the materials
+
+                    // Set the position of the item model in the inventory slot
+                    itemModel.transform.SetParent(slot.transform);
+                    itemModel.transform.localPosition = Vector3.zero; // Adjust as needed
+                }
+                else
+                {
+                    Debug.LogWarning("MeshFilter or MeshRenderer is missing for item: " + item.menuName);
+
+                }
+                // Set the icon if it exists
+                itemIcon.enabled = true; // Enable the icon
+
+                Debug.Log($"Inventory UI updated for item: {item.menuName}");
+            }
+            else
+            {
+                Debug.LogWarning("Image component missing on inventory slot prefab.");
             }
 
             Debug.Log($"Inventory UI updated for item: {item.menuName}");
         }
+    
     }
 }

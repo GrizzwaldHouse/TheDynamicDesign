@@ -48,4 +48,17 @@ public class CoinSystem : MonoBehaviour
     {
         coinTxt.text = coin.ToString();
     }
+    public int TransferCoin(CoinSystem target, int amount)
+    {
+
+        if (Spend(amount))
+        {
+            target.Gain(amount);
+            return amount;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
