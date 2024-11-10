@@ -36,7 +36,9 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;
     [SerializeField] GameObject inventoryModel;
-    [SerializeField] int healedAmount;
+    [SerializeField]
+    private CoinSystem coinSystem;
+   [SerializeField] int healedAmount;
     [SerializeField] int manaRestored;
     [SerializeField] int healthBoosted;
     [SerializeField] int manaBoosted;
@@ -63,16 +65,16 @@ public class PlayerController : MonoBehaviour, IDamage
     public string areaTransitionName;
     void Awake()
     {
-    //    // Ensure that this is the only instance of PlayerController
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //        DontDestroyOnLoad(gameObject); // Keep this object across scenes
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject); // Destroy duplicate instance
-    //    }
+        //// Ensure that this is the only instance of PlayerController
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject); // Keep this object across scenes
+        //}
+        //else
+        //{
+        //    Destroy(gameObject); // Destroy duplicate instance
+        //}
     }
 
     // Start is called before the first frame update
@@ -89,6 +91,15 @@ public class PlayerController : MonoBehaviour, IDamage
         origSpeed = speed;
         UpdatePlayerUI();
         UpdatePlayerMana();
+        // Ensure the CoinSystem reference is assigned
+        if (coinSystem == null)
+        {
+            coinSystem = FindObjectOfType<CoinSystem>(); // Find the CoinSystem in the scene
+            if (coinSystem == null)
+            {
+                Debug.LogError("CoinSystem instance not found in the scene!");
+            }
+        }
     }
     // Update is called once per frame
     void Update()
@@ -486,26 +497,34 @@ public class PlayerController : MonoBehaviour, IDamage
 
         // Set the selected item position to the last index of the itemList (the newly added item).
         selectItemPos = itemList.Count - 1;
+        // Check if the item is currency
+        if (item.category == ItemCategory.Currency)
+        {
+            coinSystem.Gain(item.currencyValue);
+            Debug.Log($"Added currency: {item.menuName}");
+        }
+        else
+        {
+            // Retrieve and store the healing amount of the item for later use.
+            healedAmount = item.healingAmount;
 
-        // Retrieve and store the healing amount of the item for later use.
-        healedAmount = item.healingAmount;
+            // Retrieve and store the mana restoration amount of the item for later use.
+            manaRestored = item.manaRAmount; // This line retrieves the mana restoration value.
 
-        // Retrieve and store the mana restoration amount of the item for later use.
-        manaRestored = item.manaRAmount; // This line retrieves the mana restoration value.
+            // Retrieve and store the health boost value of the item for later use.
+            healthBoosted = item.healthBoosted;
 
-        // Retrieve and store the health boost value of the item for later use.
-        healthBoosted = item.healthBoosted;
+            // Retrieve and store the mana boost value of the item for later use.
+            manaBoosted = item.manaBoosted;
 
-        // Retrieve and store the mana boost value of the item for later use.
-        manaBoosted = item.manaBoosted;
+            // Update the inventory model's mesh to match the selected item's model.
+            // This sets the visual representation of the item in the inventory.
+            inventoryModel.GetComponent<MeshFilter>().sharedMesh = item.inventoryModel.GetComponent<MeshFilter>().sharedMesh;
 
-        // Update the inventory model's mesh to match the selected item's model.
-        // This sets the visual representation of the item in the inventory.
-        inventoryModel.GetComponent<MeshFilter>().sharedMesh = item.inventoryModel.GetComponent<MeshFilter>().sharedMesh;
-
-        // Update the inventory model's material to match the selected item's material.
-        // This ensures that the visual appearance of the item is consistent with its properties.
-        inventoryModel.GetComponent<MeshRenderer>().sharedMaterial = item.inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
+            // Update the inventory model's material to match the selected item's material.
+            // This ensures that the visual appearance of the item is consistent with its properties.
+            inventoryModel.GetComponent<MeshRenderer>().sharedMaterial = item.inventoryModel.GetComponent<MeshRenderer>().sharedMaterial;
+        }
     }
 
     // Method to handle item selection in the inventory based on player input.
@@ -617,7 +636,10 @@ public class PlayerController : MonoBehaviour, IDamage
         // Attempt to remove the specified item from the itemList.
         // The Remove method returns true if the item was successfully removed.
         if (itemList.Remove(item))
-        {
+        {if (item.category == ItemCategory.Currency)
+            {
+                coinSystem.RemoveCurrency(item);
+            }
             // Log a message to the console indicating that the item has been removed from the inventory.
             Debug.Log("Removed from inventory: " + item.menuName);
         }

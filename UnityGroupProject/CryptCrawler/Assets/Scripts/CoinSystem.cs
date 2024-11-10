@@ -61,4 +61,18 @@ public class CoinSystem : MonoBehaviour
             return 0;
         }
     }
+    public void AddCurrency(ItemData currencyItem)
+    {
+        if (currencyItem.category == ItemCategory.Currency)
+        {
+            Gain(currencyItem.currencyValue);
+        }
+    }
+    public void RemoveCurrency(ItemData currencyItem)
+    {
+        if (currencyItem.category == ItemCategory.Currency)
+        {
+            Spend(currencyItem.currencyValue);
+        }
+    }
 }
