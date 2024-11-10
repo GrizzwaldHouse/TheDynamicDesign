@@ -63,16 +63,16 @@ public class PlayerController : MonoBehaviour, IDamage
     public string areaTransitionName;
     void Awake()
     {
-        // Ensure that this is the only instance of PlayerController
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Keep this object across scenes
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicate instance
-        }
+    //    // Ensure that this is the only instance of PlayerController
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject); // Keep this object across scenes
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject); // Destroy duplicate instance
+    //    }
     }
 
     // Start is called before the first frame update
@@ -120,6 +120,17 @@ public class PlayerController : MonoBehaviour, IDamage
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
+        // If the player is a child of the platform, we can use the platform's movement
+        if (transform.parent != null && transform.parent.CompareTag("MovingPlatform"))
+        {
+            // The player will move with the platform, so we don't need to apply movement here
+            controller.Move(Vector3.zero); // No additional movement
+        }
+        else
+        {
+            // Move the player normally
+            controller.Move(moveDir * speed * Time.deltaTime);
+        }
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {

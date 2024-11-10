@@ -24,7 +24,7 @@ public class Destroywall : MonoBehaviour, IDamage
     // The Update method is called once per frame, but it's empty in this case
     void Update()
     {
-        // No code here, so this method does nothing
+        
     }
 
     // Implement the takeDamage method from the IDamage interface
