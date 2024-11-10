@@ -31,13 +31,17 @@ public class PlayerController : MonoBehaviour, IDamage
     public List<ItemData> itemList = new List<ItemData>();
 
     [SerializeField] GameObject spell;
-      public Transform shootPos;
+     public Transform shootPos;
     [SerializeField] public Transform headPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject wandModel;
     [SerializeField] GameObject inventoryModel;
-    [SerializeField]
+    [SerializeField] GameObject shieldprefab;
+    [SerializeField] float shieldDuration;
     private CoinSystem coinSystem;
+    
+      
+    [SerializeField] float skillCooldownDuration;
    [SerializeField] int healedAmount;
     [SerializeField] int manaRestored;
     [SerializeField] int healthBoosted;
@@ -46,6 +50,8 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 playerVel;
 
     public TextMeshProUGUI currentQuest;
+    float skillCooldown;
+    GameObject currentShield;
     public string currentQuestName; // Current quest name
     int jumpCount;
     int selectWandPos;
@@ -187,7 +193,26 @@ public class PlayerController : MonoBehaviour, IDamage
 
         }
     }
+    
+    void ActivateWandAblity()
+    {
+        Wands currentwand = Wandlist[selectWandPos];
+        if (currentwand.skill != null && skillCooldown <= 0)
+        {
+            currentwand.skill.Activate(this);
+            skillCooldown = skillCooldownDuration;
+        }
+    }
 
+    void ActivateShield()
+    {
+        if(currentShield == null)
+        {
+            currentShield = Instantiate(shieldprefab, transform.position, Quaternion.identity);
+            currentShield.transform.SetParent(transform);
+        }
+        Destroy(currentShield, shieldDuration);
+    }
 
     IEnumerator useItem()
     {
