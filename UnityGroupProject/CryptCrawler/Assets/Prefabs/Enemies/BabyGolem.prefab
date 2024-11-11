@@ -518,6 +518,7 @@ GameObject:
   - component: {fileID: 544172380166560287}
   - component: {fileID: 2574553148388749028}
   - component: {fileID: 4916972304770845240}
+  - component: {fileID: 4755518526380436667}
   m_Layer: 6
   m_Name: HPCanvas
   m_TagString: Untagged
@@ -608,6 +609,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4755518526380436667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4340310095514024354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06136a41b8161c34f88227f789abe28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4358764080726448887
 GameObject:
   m_ObjectHideFlags: 0
