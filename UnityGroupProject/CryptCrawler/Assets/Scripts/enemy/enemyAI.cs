@@ -25,7 +25,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootAngle;
     [SerializeField] Image enemyHPbar;
     [SerializeField] int ExpWorth;
-  //  private ObjectSpawner spawner; // Reference to the spawner
+
+  
+    //  private ObjectSpawner spawner; // Reference to the spawner
     bool isShooting;
     bool playerInRange;
     bool isRoaming;
@@ -167,6 +169,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if(isBeingDestoryed) return; 
         isHit = true;
         HP -= amount;
+        DamagePopUpGenerator.current.CreatePopUp(transform.position, amount.ToString(), Color.yellow);
         UpdateEnemyUI();
 
         if (someCo != null)
@@ -176,6 +179,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         anim.SetTrigger("hit");
         agent.SetDestination(gamemanager.instance.player.transform.position);
+
 
         StartCoroutine(flashColor());
 
@@ -189,6 +193,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         isHit = false;
     }
+
+  
 
     IEnumerator flashColor()
     {
