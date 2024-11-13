@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class LavaGolemAI : MonoBehaviour, IDamage
+public class LavaGolemAI : MonoBehaviour, IDamage,IEnemy
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
@@ -201,5 +201,10 @@ public class LavaGolemAI : MonoBehaviour, IDamage
     public void gainHealth(int amount)
     {
 
+    }
+    public void ResetHealth()
+    {
+        HP= HPorig;
+        UpdateEnemyUI();
     }
 }

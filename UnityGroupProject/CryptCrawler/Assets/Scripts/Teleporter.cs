@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour
@@ -12,6 +14,8 @@ public class Teleporter : MonoBehaviour
     // Declare a public GameObject variable: playerg
     // This will be set in the Unity editor to specify the player's game object
     public GameObject playerChar;
+    [Header("Health Reset Options")]
+    [SerializeField] private bool resetEnemyHealthONTeleport = true;
 
     // Declare a public GameObject variable: playerg
     // This will be set in the Unity editor to specify the player's game object
@@ -27,6 +31,14 @@ public class Teleporter : MonoBehaviour
             player.position = destination.position;
             // Set the player game object to be active again (i.e., show it at the new position)
             playerChar.SetActive(true);
+            if (resetEnemyHealthONTeleport)
+            {
+                IEnemy[] enemies = FindObjectsOfType<MonoBehaviour>().OfType<IEnemy>().ToArray();
+                foreach (IEnemy enemy in enemies)
+                {
+                    enemy.ResetHealth(); 
+                }
+            }
         }
     }
 }
