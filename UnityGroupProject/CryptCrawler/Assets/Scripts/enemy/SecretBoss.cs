@@ -40,7 +40,7 @@ public class SecretBoss : MonoBehaviour, IDamage
     bool playerInRange;
     bool isRoaming;
     public bool isDead;
-    int HPorig;
+    private int HPorig;
     bool isHit;
     private AttackType chosenattackType;
     float angleToplayer;
@@ -59,10 +59,13 @@ public class SecretBoss : MonoBehaviour, IDamage
     {
         colorOg = model.material.color;
         gamemanager.instance.UpdateGameGoal(1);
-        UpdateEnemyUI();
         HPorig = HP;
+
+        UpdateEnemyUI();
+        
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+        SecondPhase = false;
         isDead = false;
         chosenattackType = AttackType.Regularattack;
     }
@@ -70,7 +73,7 @@ public class SecretBoss : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        CheckSecondPhase();
+       
         if (isShooting == false)
         {
             anim.SetFloat("speed", agent.velocity.normalized.magnitude);
@@ -78,7 +81,8 @@ public class SecretBoss : MonoBehaviour, IDamage
         if(playerInRange && canSeePlayer())
         {
 
-        }
+        } 
+        CheckSecondPhase();
     }
 
    
@@ -210,6 +214,7 @@ public class SecretBoss : MonoBehaviour, IDamage
     }
     void CheckSecondPhase()
     {
+        Debug.Log($"Current HP: {HP}, Original HP: {HPorig}, Second Phase: {SecondPhase}");
         if (!SecondPhase && HP <= HPorig / 2)
         {
             // Transition to the second phase
