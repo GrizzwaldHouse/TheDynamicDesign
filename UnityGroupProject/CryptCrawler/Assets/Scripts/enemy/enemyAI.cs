@@ -166,10 +166,18 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount)
     {
-        if(isBeingDestoryed) return; 
+        if (HP <= 0)
+        {
+            gamemanager.instance.UpdateGameGoal(-1);
+            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
+            OnDestroy();
+            isBeingDestoryed = true;
+            Destroy(gameObject);
+        }
+        if (isBeingDestoryed) return; 
         isHit = true;
         HP -= amount;
-        DamagePopUpGenerator.current.CreatePopUp(transform.position, amount.ToString(), Color.yellow);
+        //DamagePopUpGenerator.current.CreatePopUp(transform.position, amount.ToString(), Color.yellow);
         UpdateEnemyUI();
 
         if (someCo != null)
@@ -182,15 +190,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
         StartCoroutine(flashColor());
-
-        if (HP <= 0)
-        {
-            gamemanager.instance.UpdateGameGoal(-1);
-            gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
-            OnDestroy();
-            isBeingDestoryed = true;
-            Destroy(gameObject);
-        }
         isHit = false;
     }
 
