@@ -227,8 +227,7 @@ public class gamemanager : MonoBehaviour
         SaveSystem.SavePlayer(accessPlayer); // Pass the PlayerController to save its state
 
 
-        // Log a message to the console to indicate that the game has been saved.
-        Debug.Log("Game saved!");
+    
     }
 
     // This method opens the inventory UI.
@@ -270,8 +269,7 @@ public class gamemanager : MonoBehaviour
         //// Call the LoadSystem method on the PlayerController.
         accessPlayer.LoadSystem();
 
-        // Log a message to the console to indicate that the game has been loaded.
-        Debug.Log("Game loaded!");
+      
     }
 
     public void CompleteObjective()
@@ -297,8 +295,7 @@ public class gamemanager : MonoBehaviour
     }
     private void QuestCompleted()
     {
-        // Handle quest completion (e.g., show win menu, reward player, etc.)
-        Debug.Log("All objectives completed!");
+      
     }
 
 }

@@ -14,6 +14,7 @@ public class NextLevel : MonoBehaviour
     {
         if (other.CompareTag("Player")&&!other.isTrigger)
         {
+            gamemanager.instance.SaveGame();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
         }
     }
