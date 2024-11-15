@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1345762139336771624}
   - component: {fileID: 4100591539681099631}
   - component: {fileID: 1021697264378959862}
+  - component: {fileID: 1288350934602018454}
   m_Layer: 0
   m_Name: PortalEight
   m_TagString: Untagged
@@ -98,6 +99,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.74, y: 2.52, z: 3.42}
   m_Center: {x: 0.5, y: 1.54, z: -2.13}
+--- !u!114 &1288350934602018454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7221773419190552725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4179091785fd6844ca46c7bec8a20ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadLevel: LavaFight
 --- !u!1 &7570034864412378884
 GameObject:
   m_ObjectHideFlags: 0

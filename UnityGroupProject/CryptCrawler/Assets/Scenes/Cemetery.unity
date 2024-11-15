@@ -14,20 +14,20 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientIntensity: 0.41
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: fe4012e5051d70a4f96525b9fb86533e, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0.082
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a06015ef16cd5e54abefcb969d26113c, type: 2}
   m_LightingSettings: {fileID: 1735883209}
 --- !u!196 &4
 NavMeshSettings:
@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 1824134495}
     - target: {fileID: 2348715160531520039, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
       propertyPath: m_VersionIndex
-      value: 74
+      value: 77
       objectReference: {fileID: 0}
     - target: {fileID: 2869655044825603269, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
       propertyPath: playerChar
@@ -320,6 +320,8 @@ PrefabInstance:
     - {fileID: 3879450609136080760, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 26425704286616998, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
+    - {fileID: 221304894228563269, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
+    - {fileID: 1533193249875959869, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8923911570779534230, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
       insertIndex: -1
@@ -327,29 +329,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8923911570779534230, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 904751606}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1736082504438120232, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 821362663}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
---- !u!1 &821362662 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1736082504438120232, guid: 7bce476e3d6e8ea46b9f338bc576612b, type: 3}
-  m_PrefabInstance: {fileID: 821362661}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &821362663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 821362662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4179091785fd6844ca46c7bec8a20ca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadLevel: LavaFight
 --- !u!4 &837661834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5248147658153385940, guid: 604aae98048f1484abdc19bba05551e2, type: 3}
@@ -468,37 +449,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1593930699}
     m_Modifications:
-    - target: {fileID: 2410726521561905684, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: HP
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410726521561905684, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: ExpWorth
-      value: 97
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410726521561905684, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: shootRate
-      value: 1.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410726521561905684, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: rotateSpeed
-      value: 127
-      objectReference: {fileID: 0}
     - target: {fileID: 2879752113924877925, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
       propertyPath: m_Name
       value: WizardEasy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535016455474578588, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535016455474578588, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535016455474578588, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.68
       objectReference: {fileID: 0}
     - target: {fileID: 8535016455474578588, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -539,10 +492,6 @@ PrefabInstance:
     - target: {fileID: 8535016455474578588, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535016455474578588, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1124,9 +1124,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 95960400122988668, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 816630129873265793, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414042004128250104, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.209
+      objectReference: {fileID: 0}
     - target: {fileID: 1537378554421049227, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
       propertyPath: m_Name
       value: Maze
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458198177901176830, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_Name
+      value: SkeltonWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154533503719072659, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_Name
+      value: SkeltonWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749889840039004909, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_Size.x
+      value: 20.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565915733957404319, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565915733957404319, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 19.99
       objectReference: {fileID: 0}
     - target: {fileID: 7957226390137107634, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
       propertyPath: m_LocalScale.x
@@ -1185,7 +1217,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7282805776339560491, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2809371358017114753, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2280260940095458130, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 6681703674622964859, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 4240360841536084577, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 7675327103601777375, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 3644742127353692052, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2836918996080644467, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 9141453625109575522, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 321701341543201185, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 4989693275405746570, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 6669796487725664260, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 4305284843622568732, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 7954435463286585819, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2783211140743491428, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2840172186707732175, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2785026963781738854, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 8741077015241904050, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 8797511939914477998, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2572131794012784259, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 6954140740281338011, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2926000804288432330, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 1312349975599052376, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 2646589582591118132, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
+    - {fileID: 7886799973149787586, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8124541901977966860, guid: 9d777349836d9d948b8b06a85d142d05, type: 3}
       insertIndex: -1
