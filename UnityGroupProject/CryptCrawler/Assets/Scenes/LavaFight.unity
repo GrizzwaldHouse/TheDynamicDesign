@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4179091785fd6844ca46c7bec8a20ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadLevel: Cemetery
+  loadLevel: CemeteryAfterSecertRoom
 --- !u!136 &1664675097
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -773,6 +773,7 @@ PrefabInstance:
       objectReference: {fileID: 1553826950}
     m_RemovedComponents:
     - {fileID: 5320295623795510579, guid: 8cb5d65b4683a8f45a87009214ce74a0, type: 3}
+    - {fileID: 6102588650621650939, guid: 8cb5d65b4683a8f45a87009214ce74a0, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7795058279081648406, guid: 8cb5d65b4683a8f45a87009214ce74a0, type: 3}
     m_AddedGameObjects:

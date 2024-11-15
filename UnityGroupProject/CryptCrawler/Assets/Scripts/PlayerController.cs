@@ -71,12 +71,12 @@ public class PlayerController : MonoBehaviour, IDamage
     public string areaTransitionName;
     void Awake()
     {
-        //// Ensure that this is the only instance of PlayerController
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject); // Keep this object across scenes
-        //}
+        // Ensure that this is the only instance of PlayerController
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Keep this object across scenes
+        }
         //else
         //{
         //    Destroy(gameObject); // Destroy duplicate instance
