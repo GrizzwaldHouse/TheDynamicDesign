@@ -30,6 +30,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
     float playerHealth;
     bool isRoaming;
     float stoppingDistOrig;
+    float distanceToPlayer;
     bool isHit;
     public UnityEvent UpdateObjective;
 
@@ -58,38 +59,38 @@ public class SkeletonAI : MonoBehaviour, IDamage
         {
             anim.SetFloat("speed", agent.velocity.normalized.magnitude);
         }
-        //if (playerInRange && !canSeePlayer())
-        //{
-        //    if (!isRoaming && agent.remainingDistance < 0.05f)
-        //    {
-        //        someCo = StartCoroutine(Roam());
-        //    }
-        //}
-        //else if (!playerInRange)
-        //{
-        //    if (!isRoaming && agent.remainingDistance < 0.05f)
-        //    {
-        //        someCo = StartCoroutine(Roam());
-        //    }
-        //}
+        if (playerInRange && !canSeePlayer())
+        {
+            if (!isRoaming && agent.remainingDistance < 0.05f)
+            {
+                someCo = StartCoroutine(Roam());
+            }
+        }
+        else if (!playerInRange)
+        {
+            if (!isRoaming && agent.remainingDistance < 0.05f)
+            {
+                someCo = StartCoroutine(Roam());
+            }
+        }
     }
-    //IEnumerator Roam()
-    //{
-    //    isRoaming = true;
-    //    yield return new WaitForSeconds(roamPauseTime);
+    IEnumerator Roam()
+    {
+        isRoaming = true;
+        yield return new WaitForSeconds(roamPauseTime);
 
-    //    //can move this code up
-    //    agent.stoppingDistance = 0;
-    //    Vector3 randomDist = Random.insideUnitSphere * roamDist;
-    //    randomDist += startingPos;
+        //can move this code up
+        agent.stoppingDistance = 0;
+        Vector3 randomDist = Random.insideUnitSphere * roamDist;
+        randomDist += startingPos;
 
-    //    NavMeshHit hit;
-    //    NavMesh.SamplePosition(randomDist, out hit, roamDist, 1);
-    //    agent.SetDestination(hit.position);
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDist, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
 
-    //    isRoaming = false;
-    //    someCo = null;
-    //}
+        isRoaming = false;
+        someCo = null;
+    }
     bool canSeePlayer()
     {
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
@@ -99,6 +100,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
+            distanceToPlayer = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
             if (hit.collider.CompareTag("Player") && angleToplayer <= viewAngle)
             {
                 agent.SetDestination(gamemanager.instance.player.transform.position);
@@ -107,7 +109,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
                     faceTarget();
                 }
 
-                if (isSwinging == false && angleToplayer < shootAngle)
+                if (isSwinging == false && angleToplayer < shootAngle && distanceToPlayer - stoppingDistOrig <= 8)
                 {
                     StartCoroutine(Attack());
                 }

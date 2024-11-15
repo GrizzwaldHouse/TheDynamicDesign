@@ -385,6 +385,9 @@ MonoBehaviour:
   shootRate: 1
   wandModel: {fileID: 8136887162229823524}
   inventoryModel: {fileID: 5221951250196987144}
+  shieldprefab: {fileID: 0}
+  shieldDuration: 0
+  skillCooldownDuration: 0
   healedAmount: 0
   manaRestored: 0
   healthBoosted: 0
@@ -446,7 +449,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -533,7 +536,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
