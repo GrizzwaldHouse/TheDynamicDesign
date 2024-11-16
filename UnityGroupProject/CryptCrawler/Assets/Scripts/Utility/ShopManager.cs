@@ -109,7 +109,6 @@ public class ShopManager : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Ensure the player has the correct tag
         {
-            Debug.Log("Entered shop radius");
             shopUI.gameObject.SetActive(true); // Activate the shop UI
             shopUI.PopulateShopUI(); // Populate the shop UI with items
         }

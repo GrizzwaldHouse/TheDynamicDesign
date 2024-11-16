@@ -166,10 +166,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount)
     {
-        if(isBeingDestoryed) return; 
+        if (isBeingDestoryed) return; 
         isHit = true;
         HP -= amount;
-        DamagePopUpGenerator.current.CreatePopUp(transform.position, amount.ToString(), Color.yellow);
+        //DamagePopUpGenerator.current.CreatePopUp(transform.position, amount.ToString(), Color.yellow);
         UpdateEnemyUI();
 
         if (someCo != null)
@@ -179,10 +179,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         anim.SetTrigger("hit");
         agent.SetDestination(gamemanager.instance.player.transform.position);
-
-
-        StartCoroutine(flashColor());
-
         if (HP <= 0)
         {
             gamemanager.instance.UpdateGameGoal(-1);
@@ -191,6 +187,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             isBeingDestoryed = true;
             Destroy(gameObject);
         }
+
+        StartCoroutine(flashColor());
         isHit = false;
     }
 

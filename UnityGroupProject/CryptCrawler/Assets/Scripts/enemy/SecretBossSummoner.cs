@@ -301,7 +301,7 @@ public class SecretBossSummoner : MonoBehaviour, IDamage
         if (!SecondPhase && HP <= HPorig / 2) // If not in second phase and health is below half
         {
             SecondPhase = true; // Transition to the second phase
-            Debug.Log("Boss has entered the second phase!"); // Log the phase transition
+          
             agent.speed *= 2; // Increase the boss's speed in the second phase
             spawnCoroutine = StartCoroutine(SpawnObjectsAtIntervals()); // Start the coroutine to spawn objects at intervals during the second phase
         }
@@ -310,8 +310,7 @@ public class SecretBossSummoner : MonoBehaviour, IDamage
     // Method to perform an Area of Effect attack
     void AoeAttack()
     {
-        Debug.Log("Performing AoE attack!"); // Log the AoE attack
-
+       
         // Instantiate the AoE particle effect at the boss's position
         if (aoeEffect != null)
         {
@@ -344,7 +343,7 @@ public class SecretBossSummoner : MonoBehaviour, IDamage
         }
         if (spawnPoints == null || spawnPoints.Count == 0 || spawnObject == null) // Check if spawn points or spawn object is not set
         {
-            Debug.LogError("Spawn points or spawn object is not set."); // Log an error message
+           
             return; // Exit the method
         }
         // Randomly select a spawn point from the list

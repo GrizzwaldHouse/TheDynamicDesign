@@ -542,8 +542,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -69.99375, y: -29.7, z: 10.39}
-  m_LocalScale: {x: 2, y: 2.5, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3.68, y: 4.6, z: 3.68}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3977438114578203711}
   - {fileID: 6663807154554596678}
@@ -570,13 +570,13 @@ MonoBehaviour:
   viewAngle: 90
   roamDist: 10
   roamPauseTime: 3
-  HP: 15
-  rotateSpeed: 100
+  HP: 100
+  rotateSpeed: 127
   bullet: {fileID: 2882795654731209471, guid: a031935e994ec184ab2c3cc37906cbb8, type: 3}
-  shootRate: 1
+  shootRate: 1.76
   shootAngle: 15
   enemyHPbar: {fileID: 9022281977143084099}
-  ExpWorth: 10
+  ExpWorth: 97
   isDead: 0
 --- !u!195 &5145015099662775917
 NavMeshAgent:
