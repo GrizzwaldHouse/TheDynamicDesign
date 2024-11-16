@@ -32,7 +32,7 @@ public ItemData currentItemData;
             currentQuantity = quantity;
         }
 
-        else if (currentItemData == itemData && itemData.isStackable)
+        else  (currentItemData == itemData && itemData.isStackable)
         {
             currentQuantity = Mathf.Min(currentQuantity + quantity, itemData.maxStackSize);
         }
@@ -50,11 +50,7 @@ public ItemData currentItemData;
         //    currentQuantity = itemData.maxStackSize;
         //}
 
-        else
-        {
-            Debug.LogWarning($"Cannot add {itemData.menuName} to the slot. It's not stackable or a different item.");
-            return; //
-        }
+       
     }
     public void ClearSlot()
     {

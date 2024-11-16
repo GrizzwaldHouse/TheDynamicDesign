@@ -10,10 +10,7 @@ public class ButtonFunctions : MonoBehaviour
     public bool isSellButton;
     public void OnButtonClick()
     {
-        if(shopManager == null)
-        {
-            Debug.LogError("ShopManager reference is missing");
-        }
+       
         // Check if the current button is designated as the "Sell" button.
         // The boolean variable 'isSellButton' determines the action to be taken.
         if (isSellButton)

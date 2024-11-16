@@ -47,7 +47,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (itemData == null)
         {
-            Debug.LogWarning("ItemData is null. Cannot add item.");
+          
             return; // Early exit if itemData is null
         }
 
@@ -60,10 +60,7 @@ public class InventoryManager : MonoBehaviour
 
                 UpdateExistingItem(itemData, quantity);
             }
-            else
-            {
-                Debug.LogWarning($"Cannot add {quantity} {itemData.menuName} to the inventory. It's not stackable.");
-            }
+       
         }
         else
         {
@@ -80,10 +77,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventory[itemData] = Mathf.Min(inventory[itemData] + quantity, itemData.maxStackSize);
         }
-        else
-        {
-            Debug.LogWarning($"Item not stackable: {itemData.menuName}");
-        }
+   
     }
     public void RemoveItem(ItemData itemData, int quantity)
     {
@@ -98,10 +92,7 @@ public class InventoryManager : MonoBehaviour
 
             UpdateInventoryUI(); // Update UI after removal
         }
-        else
-        {
-            Debug.LogWarning($"Item {itemData.menuName} not found in inventory.");
-        }
+     
     }
 
 
@@ -117,7 +108,7 @@ public class InventoryManager : MonoBehaviour
             {
                 var item = itemList[i];
                 itemSlots[i].AddItem(item, inventory[item]);
-                Debug.Log($"Updated slot {i} with item: {item.menuName}, Quantity: {inventory[item]}");
+            
 
             }
             else

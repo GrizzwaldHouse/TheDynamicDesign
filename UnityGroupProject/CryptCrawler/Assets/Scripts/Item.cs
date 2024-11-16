@@ -18,10 +18,7 @@ public class Item : MonoBehaviour // Item class inherits from MonoBehaviour, all
     private void Awake()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
-        if (inventoryManager == null)
-        {
-            Debug.LogError("InventoryManager not found in the scene.");
-        }
+       
     }
     // Start is called before the first frame update
     void Start()
@@ -46,19 +43,12 @@ public class Item : MonoBehaviour // Item class inherits from MonoBehaviour, all
                 {
                     coinSystem.Gain(itemData.currencyValue); // Update the coin count
                 }
-                else
-                {
-                    Debug.LogError("CoinSystem not found in the scene.");
-                }
+               
             }
 
             // Destroy this GameObject (the item) after it has been collected
             Destroy(gameObject);
         }
-        else
-        {
-            // Log an error message if the InventoryManager is not found
-            Debug.LogError("InventoryManager is not assigned or not found.");
-        }
+   
     }
 }

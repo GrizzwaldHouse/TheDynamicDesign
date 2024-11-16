@@ -38,7 +38,7 @@ public class ObjectSpawner : MonoBehaviour
         }
         if (spawnPoints == null || spawnPoints.Count == 0 || spawnObject == null)
         {
-            Debug.LogError("Spawn points or spawn object is not set.");
+           // Debug.LogError("Spawn points or spawn object is not set.");
             return;
         }
         // Randomly select a spawn point from the list

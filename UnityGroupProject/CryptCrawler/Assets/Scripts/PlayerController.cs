@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour, IDamage
                 }
             }
 
-            Debug.LogWarning("Item " + selectItemPos + "used");
+           // Debug.LogWarning("Item " + selectItemPos + "used");
             yield return new WaitForSeconds(1f); // Example cooldown time
             usingItem = false;
 

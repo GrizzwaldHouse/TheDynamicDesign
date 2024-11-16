@@ -18,8 +18,7 @@ public class LavaDam : MonoBehaviour
         // Check if the object has an IDamage component (indicating it can take damage)
         if (currentTarget != null)
         {
-            // Log a message indicating that a target has entered the lava pit
-            Debug.Log("Target entered lava pit: " + other.gameObject.name);
+        
             // Start the coroutine to apply damage over time to the target
             InvokeRepeating(nameof(ApplyLavaDamage),0f,tickRate);
         }
@@ -42,8 +41,7 @@ public class LavaDam : MonoBehaviour
         {
             // Apply damage to the target
             currentTarget.takeDamage((int)damagePerTick);
-            // Log the amount of damage being applied
-            Debug.Log("Applying lava damage: " + damagePerTick);
+         
         }
     }
 }

@@ -83,13 +83,13 @@ public class MovingPlatform : MonoBehaviour // Class definition for MovingPlatfo
         if (other.gameObject.CompareTag("Player"))
         {
             _isMoving = true; // Set the moving flag to true, indicating the platform should start moving
-            Debug.Log("Player entered the platform. Starting movement."); // Log a message for debugging
+           // Debug.Log("Player entered the platform. Starting movement."); // Log a message for debugging
 
             // If reset on collision is enabled, reset the platform's position
             if (_resetOnCollision)
             {
                 ResetPlatformPosition(); // Call the method to reset the platform's position
-                Debug.Log("Platform reset to starting position due to collision."); // Log a message for debugging
+               // Debug.Log("Platform reset to starting position due to collision."); // Log a message for debugging
             }
 
             // Set the player as a child of the platform, so it moves with the platform
@@ -105,7 +105,7 @@ public class MovingPlatform : MonoBehaviour // Class definition for MovingPlatfo
         {
             // Remove the player as a child of the platform when they exit
             other.transform.SetParent(null);
-            Debug.Log("Player exited the platform."); // Log a message for debugging
+          //  Debug.Log("Player exited the platform."); // Log a message for debugging
         }
     }
 
@@ -123,7 +123,7 @@ public class MovingPlatform : MonoBehaviour // Class definition for MovingPlatfo
         // Ensure there are at least two points to move between; if not, exit the method
         if (_destinations.Count < 2)
         {
-            Debug.LogWarning("Not enough destinations set for platform movement."); // Log a warning if not enough destinations are set
+          //  Debug.LogWarning("Not enough destinations set for platform movement."); // Log a warning if not enough destinations are set
             return; // Exit the method
         }
 
@@ -139,14 +139,14 @@ public class MovingPlatform : MonoBehaviour // Class definition for MovingPlatfo
         {
             // Update the destination index for the next move
             _currentDestinationIndex = (_currentDestinationIndex + 1) % _destinations.Count; // Loop back to the first destination if at the end
-            Debug.Log("Reached destination: " + target.name); // Log the reached destination for debugging
+           // Debug.Log("Reached destination: " + target.name); // Log the reached destination for debugging
 
             // If looping is disabled and the platform has reached the last destination, stop moving
             if (!_loopMovement && _currentDestinationIndex == 0)
             {
                 _isMoving = false; // Stop the platform from moving
                 OnStopMoving?.Invoke(); // Trigger the stop moving event
-                Debug.Log("Platform stopped moving."); // Log a message for debugging
+               // Debug.Log("Platform stopped moving."); // Log a message for debugging
             }
         }
 
@@ -168,13 +168,13 @@ public class MovingPlatform : MonoBehaviour // Class definition for MovingPlatfo
        
         transform.position = _destinations[0].position; // Set the platform's position to the first destination
         _currentDestinationIndex = 0; // Reset the destination index
-        Debug.Log("Platform reset to starting position: " + _destinations[0]); // Log the reset position
+       // Debug.Log("Platform reset to starting position: " + _destinations[0]); // Log the reset position
     }
 
     private void StartMoving() // Method to trigger the start moving event
     {
         OnStartMoving?.Invoke(); // Invoke the OnStartMoving event if there are any subscribers
-        Debug.Log("Platform started moving."); // Log that the platform has started moving
+        //Debug.Log("Platform started moving."); // Log that the platform has started moving
     }
 
     private void StopMoving() // Method to stop the platform's movement
@@ -188,7 +188,7 @@ public class MovingPlatform : MonoBehaviour // Class definition for MovingPlatfo
     private float EasingFunction(float t)
     {
         float result = t < 0.5f ? 2 * t * t : -1 + (4 - 2 * t) * t; // Calculate the eased value based on the input t
-        Debug.Log($"Easing function result for t={t}: {result}"); // Log the result of the easing function
+        //Debug.Log($"Easing function result for t={t}: {result}"); // Log the result of the easing function
         return result; // Return the eased value
     }
 }

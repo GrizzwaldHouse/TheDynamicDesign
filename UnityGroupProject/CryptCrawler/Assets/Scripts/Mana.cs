@@ -61,7 +61,7 @@ public class Mana : MonoBehaviour
         if (isBurning||target ==null) yield break; // Exit if already burning or target is null
         isBurning = true;
 
-        Debug.Log("Burn effect started.");
+        //Debug.Log("Burn effect started.");
         float elapsed = 0f;
         float tickTime = 0f;
 
@@ -73,7 +73,7 @@ public class Mana : MonoBehaviour
                 if (target != null) // Check if target is still valid
                 {
                     target.takeDamage(damagePerTick);
-                    Debug.Log("Applying burn damage: " + damagePerTick);
+                   // Debug.Log("Applying burn damage: " + damagePerTick);
                 }
                 tickTime = 0f;
             }
@@ -126,7 +126,7 @@ public class Mana : MonoBehaviour
             Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
             if (dmg != null)
             {
-                Debug.Log("Damage applied: " + damageamount);
+               // Debug.Log("Damage applied: " + damageamount);
                 
                 if(collision.gameObject.CompareTag("Skeleton") && type == magictype.Holy)
                 {
@@ -145,7 +145,7 @@ public class Mana : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("No NavMeshAgent component found on the enemy.");
+                      //  Debug.Log("No NavMeshAgent component found on the enemy.");
                     }
                 }
                 else if (type == magictype.Wind)
@@ -155,7 +155,7 @@ public class Mana : MonoBehaviour
 
                     // Apply knockback force to the enemy's Rigidbody
                     enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
-                    Debug.Log("Applying wind knockback.");
+                  //  Debug.Log("Applying wind knockback.");
 
                 }
                 else if (type == magictype.Lightning)
@@ -168,7 +168,7 @@ public class Mana : MonoBehaviour
             }
             else
             {
-                Debug.Log("No IDamage component found on the enemy.");
+               // Debug.Log("No IDamage component found on the enemy.");
             }
         }
        
@@ -205,7 +205,7 @@ public class Mana : MonoBehaviour
             if (nextDamage != null)
             {
                 nextDamage.takeDamage(damageAmount);
-                Debug.Log("Chain lightning damage applied: " + damageAmount);
+               // Debug.Log("Chain lightning damage applied: " + damageAmount);
 
                 currentTarget = nextTarget; // Move to the next target
                 jumps++;
