@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [SerializeField] public int HP;
     [SerializeField] public int mana;
-    [SerializeField] int experience;
+    [SerializeField] public int experience;
     [SerializeField] int level;
     [SerializeField] int experienceToNextLevel;
     [SerializeField] int speed;
@@ -71,22 +71,22 @@ public class PlayerController : MonoBehaviour, IDamage
     public string areaTransitionName;
     void Awake()
     {
-        // Ensure that this is the only instance of PlayerController
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Keep this object across scenes
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicate instance
-        }
+        //Ensure that this is the only instance of PlayerController
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject); // Keep this object across scenes
+        //}
+        //else
+        //{
+        //    Destroy(gameObject); // Destroy duplicate instance
+        //}
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("PlayerController Start called");
+     
        
         DontDestroyOnLoad(gameObject);
         HPorig = HP;
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour, IDamage
             coinSystem = FindObjectOfType<CoinSystem>(); // Find the CoinSystem in the scene
             if (coinSystem == null)
             {
-                Debug.LogError("CoinSystem instance not found in the scene!");
+             
             }
         }
     }
@@ -344,7 +344,7 @@ public class PlayerController : MonoBehaviour, IDamage
         else
         {
             // Handle the case where the player doesn't have enough mana
-            Debug.Log("Not enough mana to cast the spell!");
+         
         }
     }
     IEnumerator DamageFlash()
@@ -435,7 +435,7 @@ public class PlayerController : MonoBehaviour, IDamage
         spell.GetComponent<Mana>().damageamount += 5;
         gamemanager.instance.LevelUp(); //open menu for leveling up
         UpdatePlayerUI();
-        Debug.Log("Level Up! You are now level " + level);
+    
     }
     private int calculateExperienceToNextLevel()
     {
@@ -459,7 +459,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             // Set the player's health based on the loaded data.
             HP = data.health;
-
+            experience = data.experience;
             // Create a Vector3 variable to store the player's position.
             Vector3 position;
 
@@ -526,7 +526,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (item.category == ItemCategory.Currency)
         {
             coinSystem.Gain(item.currencyValue);
-            Debug.Log($"Added currency: {item.menuName}");
+     
         }
         else
         {
@@ -651,7 +651,7 @@ public class PlayerController : MonoBehaviour, IDamage
             itemList.Add(item);
 
             // Log a message to the console indicating that the item has been added to the inventory.
-            Debug.Log("Added to inventory: " + item.menuName);
+  
         }
     }
 
@@ -665,8 +665,7 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 coinSystem.RemoveCurrency(item);
             }
-            // Log a message to the console indicating that the item has been removed from the inventory.
-            Debug.Log("Removed from inventory: " + item.menuName);
+         
         }
     }
 }

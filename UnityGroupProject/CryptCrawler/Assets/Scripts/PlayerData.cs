@@ -21,7 +21,7 @@ public class PlayerData
     public float[] position;
     public string currentQuestName; // New field for the current quest name
     public bool hasQuest; // New field to indicate if the player has a quest
-
+    public int experience; // New field to indicate if the player has an experience
     // This is a constructor for the PlayerData class.
     // A constructor is a special method that's called when an object is created from the class.
     // This constructor takes a PlayerController object as a parameter, which is used to initialize the PlayerData object's variables.
@@ -46,6 +46,7 @@ public class PlayerData
         position[2] = player.transform.position.z;
         currentQuestName = player.currentQuestName; // Save current quest name
         hasQuest = player.hasQuest; // Save whether the player has a quest
+        experience = player.experience; // Save player experience
     }
 
 }
