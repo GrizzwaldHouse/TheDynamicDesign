@@ -20,7 +20,7 @@ public  abstract class Skills : ScriptableObject
         }
         else
         {
-            Debug.Log("Skill is on cooldown! Remaining time: " + cooldownTimer);
+           // Debug.Log("Skill is on cooldown! Remaining time: " + cooldownTimer);
         }
     }
       public abstract void ActivateSkill(PlayerController player);

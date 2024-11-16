@@ -32,7 +32,7 @@ public ItemData currentItemData;
             currentQuantity = quantity;
         }
 
-        else  (currentItemData == itemData && itemData.isStackable)
+        else if (currentItemData == itemData && itemData.isStackable)
         {
             currentQuantity = Mathf.Min(currentQuantity + quantity, itemData.maxStackSize);
         }
