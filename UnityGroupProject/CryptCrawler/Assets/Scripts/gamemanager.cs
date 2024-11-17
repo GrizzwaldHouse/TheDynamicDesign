@@ -17,6 +17,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject LevelMenu; //Menu for leveling up
     [SerializeField] GameObject menuWin; // The win menu game object
     [SerializeField] GameObject menuLose; // The lose menu game object
+    [SerializeField] public GameObject creditsPanel;
     [SerializeField] public GameObject questMenu;
     public GameObject PlayerDamageScreen;
     public LavaGolemAI boss;
@@ -131,6 +132,11 @@ public class gamemanager : MonoBehaviour
             {
                 OpenQuest();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && creditsPanel.activeSelf)
+        {
+            creditsPanel.SetActive(false); 
         }
     }
     public void updatePlayerUI()
@@ -296,6 +302,11 @@ public class gamemanager : MonoBehaviour
     private void QuestCompleted()
     {
       
+    }
+
+    public void ToggleCredits()
+    {
+        creditsPanel.SetActive(true);
     }
 
 }

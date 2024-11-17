@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
+    public GameObject creditsPanel;
     public ShopManager shopManager;
     public int itemIndex;
     public bool isSellButton;
@@ -72,5 +73,9 @@ public class ButtonFunctions : MonoBehaviour
         gamemanager.instance.stateUnpause();
     }
 
+    public void ToggleCredits()
+    {
+        creditsPanel.SetActive(!creditsPanel.activeSelf);
+    }
 
 }
