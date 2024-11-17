@@ -1207,6 +1207,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.07
       objectReference: {fileID: 0}
+    - target: {fileID: 8643125980622549897, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4038,6 +4042,9 @@ MonoBehaviour:
   enemyHPbar: {fileID: 192168466}
   ExpWorth: 30
   invulnerabilityObject: []
+  objectsToDestroy: []
+  immunityMessage: {fileID: 0}
+  messageDuration: 2
   isDead: 0
 --- !u!1 &503190605
 GameObject:
@@ -4982,6 +4989,9 @@ MonoBehaviour:
   enemyHPbar: {fileID: 943092819}
   ExpWorth: 30
   invulnerabilityObject: []
+  objectsToDestroy: []
+  immunityMessage: {fileID: 0}
+  messageDuration: 2
   isDead: 0
 --- !u!1 &633651704
 GameObject:
@@ -5574,6 +5584,9 @@ MonoBehaviour:
   enemyHPbar: {fileID: 851670079}
   ExpWorth: 30
   invulnerabilityObject: []
+  objectsToDestroy: []
+  immunityMessage: {fileID: 0}
+  messageDuration: 2
   isDead: 0
 --- !u!1 &662453316
 GameObject:
@@ -6284,6 +6297,9 @@ MonoBehaviour:
   enemyHPbar: {fileID: 1048618895}
   ExpWorth: 30
   invulnerabilityObject: []
+  objectsToDestroy: []
+  immunityMessage: {fileID: 0}
+  messageDuration: 2
   isDead: 0
 --- !u!1 &782449401
 GameObject:
@@ -15517,6 +15533,9 @@ MonoBehaviour:
   enemyHPbar: {fileID: 346949476}
   ExpWorth: 30
   invulnerabilityObject: []
+  objectsToDestroy: []
+  immunityMessage: {fileID: 0}
+  messageDuration: 2
   isDead: 0
 --- !u!1 &1980489333
 GameObject:
@@ -16425,7 +16444,6 @@ GameObject:
   - component: {fileID: 7986033419964410080}
   - component: {fileID: 7115009033866887142}
   - component: {fileID: 6837900408283076826}
-  - component: {fileID: 8956633980087224484}
   - component: {fileID: 5223197230337987839}
   m_Layer: 0
   m_Name: Gravestone_B (4)
@@ -16702,22 +16720,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &223475955339190949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2174334146570268918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f96619d43985e48bcd40d13d38849a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 564760073485967307}
-  spawnObject: {fileID: 2885908870549257271, guid: ac35916e9cafb4f488683d4985a6098f, type: 3}
-  maxDestroyedCount: 5
 --- !u!33 &241069136651842650
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17216,7 +17218,6 @@ GameObject:
   - component: {fileID: 983693431357845533}
   - component: {fileID: 4013532633326705532}
   - component: {fileID: 8507635860257244754}
-  - component: {fileID: 3516921025353562353}
   - component: {fileID: 8257654914054273906}
   - component: {fileID: 4710976247959174730}
   m_Layer: 0
@@ -18065,7 +18066,6 @@ GameObject:
   - component: {fileID: 5388689169125971572}
   - component: {fileID: 4859112872726097723}
   - component: {fileID: 683969626680200318}
-  - component: {fileID: 3006035014490367018}
   - component: {fileID: 8687385207807994419}
   m_Layer: 0
   m_Name: Gravestone_A (2)
@@ -19731,22 +19731,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1835688832168306623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6451084531677322703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f96619d43985e48bcd40d13d38849a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 5238293929058209694}
-  spawnObject: {fileID: 2885908870549257271, guid: ac35916e9cafb4f488683d4985a6098f, type: 3}
-  maxDestroyedCount: 5
 --- !u!4 &1854485510184138212
 Transform:
   m_ObjectHideFlags: 0
@@ -20221,7 +20205,6 @@ GameObject:
   - component: {fileID: 5794000731012166056}
   - component: {fileID: 8086761356998447419}
   - component: {fileID: 8957785597197108797}
-  - component: {fileID: 223475955339190949}
   - component: {fileID: 7089376942773768512}
   - component: {fileID: 5534946994291123285}
   m_Layer: 0
@@ -20534,6 +20517,9 @@ MonoBehaviour:
   - {fileID: 496150743}
   - {fileID: 1978212328}
   - {fileID: 632771967}
+  objectsToDestroy: []
+  immunityMessage: {fileID: 0}
+  messageDuration: 2
   isDead: 0
 --- !u!23 &2430290641951895957
 MeshRenderer:
@@ -20768,7 +20754,6 @@ GameObject:
   - component: {fileID: 2930260536961612059}
   - component: {fileID: 1350597419316367994}
   - component: {fileID: 5989108167043911508}
-  - component: {fileID: 2941006842489016015}
   - component: {fileID: 5670964178880538126}
   - component: {fileID: 8420127646599474574}
   - component: {fileID: 9217880513906381967}
@@ -21369,23 +21354,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2941006842489016015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2574955173506821782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f96619d43985e48bcd40d13d38849a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 277971817964509215}
-  - {fileID: 564760073485967307}
-  spawnObject: {fileID: 2885908870549257271, guid: ac35916e9cafb4f488683d4985a6098f, type: 3}
-  maxDestroyedCount: 5
 --- !u!64 &2965436739835034637
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21474,22 +21442,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3006035014490367018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016762615775516689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f96619d43985e48bcd40d13d38849a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 564760073485967307}
-  spawnObject: {fileID: 2885908870549257271, guid: ac35916e9cafb4f488683d4985a6098f, type: 3}
-  maxDestroyedCount: 5
 --- !u!4 &3013676811785967831
 Transform:
   m_ObjectHideFlags: 0
@@ -22134,24 +22086,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3516921025353562353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 482082583910590352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f96619d43985e48bcd40d13d38849a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 7250957716258730127}
-  - {fileID: 9181269706660002607}
-  - {fileID: 8148702297425692055}
-  spawnObject: {fileID: 2879752113924877925, guid: 170226ac1eb380549a1db90fccf9fa56, type: 3}
-  maxDestroyedCount: 5
 --- !u!33 &3517146604218231097
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22785,7 +22719,6 @@ GameObject:
   - component: {fileID: 4452392861678428455}
   - component: {fileID: 566955385576720966}
   - component: {fileID: 5079468826818107240}
-  - component: {fileID: 8370305704920928938}
   - component: {fileID: 2396468363386104213}
   - component: {fileID: 401173791632087357}
   m_Layer: 0
@@ -27227,7 +27160,6 @@ GameObject:
   - component: {fileID: 5949447845742922306}
   - component: {fileID: 7531291913956106531}
   - component: {fileID: 2965436739835034637}
-  - component: {fileID: 1835688832168306623}
   - component: {fileID: 5672345614990592784}
   m_Layer: 0
   m_Name: Gravestone_G (12)
@@ -30557,22 +30489,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5459736888155556874}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8370305704920928938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953148712776070826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f96619d43985e48bcd40d13d38849a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 277971817964509215}
-  spawnObject: {fileID: 1349150361055734, guid: dca8e056b77d49c4aafe4dbcc2bab713, type: 3}
-  maxDestroyedCount: 5
 --- !u!4 &8403177109582339652
 Transform:
   m_ObjectHideFlags: 0
@@ -31580,23 +31496,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractorSource: {fileID: 4536418343302023216}
   InteractRange: 4
---- !u!114 &8956633980087224484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54374064357984557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f96619d43985e48bcd40d13d38849a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 7250957716258730127}
-  - {fileID: 9181269706660002607}
-  spawnObject: {fileID: 2885908870549257271, guid: ac35916e9cafb4f488683d4985a6098f, type: 3}
-  maxDestroyedCount: 5
 --- !u!64 &8957785597197108797
 MeshCollider:
   m_ObjectHideFlags: 0

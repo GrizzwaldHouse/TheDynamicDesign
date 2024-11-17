@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         objectSpawner = FindObjectOfType<ObjectSpawner>();
-        ShowImmunityMessage();
+        //ShowImmunityMessage();
     }
 
     // Update is called once per frame
@@ -86,11 +86,11 @@ public class EnemyAI : MonoBehaviour, IDamage
             }
         }
 
-        if (AreAllObjectsDestroyed())
-        {
-            // Hide the immunity message
-            HideImmunityMessage();
-        }
+        //if (AreAllObjectsDestroyed())
+        //{
+        //    // Hide the immunity message
+        //    HideImmunityMessage();
+        //}
     }
 
     IEnumerator Roam()
@@ -247,27 +247,27 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     }
 
-    private void ShowImmunityMessage()
-    {
-        immunityMessage.text = "Enemy Immune";
-        immunityMessage.gameObject.SetActive(true);
-        Invoke("HideImmunityMessage", messageDuration); // Automatically hide after duration
-    }
+    //private void ShowImmunityMessage()
+    //{
+    //    immunityMessage.text = "Enemy Immune";
+    //    immunityMessage.gameObject.SetActive(true);
+    //    Invoke("HideImmunityMessage", messageDuration); // Automatically hide after duration
+    //}
 
-    private void HideImmunityMessage()
-    {
-        immunityMessage.gameObject.SetActive(false);
-    }
+    //private void HideImmunityMessage()
+    //{
+    //    immunityMessage.gameObject.SetActive(false);
+    //}
 
-    private bool AreAllObjectsDestroyed()
-    {
-        foreach (GameObject obj in objectsToDestroy)
-        {
-            if (obj != null) // If the object still exists
-            {
-                return false;
-            }
-        }
-        return true; // All objects are destroyed
-    }
+    //private bool AreAllObjectsDestroyed()
+    //{
+    //    foreach (GameObject obj in objectsToDestroy)
+    //    {
+    //        if (obj != null) // If the object still exists
+    //        {
+    //            return false;
+    //        }
+    //    }
+    //    return true; // All objects are destroyed
+    //}
 }
