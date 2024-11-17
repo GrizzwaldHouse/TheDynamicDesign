@@ -69,7 +69,7 @@ public class SaveSystem : MonoBehaviour
         // If the save file doesn't exist, this line logs an error message and returns null.
         else
         {
-            Debug.LogError("Save file not found in " + path);
+           // Debug.LogError("Save file not found in " + path);
             return null;
         }
     }

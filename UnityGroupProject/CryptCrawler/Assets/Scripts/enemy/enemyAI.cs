@@ -25,8 +25,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootAngle;
     [SerializeField] Image enemyHPbar;
     [SerializeField] int ExpWorth;
+    [SerializeField] List<GameObject> invulnerabilityObject; // Reference to the object that controls damage state
 
-  
+
     //  private ObjectSpawner spawner; // Reference to the spawner
     bool isShooting;
     bool playerInRange;
@@ -166,7 +167,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount)
     {
-        if (isBeingDestoryed) return; 
+        if (isBeingDestoryed|| !AreAllInvulnerabilityObjectsDestroyed()) return; 
         isHit = true;
         HP -= amount;
         //DamagePopUpGenerator.current.CreatePopUp(transform.position, amount.ToString(), Color.yellow);
@@ -192,7 +193,17 @@ public class EnemyAI : MonoBehaviour, IDamage
         isHit = false;
     }
 
-  
+    private bool AreAllInvulnerabilityObjectsDestroyed()
+    {
+        foreach (GameObject obj in invulnerabilityObject)
+        {
+            if (obj != null) // If the object is still active
+            {
+                return false;
+            }
+        }
+        return true; // All objects are destroyed
+    }
 
     IEnumerator flashColor()
     {
