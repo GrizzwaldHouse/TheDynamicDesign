@@ -26,6 +26,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Image enemyHPbar;
     [SerializeField] int ExpWorth;
     [SerializeField] List<GameObject> invulnerabilityObject; // Reference to the object that controls damage state
+    public List<GameObject> objectsToDestroy; 
+    public Text immunityMessage; 
+    public float messageDuration = 2f; 
 
 
     //  private ObjectSpawner spawner; // Reference to the spawner
@@ -58,6 +61,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         objectSpawner = FindObjectOfType<ObjectSpawner>();
+        ShowImmunityMessage();
     }
 
     // Update is called once per frame
@@ -80,6 +84,12 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 someCo = StartCoroutine(Roam());
             }
+        }
+
+        if (AreAllObjectsDestroyed())
+        {
+            // Hide the immunity message
+            HideImmunityMessage();
         }
     }
 
@@ -235,5 +245,29 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void gainHealth(int amount)
     {
 
+    }
+
+    private void ShowImmunityMessage()
+    {
+        immunityMessage.text = "Enemy Immune";
+        immunityMessage.gameObject.SetActive(true);
+        Invoke("HideImmunityMessage", messageDuration); // Automatically hide after duration
+    }
+
+    private void HideImmunityMessage()
+    {
+        immunityMessage.gameObject.SetActive(false);
+    }
+
+    private bool AreAllObjectsDestroyed()
+    {
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            if (obj != null) // If the object still exists
+            {
+                return false;
+            }
+        }
+        return true; // All objects are destroyed
     }
 }
