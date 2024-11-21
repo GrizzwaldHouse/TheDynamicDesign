@@ -5,10 +5,11 @@ using UnityEngine;
 public class LavaDam : MonoBehaviour
 {
     // Damage dealt to the target per tick (interval)
-    public float damagePerTick = 5f;
+    public float damagePerTick;
     // Time interval in seconds between each damage tick
-    public float tickRate = 1f;
+    public float tickRate ;
     private IDamage currentTarget;
+    private Coroutine damageCoroutine;
     // This method is called when another collider enters the trigger collider attached to this GameObject
     private void OnTriggerEnter(Collider other)
     {
@@ -18,9 +19,9 @@ public class LavaDam : MonoBehaviour
         // Check if the object has an IDamage component (indicating it can take damage)
         if (currentTarget != null)
         {
-        
+
             // Start the coroutine to apply damage over time to the target
-            InvokeRepeating(nameof(ApplyLavaDamage),0f,tickRate);
+            damageCoroutine = StartCoroutine(ApplyLavaDamage());
         }
     }
 
@@ -30,18 +31,21 @@ public class LavaDam : MonoBehaviour
         if (currentTarget != null && other.GetComponent<IDamage>() == currentTarget)
         {
             currentTarget = null;
-            CancelInvoke(nameof(ApplyLavaDamage));
+           if (damageCoroutine != null)
+            {
+                damageCoroutine = null; 
+            }
         }
     }
 
     // Method that applies damage to the target
-    private void ApplyLavaDamage()
+    private IEnumerator ApplyLavaDamage()
     {
-        if (currentTarget != null)
+        while (currentTarget != null)
         {
             // Apply damage to the target
             currentTarget.takeDamage((int)damagePerTick);
-         
+            yield return new WaitForSeconds(tickRate);
         }
     }
 }

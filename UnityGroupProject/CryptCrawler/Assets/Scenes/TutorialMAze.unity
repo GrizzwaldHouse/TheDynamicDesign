@@ -2688,6 +2688,14 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2113595206}
+    - target: {fileID: 4471777117674802179, guid: 8a161df36685a014ea0c1d8fda28bf43, type: 3}
+      propertyPath: destroyedCountText
+      value: 
+      objectReference: {fileID: 1796639247}
+    - target: {fileID: 4471777117674802179, guid: 8a161df36685a014ea0c1d8fda28bf43, type: 3}
+      propertyPath: remainingObjectsText
+      value: 
+      objectReference: {fileID: 1112406452}
     - target: {fileID: 5130212573671984431, guid: 8a161df36685a014ea0c1d8fda28bf43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2994,7 +3002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7559576478789734281, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.81
+      value: 4.71
       objectReference: {fileID: 0}
     - target: {fileID: 7559576478789734281, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3027,6 +3035,18 @@ PrefabInstance:
     - target: {fileID: 7559576478789734281, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8531489017910997316, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8531489017910997316, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.369
+      objectReference: {fileID: 0}
+    - target: {fileID: 8531489017910997316, guid: 9bee7f28ef563f14b910ec5965bd2260, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
