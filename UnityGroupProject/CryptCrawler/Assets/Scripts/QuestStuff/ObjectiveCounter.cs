@@ -5,16 +5,16 @@ using TMPro;
 
 public class ObjectiveCounter : MonoBehaviour
 {
-    int objectiveCounter = 0;
+    //int objectiveCounter = 0;
 
-    public void ShowObjective()
-    {
-        GetComponent<TextMeshProUGUI>().text = $"Objective: {objectiveCounter} / {gamemanager.instance.accessQuestGiver.questObjectiveCount}";
-    }
+    //public void ShowObjective()
+    //{
+    //    GetComponent<TextMeshProUGUI>().text = $"Objective: {objectiveCounter} / {gamemanager.instance.accessQuestGiver.questObjectiveCount}";
+    //}
 
-    public void ObjectiveIncrement()
-    {
-        objectiveCounter++;
-        ShowObjective();
-    }
+    //public void ObjectiveIncrement()
+    //{
+    //    objectiveCounter++;
+    //    ShowObjective();
+    //}
 }

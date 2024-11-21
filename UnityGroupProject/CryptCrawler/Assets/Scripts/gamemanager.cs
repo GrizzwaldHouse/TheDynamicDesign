@@ -45,7 +45,7 @@ public class gamemanager : MonoBehaviour
     // This is a singleton instance of the GameManager, allowing other scripts to access it easily.
     public static gamemanager instance;
     public PlayerController accessPlayer;
-    public QuestGiver accessQuestGiver;
+   // public QuestGiver accessQuestGiver;
     public SectionTrigger accessSectionTrigger;
     // New variables to track objectives
     [SerializeField] int totalObjectives ; // Set this to the total number of objectives in your game

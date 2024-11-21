@@ -33,7 +33,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
     float distanceToPlayer;
     bool isHit;
     public UnityEvent UpdateObjective;
-
+    private ObjectSpawner objectSpawner;
     float angleToPlayer;
     Vector3 playerDir;
     Color colorOg;
@@ -51,6 +51,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
         playerHealth = gamemanager.instance.playerHPBar.fillAmount;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+        objectSpawner = FindObjectOfType<ObjectSpawner>();
     }
 
     void Update()
@@ -190,6 +191,7 @@ public class SkeletonAI : MonoBehaviour, IDamage
         {
             gamemanager.instance.UpdateGameGoal(-1);
             gamemanager.instance.accessPlayer.gainExperience(ExpWorth);
+            objectSpawner.ObjectDestroyed(gameObject);
             Destroy(gameObject);
         }
     }

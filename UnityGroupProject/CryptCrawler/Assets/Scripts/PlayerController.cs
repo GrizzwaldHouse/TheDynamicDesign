@@ -475,22 +475,22 @@ public class PlayerController : MonoBehaviour, IDamage
             // Update the player's transform position in the game world to the loaded position.
             transform.position = position;
 
-            // Load quest data if the player has an active quest.
-            if (data.hasQuest)
-            {
-                // Find the QuestGiver object in the scene to interact with quests.
-                QuestGiver questGiver = FindObjectOfType<QuestGiver>();
+            //// Load quest data if the player has an active quest.
+            //if (data.hasQuest)
+            //{
+            //    // Find the QuestGiver object in the scene to interact with quests.
+            //    QuestGiver questGiver = FindObjectOfType<QuestGiver>();
 
-                // Check if a QuestGiver was found in the scene.
-                if (questGiver != null)
-                {
-                    // Set the current quest name based on the loaded data.
-                    currentQuestName = data.currentQuestName;
+            //    // Check if a QuestGiver was found in the scene.
+            //    if (questGiver != null)
+            //    {
+            //        // Set the current quest name based on the loaded data.
+            //        currentQuestName = data.currentQuestName;
 
-                    // Indicate that the player has an active quest.
-                    hasQuest = true; // This flag can be used to manage quest-related logic.
-                }
-            }
+            //        // Indicate that the player has an active quest.
+            //        hasQuest = true; // This flag can be used to manage quest-related logic.
+            //    }
+            //}
         }
     }
     public void UpdatePlayerUI()

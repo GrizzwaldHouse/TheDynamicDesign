@@ -199,7 +199,10 @@ public class EnemyAI : MonoBehaviour, IDamage
             Destroy(gameObject);
         }
 
-        StartCoroutine(flashColor());
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(flashColor());
+        }
         isHit = false;
     }
 
