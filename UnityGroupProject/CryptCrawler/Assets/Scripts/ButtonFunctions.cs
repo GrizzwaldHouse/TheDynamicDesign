@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class ButtonFunctions : MonoBehaviour
 {
     public GameObject creditsPanel;
     public ShopManager shopManager;
+    public GameObject settingsmenu;
     public int itemIndex;
     public bool isSellButton;
     public void OnButtonClick()
@@ -77,5 +79,13 @@ public class ButtonFunctions : MonoBehaviour
     {
         creditsPanel.SetActive(!creditsPanel.activeSelf);
     }
-
+    public void Volume()
+    {
+        settingsmenu.SetActive(true);
+        
+    }
+    public void Back()
+    {
+        settingsmenu.SetActive(false);
+    }
 }

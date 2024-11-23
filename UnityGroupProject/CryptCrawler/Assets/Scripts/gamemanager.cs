@@ -16,7 +16,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause; // The pause menu game object
     [SerializeField] GameObject LevelMenu; //Menu for leveling up
     [SerializeField] GameObject menuWin; // The win menu game object
-    [SerializeField] GameObject menuLose; // The lose menu game object
+    [SerializeField] GameObject menuLose;// The lose menu game object
+    [SerializeField] GameObject menuSettings;
     [SerializeField] public GameObject creditsPanel;
     [SerializeField] public GameObject questMenu;
     public GameObject PlayerDamageScreen;
@@ -308,5 +309,5 @@ public class gamemanager : MonoBehaviour
     {
         creditsPanel.SetActive(true);
     }
-
+    
 }
