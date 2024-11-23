@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] GameObject inventoryModel;
     [SerializeField] GameObject shieldprefab;
     [SerializeField] float shieldDuration;
+    [SerializeField] AudioClip audioo;
+    [SerializeField] private AudioSource audioSource;
     private CoinSystem coinSystem;
     
       
@@ -97,6 +99,7 @@ public class PlayerController : MonoBehaviour, IDamage
         origSpeed = speed;
         UpdatePlayerUI();
         UpdatePlayerMana();
+        audioSource = GetComponent<AudioSource>();
         // Ensure the CoinSystem reference is assigned
         if (coinSystem == null)
         {
@@ -284,7 +287,13 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             isShooting = true;
 
+            if (audioo != null) // Ensure the audio clip is assigned
+            {
+                audioSource.PlayOneShot(audioo);
+            }
+
             // Instantiate the spell
+
             GameObject spellInstance = Instantiate(spell, shootPos.position, shootPos.rotation);
             // Raycast to check if the spell hits the enemy
             RaycastHit hit;
@@ -513,6 +522,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         spell = wand.Spell;
         shootRate = wand.shootRate;
+        audioo = wand.audio;     
     }
     // Method to retrieve and set the stats of a given item and update the inventory model.
     public void getItemStats(ItemData item)
@@ -637,6 +647,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void changeWand()
     {
         spell = Wandlist[selectWandPos].Spell;
+        audioo = Wandlist[selectWandPos].audio;
         shootRate = Wandlist[selectWandPos].shootRate;
         wandModel.GetComponent<MeshFilter>().sharedMesh = Wandlist[selectWandPos].wandModel.GetComponent<MeshFilter>().sharedMesh;
         wandModel.GetComponent<MeshRenderer>().material = Wandlist[selectWandPos].wandModel.GetComponent<MeshRenderer>().sharedMaterial;
